@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Select, message, Drawer, List, Switch, Divider, Icon, Button, Alert, Tooltip } from 'antd';
-import { formatMessage } from 'umi/locale';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { connect } from 'dva';
+// import { formatMessage } from 'umi/locale';
+// import { CopyToClipboard } from 'react-copy-to-clipboard';
+// import { connect } from 'dva';
 import omit from 'omit.js';
 import styles from './index.less';
 import ThemeColor from './ThemeColor';
@@ -22,7 +22,7 @@ const Body = ({ children, title, style }) => (
   </div>
 );
 
-@connect(({ setting }) => ({ setting }))
+// @connect(({ setting }) => ({ setting }))
 class SettingDrawer extends PureComponent {
   state = {
     collapse: false,
@@ -221,14 +221,6 @@ class SettingDrawer extends PureComponent {
             </List.Item>
           </Body>
           <Divider />
-          <CopyToClipboard
-            text={JSON.stringify(omit(setting, ['colorWeak']), null, 2)}
-            onCopy={() => message.success(formatMessage({ id: 'app.setting.copyinfo' }))}
-          >
-            <Button block icon="copy">
-              {formatMessage({ id: 'app.setting.copy' })}
-            </Button>
-          </CopyToClipboard>
           <Alert
             type="warning"
             className={styles.productionHint}

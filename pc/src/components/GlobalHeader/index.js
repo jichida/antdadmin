@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Icon } from 'antd';
-import Link from 'umi/link';
+// import Link from 'umi/link';
 import styles from './index.less';
 import RightContent from './RightContent';
 

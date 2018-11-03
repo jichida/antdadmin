@@ -8,19 +8,19 @@ import memoizeOne from 'memoize-one';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import pathToRegexp from 'path-to-regexp';
-import { enquireScreen, unenquireScreen } from 'enquire-js';
+// import { enquireScreen, unenquireScreen } from 'enquire-js';
 import { formatMessage } from 'umi/locale';
 
-import SiderMenu from '@/components/SiderMenu';
+import SiderMenu from '../components/SiderMenu';
 import logo from '../assets/logo.svg';
 import Footer from './Footer';
 import Header from './Header';
 import Context from './MenuContext';
-import Exception403 from '../pages/Exception/403';
+// import Exception403 from '../pages/Exception/403';
 
-import SettingDrawer from '@/components/SettingDrawer';
+import SettingDrawer from '../components/SettingDrawer';
 
-import routers from '@/router.config.js';
+// import routers from '@/router.config.js';
 
 const { Content } = Layout;
 
@@ -106,14 +106,14 @@ class BasicLayout extends React.PureComponent {
         rendering: false,
       });
     });
-    this.enquireHandler = enquireScreen(mobile => {
-      const { isMobile } = this.state;
-      if (isMobile !== mobile) {
-        this.setState({
-          isMobile: mobile,
-        });
-      }
-    });
+    // this.enquireHandler = enquireScreen(mobile => {
+    //   const { isMobile } = this.state;
+    //   if (isMobile !== mobile) {
+    //     this.setState({
+    //       isMobile: mobile,
+    //     });
+    //   }
+    // });
   }
 
   componentDidUpdate(preProps) {
@@ -129,7 +129,7 @@ class BasicLayout extends React.PureComponent {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.renderRef);
-    unenquireScreen(this.enquireHandler);
+    // unenquireScreen(this.enquireHandler);
   }
 
   getContext() {
@@ -141,7 +141,7 @@ class BasicLayout extends React.PureComponent {
   }
 
   getMenuData() {
-    return memoizeOneFormatter(routers);
+    // return memoizeOneFormatter(routers);
   }
 
   /**
@@ -203,7 +203,7 @@ class BasicLayout extends React.PureComponent {
   };
 
   handleMenuCollapse = collapsed => {
-    
+
     //const { dispatch } = this.props;
     //dispatch({
     //  type: 'global/changeLayoutCollapsed',
@@ -215,7 +215,7 @@ class BasicLayout extends React.PureComponent {
     // Do not render SettingDrawer in production
     // unless it is deployed in preview.pro.ant.design as demo
     const { rendering } = this.state;
-    if ((rendering || process.env.NODE_ENV === 'production') && APP_TYPE !== 'site') {
+    if ((rendering || process.env.NODE_ENV === 'production') ) {
       return null;
     }
     return <SettingDrawer />;
@@ -236,7 +236,6 @@ class BasicLayout extends React.PureComponent {
         {isTop && !isMobile ? null : (
           <SiderMenu
             logo={logo}
-            Authorized={Authorized}
             theme={navTheme}
             onCollapse={this.handleMenuCollapse}
             menuData={menuData}

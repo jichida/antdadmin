@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import { Layout } from 'antd';
 import pathToRegexp from 'path-to-regexp';
 import classNames from 'classnames';
-import Link from 'umi/link';
+// import Link from 'umi/link';
 import styles from './index.less';
 import BaseMenu, { getMenuMatches } from './BaseMenu';
-import { urlToList } from '../_utils/pathTools';
+// import { urlToList } from '../_utils/pathTools';
 
 const { Sider } = Layout;
 
@@ -18,9 +18,10 @@ const getDefaultCollapsedSubMenus = props => {
     location: { pathname },
     flatMenuKeys,
   } = props;
-  return urlToList(pathname)
-    .map(item => getMenuMatches(flatMenuKeys, item)[0])
-    .filter(item => item);
+  return [];
+  // return urlToList(pathname)
+  //   .map(item => getMenuMatches(flatMenuKeys, item)[0])
+  //   .filter(item => item);
 };
 
 /**
@@ -108,10 +109,10 @@ export default class SiderMenu extends PureComponent {
         className={siderClassName}
       >
         <div className={styles.logo} id="logo">
-          <Link to="/">
+          <div to="/">
             <img src={logo} alt="logo" />
             <h1>爱上门</h1>
-          </Link>
+          </div>
         </div>
         <BaseMenu
           {...this.props}

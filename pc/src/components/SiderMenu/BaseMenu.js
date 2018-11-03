@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { Menu, Icon } from 'antd';
-import Link from 'umi/link';
+// import Link from 'umi/link';
 import isEqual from 'lodash/isEqual';
 import memoizeOne from 'memoize-one';
 import pathToRegexp from 'path-to-regexp';
-import { urlToList } from '../_utils/pathTools';
+// import { urlToList } from '../_utils/pathTools';
 import styles from './index.less';
 
 const { SubMenu } = Menu;
@@ -74,7 +74,8 @@ export default class BaseMenu extends PureComponent {
 
   // Get the currently selected menu
   getSelectedMenuKeys = pathname =>
-    urlToList(pathname).map(itemPath => getMenuMatches(this.flatMenuKeys, itemPath).pop());
+    [];
+    // urlToList(pathname).map(itemPath => getMenuMatches(this.flatMenuKeys, itemPath).pop());
 
   /**
    * get SubMenu or Item
@@ -125,7 +126,7 @@ export default class BaseMenu extends PureComponent {
     }
     const { location, isMobile, onCollapse } = this.props;
     return (
-      <Link
+      <div
         to={itemPath}
         target={target}
         replace={itemPath === location.pathname}
@@ -139,7 +140,7 @@ export default class BaseMenu extends PureComponent {
       >
         {icon}
         <span>{name}</span>
-      </Link>
+      </div>
     );
   };
 
