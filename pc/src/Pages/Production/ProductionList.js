@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import router from 'umi/router';
-import { connect } from 'dva';
 import { Input } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
@@ -9,10 +7,10 @@ class ProductionList extends Component {
     const { match } = this.props;
     switch (key) {
       case 'articles':
-        router.push(`${match.url}/commodity`);
+        //router.push(`${match.url}/commodity`);
         break;
       case 'applications':
-        router.push(`${match.url}/service`);
+        //router.push(`${match.url}/service`);
         break;
       default:
         break;

@@ -68,7 +68,7 @@ class InfoEdit extends PureComponent {
                     rules: [
                     {
                         required: true,
-                        message: formatMessage({ id: 'app.settings.basic.nickname-message' }, {}),
+                        message: "开始时间",
                     },
                     ],
                 })(
@@ -78,7 +78,7 @@ class InfoEdit extends PureComponent {
                     rules: [
                     {
                         required: true,
-                        message: formatMessage({ id: 'app.settings.basic.nickname-message' }, {}),
+                        message: "结束时间",
                     },
                     ],
                 })(

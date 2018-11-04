@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import Link from 'umi/link';
-import router from 'umi/router';
 import { Card, Row, Col, Icon, Avatar, Tag, Divider, Spin, Input } from 'antd';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
 import styles from './Center.less';
@@ -13,35 +11,22 @@ class Center extends PureComponent {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'user/fetchCurrent',
-    });
-    dispatch({
-      type: 'list/fetch',
-      payload: {
-        count: 8,
-      },
-    });
-    dispatch({
-      type: 'project/fetchNotice',
-    });
   }
 
   onTabChange = key => {
     const { match } = this.props;
     switch (key) {
       case 'recharge':
-        router.push(`${match.url}/recharge`);
+        //router.push(`${match.url}/recharge`);
         break;
       case 'pay':
-        router.push(`${match.url}/pay`);
+        //router.push(`${match.url}/pay`);
         break;
       case 'reflect':
-        router.push(`${match.url}/reflect`);
+        //router.push(`${match.url}/reflect`);
         break;
         case 'list':
-        router.push(`${match.url}/list`);
+        //router.push(`${match.url}/list`);
         break;
       default:
         break;

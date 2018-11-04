@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'dva';
-import { formatMessage, FormattedMessage } from 'umi/locale';
 import {
   Form,
   Input,
@@ -28,7 +26,8 @@ function getBase64(img, callback) {
   reader.readAsDataURL(img);
 }
 
-function beforeUpload(file) {
+
+function beforeUpload(file) {/*
   const isJPG = file.type === 'image/jpeg';
   if (!isJPG) {
     message.error('You can only upload JPG file!');
@@ -37,7 +36,7 @@ function beforeUpload(file) {
   if (!isLt2M) {
     message.error('Image must smaller than 2MB!');
   }
-  return isJPG && isLt2M;
+  return isJPG && isLt2M;*/
 }
 
 class AddForms extends PureComponent {
@@ -45,16 +44,8 @@ class AddForms extends PureComponent {
   handleSubmit = e => {
     //const { dispatch, form } = this.props;
     e.preventDefault();
-    form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        dispatch({
-          type: 'form/submitRegularForm',
-          payload: values,
-        });
-      }
-    });
   };
-
+/*
   handleUpload = (info) => {
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
@@ -68,7 +59,7 @@ class AddForms extends PureComponent {
       }));
     }
   }
-
+*/
   render() {
     const { submitting } = this.props;
     const {
@@ -110,7 +101,7 @@ class AddForms extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.title.required' }),
+                    message: "请输入商品名称",
                   },
                 ],
               })(<Input />)}
@@ -120,7 +111,7 @@ class AddForms extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.title.required' }),
+                    message: "请输入商品价格",
                   },
                 ],
               })(<InputNumber />)}
@@ -130,7 +121,7 @@ class AddForms extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.title.required' }),
+                    message: "请输入商品库存",
                   },
                 ],
               })(<InputNumber />)}
@@ -140,7 +131,7 @@ class AddForms extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.title.required' }),
+                    message: "请输入商品类型",
                   },
                 ],
               })(
@@ -154,13 +145,13 @@ class AddForms extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.goal.required' }),
+                    message: "请输入商品介绍",
                   },
                 ],
               })(
                 <TextArea
                   style={{ minHeight: 32 }}
-                  placeholder={formatMessage({ id: 'form.goal.placeholder' })}
+                  placeholder={"商品介绍..."}
                   rows={4}
                 />
               )}
@@ -170,7 +161,7 @@ class AddForms extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.goal.required' }),
+                    message: "请上传商品图片",
                   },
                 ],
               })(
@@ -183,7 +174,8 @@ class AddForms extends PureComponent {
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
                 >
-                  {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
+                  uploadButton
+                  {/* {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton} */}
                 </Upload>
               )}
             </FormItem>

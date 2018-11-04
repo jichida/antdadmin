@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { formatMessage, FormattedMessage } from 'umi/locale';
-import Link from 'umi/link';
 import { Checkbox, Alert, Icon } from 'antd';
 import Login from '@/components/Login';
 import styles from './Login.less';
@@ -63,11 +61,11 @@ class LoginPage extends Component {
             this.loginForm = form;
           }}
         >
-          <Tab key="account" tab={formatMessage({ id: 'app.login.tab-login-credentials' })}>
+          <Tab key="account" tab="账户密码登录">
             {login.status === 'error' &&
               login.type === 'account' &&
               !submitting &&
-              this.renderMessage(formatMessage({ id: 'app.login.message-invalid-credentials' }))}
+              this.renderMessage("账户密码错误")}
             <UserName name="userName" placeholder="admin/user" />
             <Password
               name="password"
@@ -75,26 +73,26 @@ class LoginPage extends Component {
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
             />
           </Tab>
-          <Tab key="mobile" tab={formatMessage({ id: 'app.login.tab-login-mobile' })}>
+          <Tab key="mobile" tab="手机号码登录">
             {login.status === 'error' &&
               login.type === 'mobile' &&
               !submitting &&
               this.renderMessage(
-                formatMessage({ id: 'app.login.message-invalid-verification-code' })
+                "手机号码密码错误"
               )}
             <Mobile name="mobile" />
             <Captcha name="captcha" countDown={120} onGetCaptcha={this.onGetCaptcha} />
           </Tab>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              <FormattedMessage id="app.login.remember-me" />
+              记住我
             </Checkbox>
             <a style={{ float: 'right' }} href="">
-              <FormattedMessage id="app.login.forgot-password" />
+              忘记密码
             </a>
           </div>
           <Submit loading={submitting}>
-            <FormattedMessage id="app.login.login" />
+            登录
           </Submit>
         </Login>
       </div>

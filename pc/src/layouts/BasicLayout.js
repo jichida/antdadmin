@@ -9,54 +9,18 @@ import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import pathToRegexp from 'path-to-regexp';
 // import { enquireScreen, unenquireScreen } from 'enquire-js';
-import { formatMessage } from 'umi/locale';
 
-import SiderMenu from '../components/SiderMenu';
+
+import SiderMenu from '../components/Menu';
 import logo from '../assets/logo.svg';
 import Footer from './Footer';
 import Header from './Header';
 import Context from './MenuContext';
 // import Exception403 from '../pages/Exception/403';
 
-import SettingDrawer from '../components/SettingDrawer';
 
-// import routers from '@/router.config.js';
 
 const { Content } = Layout;
-
-// Conversion router to menu.
-function formatter(data, parentAuthority, parentName) {
-  return data
-    .map(item => {
-      if (!item.name || !item.path) {
-        return null;
-      }
-
-      let locale = 'menu';
-      if (parentName) {
-        locale = `${parentName}.${item.name}`;
-      } else {
-        locale = `menu.${item.name}`;
-      }
-
-      const result = {
-        ...item,
-        name: formatMessage({ id: locale, defaultMessage: item.name }),
-        locale,
-        authority: item.authority || parentAuthority,
-      };
-      if (item.routes) {
-        const children = formatter(item.routes, item.authority, locale);
-        // Reduce memory usage
-        result.children = children;
-      }
-      delete result.routes;
-      return result;
-    })
-    .filter(item => item);
-}
-
-const memoizeOneFormatter = memoizeOne(formatter, isEqual);
 
 const query = {
   'screen-xs': {
@@ -83,19 +47,20 @@ const query = {
   },
 };
 
+
+
 class BasicLayout extends React.PureComponent {
   constructor(props) {
     super(props);
     this.getPageTitle = memoizeOne(this.getPageTitle);
-    this.getBreadcrumbNameMap = memoizeOne(this.getBreadcrumbNameMap, isEqual);
-    this.breadcrumbNameMap = this.getBreadcrumbNameMap();
-    this.matchParamsPath = memoizeOne(this.matchParamsPath, isEqual);
+    //this.getBreadcrumbNameMap = memoizeOne(this.getBreadcrumbNameMap, isEqual);
+    //this.breadcrumbNameMap = this.getBreadcrumbNameMap();
+    //this.matchParamsPath = memoizeOne(this.matchParamsPath, isEqual);
   }
 
   state = {
     rendering: true,
     isMobile: false,
-    menuData: this.getMenuData(),
   };
 
   componentDidMount() {
@@ -119,7 +84,6 @@ class BasicLayout extends React.PureComponent {
   componentDidUpdate(preProps) {
     // After changing to phone mode,
     // if collapsed is true, you need to click twice to display
-    this.breadcrumbNameMap = this.getBreadcrumbNameMap();
     const { isMobile } = this.state;
     const { collapsed } = this.props;
     if (isMobile && !preProps.isMobile && !collapsed) {
@@ -136,39 +100,8 @@ class BasicLayout extends React.PureComponent {
     const { location } = this.props;
     return {
       location,
-      breadcrumbNameMap: this.breadcrumbNameMap,
     };
   }
-
-  getMenuData() {
-    // return memoizeOneFormatter(routers);
-  }
-
-  /**
-   * 获取面包屑映射
-   * @param {Object} menuData 菜单配置
-   */
-  getBreadcrumbNameMap() {
-    const routerMap = {};
-    const mergeMenuAndRouter = data => {
-      data.forEach(menuItem => {
-        if (menuItem.children) {
-          mergeMenuAndRouter(menuItem.children);
-        }
-        // Reduce memory usage
-        routerMap[menuItem.path] = menuItem;
-      });
-    };
-    mergeMenuAndRouter(this.getMenuData());
-    return routerMap;
-  }
-
-  matchParamsPath = pathname => {
-    const pathKey = Object.keys(this.breadcrumbNameMap).find(key =>
-      pathToRegexp(key).test(pathname)
-    );
-    return this.breadcrumbNameMap[pathKey];
-  };
 
   getPageTitle = pathname => {
     const currRouterData = this.matchParamsPath(pathname);
@@ -176,10 +109,7 @@ class BasicLayout extends React.PureComponent {
     if (!currRouterData) {
       return '爱上家';
     }
-    const message = formatMessage({
-      id: currRouterData.locale || currRouterData.name,
-      defaultMessage: currRouterData.name,
-    });
+    const message = `${currRouterData.locale} || ${currRouterData.name}`;
     return `${message} - 爱上家`;
   };
 
@@ -211,37 +141,27 @@ class BasicLayout extends React.PureComponent {
     //});
   };
 
-  renderSettingDrawer() {
-    // Do not render SettingDrawer in production
-    // unless it is deployed in preview.pro.ant.design as demo
-    const { rendering } = this.state;
-    if ((rendering || process.env.NODE_ENV === 'production') ) {
-      return null;
-    }
-    return <SettingDrawer />;
-  }
-
   render() {
     const {
-      navTheme,
-      layout: PropsLayout,
+      //navTheme,
+      //layout: PropsLayout,
       children,
-      location: { pathname },
+      //location: { pathname },
     } = this.props;
-    const { isMobile, menuData } = this.state;
-    const isTop = PropsLayout === 'topmenu';
-    const routerConfig = this.matchParamsPath(pathname);
+    const { isMobile } = this.state;
+    const isTop = false;//PropsLayout === 'topmenu';
+    //const routerConfig = this.matchParamsPath(pathname);
     const layout = (
       <Layout>
         {isTop && !isMobile ? null : (
+          
           <SiderMenu
             logo={logo}
-            theme={navTheme}
+            theme="dark"
             onCollapse={this.handleMenuCollapse}
-            menuData={menuData}
             isMobile={isMobile}
             {...this.props}
-          />
+          /> 
         )}
         <Layout
           style={{
@@ -250,7 +170,6 @@ class BasicLayout extends React.PureComponent {
           }}
         >
           <Header
-            menuData={menuData}
             handleMenuCollapse={this.handleMenuCollapse}
             logo={logo}
             isMobile={isMobile}
@@ -265,7 +184,7 @@ class BasicLayout extends React.PureComponent {
     );
     return (
       <React.Fragment>
-        <DocumentTitle title={this.getPageTitle(pathname)}>
+        <DocumentTitle title="">
           <ContainerQuery query={query}>
             {params => (
               <Context.Provider value={this.getContext()}>
@@ -274,15 +193,10 @@ class BasicLayout extends React.PureComponent {
             )}
           </ContainerQuery>
         </DocumentTitle>
-        {this.renderSettingDrawer()}
+        
       </React.Fragment>
     );
   }
 }
 
-//export default connect(({ global, setting }) => ({
-  //collapsed: global.collapsed,
-  //layout: setting.layout,
-  //...setting,
-//}))(BasicLayout);
 export default BasicLayout

@@ -1,5 +1,4 @@
 import React, { PureComponent, Fragment } from 'react';
-import { connect } from 'dva';
 import moment from 'moment';
 import {
   Row,
@@ -117,8 +116,8 @@ class CostList extends PureComponent {
              <RangePicker
               style={{ width: '100%' }}
               placeholder={[
-                formatMessage({ id: 'form.date.placeholder.start' }),
-                formatMessage({ id: 'form.date.placeholder.end' }),
+                "起始时间",
+                "截至时间",
               ]}
             />
           </Col>
@@ -136,12 +135,13 @@ class CostList extends PureComponent {
     return (
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
+            {/*
             <StandardTable
               loading={loading}
               data={data}
               columns={this.columns}
               onChange={this.handleStandardTableChange}
-            />
+            /> */}
           </div>
     );
   }
