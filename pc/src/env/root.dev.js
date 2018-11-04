@@ -10,18 +10,17 @@ import { ConnectedRouter } from 'react-router-redux';
 import {history} from './store';
 
 import AppRoot from '../components/approot.js';
-import BasicLayout from '../layouts/BasicLayout';
 
 const Root = (props)=>
     (
 
             <Provider store={store}>
-                <BasicLayout>
+              <div>
                     <ConnectedRouter history={history}>
                         <Route path="/" component={AppRoot}/>
                     </ConnectedRouter>
                     <DevTools />
-                </BasicLayout>
+              </div>
             </Provider>
 
     );
