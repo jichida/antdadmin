@@ -11,19 +11,19 @@ class Dashboard extends PureComponent {
   }
 
   onTabChange = key => {
-    const { match } = this.props;
+    const { history } = this.props;
     switch (key) {
       case 'recharge':
-        //router.push(`${match.url}/recharge`);
+        history.push(`account/recharge`);
         break;
       case 'pay':
-        //router.push(`${match.url}/pay`);
+        history.push(`account/pay`);
         break;
       case 'reflect':
-        //router.push(`${match.url}/reflect`);
+        history.push(`account/reflect`);
         break;
         case 'list':
-        //router.push(`${match.url}/list`);
+        history.push(`account/list`);
         break;
       default:
         break;

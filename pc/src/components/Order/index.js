@@ -6,22 +6,22 @@ import { withRouter } from 'react-router-dom';
 
 class Index extends Component {
   handleTabChange = key => {
-    const { match } = this.props;
+    const {  history } = this.props;
     switch (key) {
       case 'pendingpay':
-        Router.push(`${match.url}/pendingpay`);
+        history.push(`/order/pendingpay`);
         break;
       case 'pendingsend':
-        Router.push(`${match.url}/pendingsend`);
+        history.push(`/order/pendingsend`);
         break;
       case 'sendout':
-        Router.push(`${match.url}/sendout`);
+        history.push(`/order/delivered`);
         break;
       case 'completed':
-        Router.push(`${match.url}/completed`);
+        history.push(`/order/completed`);
         break;
       case 'refund':
-        Router.push(`${match.url}/refund`);
+        history.push(`/order/refund`);
         break;
       default:
         break;

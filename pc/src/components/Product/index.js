@@ -5,8 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 class Index extends Component {
   handleTabChange = key => {
-    const { match } = this.props;
-    console.log(`${match.location}`);
+    const { history } = this.props;
     switch (key) {
       case 'articles':
         //router.push(`${match.url}/commodity`);
