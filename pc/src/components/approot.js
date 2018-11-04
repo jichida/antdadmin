@@ -24,7 +24,7 @@ import Service from './Product/Service';
 import Add from './Product/AddForm';
 
 import Login from './Login/index2.js';
-import BasicLayout from '../layouts/BasicLayout';
+import BasicLayout from '../layouts/GLayout';
 import Order from './Order';
 import Product from './Product';
 
