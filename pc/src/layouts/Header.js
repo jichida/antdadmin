@@ -46,24 +46,6 @@ class HeaderView extends PureComponent {
   };
 
   handleMenuClick = ({ key }) => {
-    const { dispatch } = this.props;
-    if (key === 'userCenter') {
-      //router.push('/account/center');
-      return;
-    }
-    if (key === 'triggerError') {
-      //router.push('/exception/trigger');
-      return;
-    }
-    if (key === 'userinfo') {
-      //router.push('/account/settings/base');
-      return;
-    }
-    if (key === 'logout') {
-      dispatch({
-        type: 'login/logout',
-      });
-    }
   };
 
   handleNoticeVisibleChange = visible => {
@@ -114,14 +96,13 @@ class HeaderView extends PureComponent {
     const width = this.getHeadWidth();
     const HeaderDom = visible ? (
       <Header style={{ padding: 0, width }} className={styles.fixedHeader}>
-          {/*
           <GlobalHeader
             onCollapse={handleMenuCollapse}
             onNoticeClear={this.handleNoticeClear}
             onMenuClick={this.handleMenuClick}
             onNoticeVisibleChange={this.handleNoticeVisibleChange}
             {...this.props}
-    /> */}
+          />
       </Header>
     ) : null;
     return (

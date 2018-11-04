@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route,Switch } from 'react-router-dom';
 
 
-import Index from '../Pages/Production/AddForm';
+//import Index from '../Pages/Production/AddForm';
 
 // import Login from './login/login';
 
@@ -21,7 +21,7 @@ class AppRoot extends React.Component {
       return (
               <div className="container">
                 <Switch>
-                  <Route exact path="/" component={Index} />
+                  {/*<Route exact path="/" component={Index} /> */}
 
                   </Switch>
               </div>

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-// import { FormattedMessage, formatMessage } from 'umi/locale';
 import { Spin, Tag, Menu, Icon, Dropdown, Avatar, Tooltip } from 'antd';
 import moment from 'moment';
 import styles from './index.less';
@@ -16,16 +15,18 @@ export default class GlobalHeaderRight extends PureComponent {
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key="logout">
           <Icon type="logout" />
+          <span>退出登录</span>
           {/* <FormattedMessage id="menu.account.logout" defaultMessage="退出登录" /> */}
         </Menu.Item>
       </Menu>
     );
-    let className = styles.right;
-    if (theme === 'dark') {
-      className = `${styles.right}  ${styles.dark}`;
-    }
+    let className = `${styles.right}  ${styles.dark}`;
+    //if (theme === 'dark') {
+    //  className = `${styles.right}  ${styles.dark}`;
+    //}
     return (
       <div className={className}>
+        {/*
         {currentUser.name ? (
           <Dropdown overlay={menu}>
             <span className={`${styles.action} ${styles.account}`}>
@@ -40,7 +41,8 @@ export default class GlobalHeaderRight extends PureComponent {
           </Dropdown>
         ) : (
           <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
-        )}
+        )} */}
+        <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
       </div>
     );
   }
