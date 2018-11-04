@@ -7,6 +7,8 @@ import Index from './Index';
 
 import Login from './Login/index2.js';
 import BasicLayout from '../layouts/BasicLayout';
+import Product from './Product';
+import Order from './Order';
 
 import {requireAuthentication} from './requireauthentication';
 
@@ -29,7 +31,10 @@ class AppRoot extends React.Component {
       return (
               <div className="container">
                       <Switch>
+                        <Route exact path="/login" component={Login} />
                         <Route exact path="/" component={UseLayout(Index)} />
+                        <Route exact path="/product" component={UseLayout(Product)} />
+                        <Route exact path="/order" component={UseLayout(Order)} />
                       </Switch>
               </div>
       );
