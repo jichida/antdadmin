@@ -1,6 +1,5 @@
 import React from 'react';
 import PageHeader from '../PageHeader';
-//import { connect } from 'dva';
 import GridContent from './GridContent';
 import styles from './index.less';
 import MenuContext from '../../layouts/MenuContext';

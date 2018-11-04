@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import { Card, Row, Col, Icon, Avatar, Tag, Divider, Spin, Input, Button } from 'antd';
 import GridContent from '../PageHeaderWrapper/GridContent';
 import styles from './Center.less';
+import { withRouter } from 'react-router-dom';
 
 class Dashboard extends PureComponent {
 
@@ -122,4 +123,4 @@ class Dashboard extends PureComponent {
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

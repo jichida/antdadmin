@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Input } from 'antd';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PageHeaderWrapper from '../PageHeaderWrapper';
+import { withRouter } from 'react-router-dom';
 
 class Index extends Component {
   handleTabChange = key => {
@@ -62,7 +63,7 @@ class Index extends Component {
       <PageHeaderWrapper
         title=""
         tabList={tabList}
-        //tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
+        tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
         onTabChange={this.handleTabChange}
       >
         {children}
@@ -76,4 +77,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default withRouter(Index);

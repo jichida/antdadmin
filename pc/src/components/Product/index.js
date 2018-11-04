@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
 import PageHeaderWrapper from '../PageHeaderWrapper';
+import { withRouter } from 'react-router-dom';
 
 class Index extends Component {
   handleTabChange = key => {
     const { match } = this.props;
+    console.log(`${match.location}`);
     switch (key) {
       case 'articles':
         //router.push(`${match.url}/commodity`);
@@ -40,7 +42,7 @@ class Index extends Component {
       <PageHeaderWrapper
         title="产品管理"
         tabList={tabList}
-        //tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
+        tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
         onTabChange={this.handleTabChange}
       >
         {children}
@@ -54,4 +56,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default withRouter(Index);
