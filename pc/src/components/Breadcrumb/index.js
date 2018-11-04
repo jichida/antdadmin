@@ -3,13 +3,25 @@ import { HashRouter as Router, Route, Switch, Link, withRouter } from 'react-rou
 import { Breadcrumb, Alert } from 'antd';
 
 const breadcrumbNameMap = {
-  '/apps': 'Application List',
-  '/apps/1': 'Application1',
-  '/apps/2': 'Application2',
-  '/apps/1/detail': 'Detail',
-  '/apps/2/detail': 'Detail',
+  '/account': '个人页',
+  '/ccount/recharge': '余额充值',
+  '/account/pay': '缴纳保证金',
+  '/account/reflect': '余额提现',
+  '/account/costlist': '费用清单',
+  '/product': '产品管理',
+  '/product/commodity': '商品',
+  '/product/service': '服务',
+  '/product/add': '添加新商品',
+  '/order': '订单管理',
+  '/order/pendingpay': '待付款',
+  '/order/pendingsend': '待发货',
+  '/order/delivered': '已发货',
+  '/order/completed': '已完成',
+  '/order/refund': '退款/退货退款',
+  '/order/sendout': '订单发货',
+  '/order/sendout': '快递跟踪',
 };
-const Breadcrumb = withRouter((props) => {
+const Breadcrumbs = withRouter((props) => {
   const { location } = props;
   const pathSnippets = location.pathname.split('/').filter(i => i);
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
@@ -36,4 +48,4 @@ const Breadcrumb = withRouter((props) => {
   );
 });
 
-export default Breadcrumb;
+export default Breadcrumbs;

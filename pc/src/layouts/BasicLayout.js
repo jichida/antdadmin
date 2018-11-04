@@ -107,10 +107,10 @@ class BasicLayout extends React.PureComponent {
     const currRouterData = this.matchParamsPath(pathname);
 
     if (!currRouterData) {
-      return '爱上家';
+      return '爱上门';
     }
     const message = `${currRouterData.locale} || ${currRouterData.name}`;
-    return `${message} - 爱上家`;
+    return `${message} - 爱上门`;
   };
 
   getLayoutStyle = () => {
