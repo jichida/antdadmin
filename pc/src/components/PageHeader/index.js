@@ -70,7 +70,7 @@ export default class PageHeader extends PureComponent {
                 tabBarExtraContent={tabBarExtraContent}
               >
                 {tabList.map(item => (
-                  <TabPane tab={item.tab} key={item.key} />
+                  <TabPane tab={item.tab} key={item.key} > {item.co} </TabPane>
                 ))}
               </Tabs>
             ) : null}

@@ -2,9 +2,23 @@ import React, { PureComponent } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import SiderMenu from '../components/Menu';
 import logo from '../assets/logo.svg';
+import GlobalHeader from '../components/GlobalHeader';
 const { Header, Content, Footer, Sider } = Layout;
 
+
+
 class GLayout extends React.PureComponent {
+
+  state = {
+    collapsed: false,
+  };
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
+
 
   render() {
     const { children } = this.props;
@@ -13,14 +27,17 @@ class GLayout extends React.PureComponent {
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
-          onBreakpoint={(broken) => { console.log(broken); }}
-          onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
+          collapsible
+          collapsed={this.state.collapsed}
+          trigger={null}
         >
           <div className="logo" />
           <SiderMenu />
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
+          <Header style={{ background: '#fff', padding: 0 }}>
+            <GlobalHeader collapsed={this.collapsed} onCollapse={this.toggle} />
+          </Header>
           <Content style={{ margin: '24px 16px 0' }}>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
               {children}

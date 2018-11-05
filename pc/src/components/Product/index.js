@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Input } from 'antd';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import PageHeaderWrapper from '../PageHeaderWrapper';
 import { withRouter } from 'react-router-dom';
+import Commodity from './Commodity';
+import Service from './Service';
 
 class Index extends Component {
   handleTabChange = key => {
-    const { history } = this.props;
+    const { history, match } = this.props;
     switch (key) {
-      case 'articles':
-        //router.push(`${match.url}/commodity`);
+      case 'commodity':
+          history.push(`${match.url}/commodity`);
         break;
-      case 'applications':
-        //router.push(`${match.url}/service`);
+      case 'service':
+          history.push(`${match.url}/service`);
         break;
       default:
         break;
@@ -28,10 +31,12 @@ class Index extends Component {
       {
         key: 'commodity',
         tab: '商品管理',
+        co: <Commodity />
       },
       {
         key: 'service',
         tab: '服务管理',
+        co: <Service />
       },
     ];
 
@@ -41,15 +46,12 @@ class Index extends Component {
       <PageHeaderWrapper
         title="产品管理"
         tabList={tabList}
+        tabDefaultActiveKey="commodity"
         tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
         onTabChange={this.handleTabChange}
       >
-        {children}
-        {/* <Switch>
-          {routes.map(item => (
-            <Route key={item.key} path={item.path} component={item.component} exact={item.exact} />
-          ))}
-        </Switch> */}
+        <Route path="/product/commodity" component={Commodity} />
+        <Route path="/product/service" component={Service} />
       </PageHeaderWrapper>
     );
   }

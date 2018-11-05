@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Menu, Icon, Button } from 'antd';
-import { style } from './index.less';
-import {Link } from "react-router-dom";
+import styles from './index.less';
+import { Link } from "react-router-dom";
+import logo from '../../logo.svg';
 
 const SubMenu = Menu.SubMenu;
 
@@ -18,7 +19,13 @@ class SideMenu extends PureComponent {
 
   render() {
     return (
-      <div style={style}>
+      <div>
+        <div className={styles.logo} id="logo" style={{textAlign: "center"}}>
+          <Link to="/">
+            <img src={logo} alt="logo" height="60" />
+            <h3 style={{color: "white"}}>爱上门</h3>
+          </Link>
+        </div>
         <Menu
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}

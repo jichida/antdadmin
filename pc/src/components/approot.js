@@ -70,25 +70,24 @@ class AppRoot extends React.Component {
     render() {
       return (
               <div className="container">
-                      <Switch>
-                        <Route exact path="/login" component={Login} />
-                        <Route exact path="/" component={UseLayout(AccountSecLayout(Recharge))} />
-                        <Route exact path="/account/pay" component={UseLayout(AccountSecLayout(Pay))} />
-                        <Route exact path="/account/reflect" component={UseLayout(AccountSecLayout(Reflect))} />
-                        <Route exact path="/account/reflectdetial" component={UseLayout(ReflectDetail)} />
-                        <Route exact path="/account/costlist" component={UseLayout(AccountSecLayout(CostList))} />
-                        <Route exact path="/account/infoedit" component={UseLayout(InfoEdit)} />
-                        <Route exact path="/product/commodity" component={UseLayout(ProductSecondLayout(Commodity))} />
-                        <Route exact path="/product/service" component={UseLayout(ProductSecondLayout(Service))} />
-                        <Route exact path="/product/add" component={UseLayout(Add)} />
-                        <Route exact path="/order/pendingpay" component={UseLayout(OrderSecondLayout(PendingPay))} />
-                        <Route exact path="/order/pendingsend" component={UseLayout(OrderSecondLayout(PendingSend))} />
-                        <Route exact path="/order/delivered" component={UseLayout(OrderSecondLayout(Delivered))} />
-                        <Route exact path="/order/completed" component={UseLayout(OrderSecondLayout(Completed))} />
-                        <Route exact path="/order/refund" component={UseLayout(OrderSecondLayout(Refund))} />
-                        <Route exact path="/order/sendout" component={UseLayout(SendOut)} />
-                        <Route exact path="/order/track" component={UseLayout(Track)} />
-                      </Switch>
+                <Switch>
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/" component={UseLayout(AccountSecLayout(Recharge))} />
+                  <Route exact path="/account/pay" component={UseLayout(AccountSecLayout(Pay))} />
+                  <Route exact path="/account/reflect" component={UseLayout(AccountSecLayout(Reflect))} />
+                  <Route exact path="/account/reflectdetial" component={UseLayout(ReflectDetail)} />
+                  <Route exact path="/account/costlist" component={UseLayout(AccountSecLayout(CostList))} />
+                  <Route exact path="/account/infoedit" component={UseLayout(InfoEdit)} />
+                  <Route exact path="/product" component={UseLayout(Product)} />
+                  <Route exact path="/product/add" component={UseLayout(Add)} />
+                  <Route exact path="/order/pendingpay" component={UseLayout(OrderSecondLayout(PendingPay))} />
+                  <Route exact path="/order/pendingsend" component={UseLayout(OrderSecondLayout(PendingSend))} />
+                  <Route exact path="/order/delivered" component={UseLayout(OrderSecondLayout(Delivered))} />
+                  <Route exact path="/order/completed" component={UseLayout(OrderSecondLayout(Completed))} />
+                  <Route exact path="/order/refund" component={UseLayout(OrderSecondLayout(Refund))} />
+                  <Route exact path="/order/sendout" component={UseLayout(SendOut)} />
+                  <Route exact path="/order/track" component={UseLayout(Track)} />
+                </Switch>
               </div>
       );
   }

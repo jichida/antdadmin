@@ -47,6 +47,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0"

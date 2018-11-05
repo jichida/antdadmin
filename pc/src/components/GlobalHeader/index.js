@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Icon } from 'antd';
-// import Link from 'umi/link';
 import styles from './index.less';
 import RightContent from './RightContent';
 
@@ -21,16 +20,12 @@ export default class GlobalHeader extends PureComponent {
     this.triggerResizeEvent();
   };
   render() {
-    const { collapsed, isMobile, logo } = this.props;
+    const { collapsed } = this.props;
     return (
       <div className={styles.header}>
-        {isMobile && (
-          <Link to="/" className={styles.logo} key="logo">
-            <img src={logo} alt="logo" width="32" />
-          </Link>
-        )}
         <Icon
-          className={styles.trigger}
+          //className={styles.trigger}
+          style={{fontSize:"36", paddingLeft: "24px", cursor: "pointer"}}
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={this.toggle}
         />
