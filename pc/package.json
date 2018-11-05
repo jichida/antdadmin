@@ -91,6 +91,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "babel-plugin-import": "^1.11.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "redux-devtools": "^3.4.1",
@@ -134,8 +135,15 @@
     ]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
-  }
+      "presets": [
+        "react-app"
+      ],
+      "plugins": [
+        ["import", {
+          "libraryName": "antd",
+          "libraryDirectory": "es",
+          "style": "less"
+        }]
+      ]
+    }
 }
