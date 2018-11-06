@@ -23,6 +23,7 @@ import {
 } from 'antd';
 
 import styles from './TableList.less';
+import PayPicker from '../PayPicker';
 
 
 class Pay extends PureComponent {
@@ -46,7 +47,7 @@ class Pay extends PureComponent {
             </Row>
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                 <Col md={8} sm={24}>
-                    
+                    <PayPicker />
                 </Col>
             </Row>
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>

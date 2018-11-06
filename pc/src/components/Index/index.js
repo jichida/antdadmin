@@ -11,19 +11,19 @@ class Dashboard extends PureComponent {
   }
 
   onTabChange = key => {
-    const { history } = this.props;
+    const { history, match } = this.props;
     switch (key) {
       case 'recharge':
-        history.push(`account/recharge`);
+        history.push(`recharge`);
         break;
       case 'pay':
-        history.push(`account/pay`);
+        history.push(`pay`);
         break;
       case 'reflect':
-        history.push(`account/reflect`);
+        history.push(`reflect`);
         break;
         case 'list':
-        history.push(`account/list`);
+        history.push(`costlist`);
         break;
       default:
         break;
@@ -33,7 +33,7 @@ class Dashboard extends PureComponent {
 
 
   render() {
-    const { children } = this.props;
+    const { children, location, match } = this.props;
 
     const operationTabList = [
       {
@@ -76,7 +76,7 @@ class Dashboard extends PureComponent {
           <Col lg={7} md={24}>
             <Card bordered={false} style={{ marginBottom: 24 }} loading={false}>
                 <div>
-                  <div className={styles.accountEdit}>
+                  <div className={styles.accountEdit} >
                     <div><Button>编辑</Button></div>
                   </div>
                   <div className={styles.avatarHolder}>
@@ -113,6 +113,8 @@ class Dashboard extends PureComponent {
               bordered={false}
               tabList={operationTabList}
               loading={false}
+              onTabChange={this.onTabChange}
+              //activeTabKey={location.pathname.replace(`${match.path}/`, '')}
             >
               {children}
             </Card>
