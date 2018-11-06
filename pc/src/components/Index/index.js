@@ -2,9 +2,9 @@
 import React, { PureComponent } from 'react';
 import { Card, Row, Col, Icon, Avatar, Tag, Divider, Spin, Input, Button } from 'antd';
 import GridContent from '../PageHeaderWrapper/GridContent';
-import styles from './Center.less';
+import styles from './Center.module.less';
 import { withRouter } from 'react-router-dom';
-
+console.log(styles)
 class Dashboard extends PureComponent {
 
   componentDidMount() {

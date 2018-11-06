@@ -1,5 +1,5 @@
 const { injectBabelPlugin } = require('react-app-rewired');
-const rewireLess = require('react-app-rewire-less');
+const rewireLess = require('react-app-rewire-less-modules');
 
 module.exports = function override(config, env) {
   // do stuff with the webpack config...
