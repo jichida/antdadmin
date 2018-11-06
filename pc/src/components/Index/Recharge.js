@@ -20,6 +20,7 @@ import {
   Steps,
   Radio,
 } from 'antd';
+import PayPicker from '../PayPicker';
 
 import styles from './TableList.less';
 
@@ -36,7 +37,7 @@ class Recharge extends PureComponent {
             </Row>
             <Row gutter={{ md: 8, lg: 24, xl: 48 }} style={{ marginBottom:"20px"}}>
                 <Col md={8} sm={24}>
-                    选择支付方式：
+                    选择支付方式：<PayPicker />
                 </Col>
             </Row>
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>

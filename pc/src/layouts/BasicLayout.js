@@ -153,8 +153,6 @@ class BasicLayout extends React.PureComponent {
     //const routerConfig = this.matchParamsPath(pathname);
     const layout = (
       <Layout>
-        {isTop && !isMobile ? null : (
-          
           <SiderMenu
             logo={logo}
             theme="dark"
@@ -162,7 +160,6 @@ class BasicLayout extends React.PureComponent {
             isMobile={isMobile}
             {...this.props}
           /> 
-        )}
         <Layout
           style={{
             ...this.getLayoutStyle(),

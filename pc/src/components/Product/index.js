@@ -48,10 +48,8 @@ class Index extends Component {
         tabList={tabList}
         tabDefaultActiveKey="commodity"
         tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
-        onTabChange={this.handleTabChange}
+        //onTabChange={this.handleTabChange}
       >
-        <Route path="/product/commodity" component={Commodity} />
-        <Route path="/product/service" component={Service} />
       </PageHeaderWrapper>
     );
   }

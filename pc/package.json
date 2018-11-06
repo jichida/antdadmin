@@ -135,15 +135,18 @@
     ]
   },
   "babel": {
-      "presets": [
-        "react-app"
-      ],
-      "plugins": [
-        ["import", {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
           "libraryName": "antd",
           "libraryDirectory": "es",
           "style": "less"
-        }]
+        }
       ]
-    }
+    ]
+  }
 }

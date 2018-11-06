@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route,Switch } from 'react-router-dom';
+import { Route,Switch, Redirect } from 'react-router-dom';
 
 
 import Index from './Index';
@@ -72,7 +72,8 @@ class AppRoot extends React.Component {
               <div className="container">
                 <Switch>
                   <Route exact path="/login" component={Login} />
-                  <Route exact path="/" component={UseLayout(AccountSecLayout(Recharge))} />
+                  <Route exact path="/" render={ ()=>(<Redirect to="/account/recharge" />)} />
+                  <Route exact path="/account/recharge" component={UseLayout(AccountSecLayout(Recharge))} />
                   <Route exact path="/account/pay" component={UseLayout(AccountSecLayout(Pay))} />
                   <Route exact path="/account/reflect" component={UseLayout(AccountSecLayout(Reflect))} />
                   <Route exact path="/account/reflectdetial" component={UseLayout(ReflectDetail)} />
