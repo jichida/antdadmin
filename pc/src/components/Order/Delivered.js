@@ -137,7 +137,7 @@ class Delivered extends PureComponent {
         key: 'action',
         render: (text, record) => (
             <span>
-              <Link to="">快递跟踪</Link>
+              <Link to="/track">快递跟踪</Link>
             </span>
           ),
       },  ];

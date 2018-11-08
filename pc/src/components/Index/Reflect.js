@@ -49,7 +49,7 @@ class Reflect extends PureComponent {
 
   onApply = () => {
     const { history } = this.props;
-    history.push("/account/reflectdetial");
+    history.push("/account/reflectdetail");
   }
 
   /*

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import {
   Card,
-  Button,
   Avatar,
 } from 'antd';
+import { Link } from 'react-router-dom';
 import StandardTable from '../StandardTable';
 
 import styles from './TableList.module.less';
@@ -138,8 +138,8 @@ class PendingSend extends PureComponent {
         key: 'action',
         render: (text, record) => (
           <span>
-            <Button type="primary">立即发货</Button>
-          </span>
+              <Link to="/sendout">立即发货</Link>
+            </span>
         ),
       },
   ];

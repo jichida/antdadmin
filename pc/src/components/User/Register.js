@@ -1,46 +1,43 @@
 import React, { Component } from 'react';
-import { Form, Steps } from 'antd';
+import { Form } from 'antd';
 import styles from './Register.module.less';
 import StepForm from './StepForm';
 
-const FormItem = Form.Item;
 
-const Step = Steps.Step;
+// const steps = [{
+//   title: '注册信息',
+//   content: 'First-content',
+// }, {
+//   title: '审核信息',
+//   content: 'Second-content',
+// }, {
+//   title: '完成',
+//   content: 'Last-content',
+// }];
 
-const steps = [{
-  title: '注册信息',
-  content: 'First-content',
-}, {
-  title: '审核信息',
-  content: 'Second-content',
-}, {
-  title: '完成',
-  content: 'Last-content',
-}];
+// const passwordStatusMap = {
+//   ok: (
+//     <div className={styles.success}>
+//       密码强度：强
+//     </div>
+//   ),
+//   pass: (
+//     <div className={styles.warning}>
+//       密码强度：中
+//     </div>
+//   ),
+//   poor: (
+//     <div className={styles.error}>
+//       密码强度：弱
+//     </div>
+//   ),
+// };
 
-const passwordStatusMap = {
-  ok: (
-    <div className={styles.success}>
-      密码强度：强
-    </div>
-  ),
-  pass: (
-    <div className={styles.warning}>
-      密码强度：中
-    </div>
-  ),
-  poor: (
-    <div className={styles.error}>
-      密码强度：弱
-    </div>
-  ),
-};
-
-const passwordProgressMap = {
-  ok: 'success',
-  pass: 'normal',
-  poor: 'exception',
-};
+// const passwordProgressMap = {
+//   ok: 'success',
+//   pass: 'normal',
+//   poor: 'exception',
+// };
 
 class Register extends Component {
   state = {
@@ -180,9 +177,6 @@ class Register extends Component {
   */
 
   render() {
-    const { form, submitting } = this.props;
-    const { getFieldDecorator } = form;
-    const { count, prefix, help, visible } = this.state;
     return (
       <div className={styles.main}>
         <StepForm />

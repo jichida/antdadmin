@@ -7,34 +7,6 @@ import logo from '../../assets/logo.gif';
 const SubMenu = Menu.SubMenu;
 
 class SideMenu extends PureComponent {
-  state = {
-    collapsed: false,
-    openKeys: ['index'],
-  }
-
-  // submenu keys of first level
-  rootSubmenuKeys = ['index', 'product', 'order'];
-
-  toggleCollapsed = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  }
-
-  handleOpenChange = openKeys => {
-    // const moreThanOne = openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1;
-    // this.setState({
-    //   openKeys: moreThanOne ? [openKeys.pop()] : [...openKeys],
-    // });
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
-    if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      this.setState({ openKeys });
-    } else {
-      this.setState({
-        openKeys: latestOpenKey ? [latestOpenKey] : [],
-      });
-    }
-  };
 
   render() {
     return (
@@ -46,11 +18,10 @@ class SideMenu extends PureComponent {
           </Link>
         </div>
         <Menu
-          openKeys={this.state.openKeys}
-          onOpenChange={this.handleOpenChange}
           mode="inline"
           theme="dark"
-          inlineCollapsed={this.state.collapsed}
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['index', 'product','order']}
         >
           <SubMenu key="index" title={<span><Icon type="user" /><span>个人页</span></span>}>
             <Menu.Item key="1"><Link to='/'>我的信息</Link></Menu.Item>

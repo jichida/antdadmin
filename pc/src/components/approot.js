@@ -4,7 +4,6 @@ import { Route,Switch, Redirect } from 'react-router-dom';
 
 import Index from './Index';
 
-
 import Completed from './Order/Completed';
 import Delivered from './Order/Delivered';
 import PendingPay from './Order/PendingPay';
@@ -84,8 +83,8 @@ class AppRoot extends React.Component {
                         <Route path="/order/refund" component={Refund} />
                       </OrderLayout>
                     }/>
-                    <Route path="/order/sendout" component={Layout(SendOut)} />
-                    <Route path="/order/track" component={Layout(Track)} />
+                    <Route path="/sendout" component={Layout(SendOut)} />
+                    <Route path="/track" component={Layout(Track)} />
                     {/* 登录、注册 */}
                     <Route path="/login" component={LoginLayout(Login)} />
                     <Route path="/register" render={()=>

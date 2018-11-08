@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Select, DatePicker, Upload, Icon } from 'antd';
 import styles from './style.module.less';
 
+
 const { Option } = Select;
 
 const formItemLayout = {
@@ -25,7 +26,7 @@ const formItenBlackLabel = {
 
 class Step2 extends React.PureComponent {
   render() {
-    const { form, submitting } = this.props;
+    const { form,submitting } = this.props;
     const { getFieldDecorator } = form;
     const onValidateForm = e => {
       e.preventDefault();

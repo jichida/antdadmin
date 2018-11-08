@@ -34,10 +34,10 @@ class Dashboard extends PureComponent {
   }
 
   onTabChange = key => {
-    const { history, match } = this.props;
+    const { history } = this.props;
     switch (key) {
       case 'recharge':
-        history.replace(`/account/recharge`);
+        history.replace(`/recharge`);
         break;
       case 'pay':
         history.replace(`/account/pay`);
@@ -45,7 +45,7 @@ class Dashboard extends PureComponent {
       case 'reflect':
         history.replace(`/account/reflect`);
         break;
-        case 'costlist':
+      case 'costlist':
         history.replace(`/account/costlist`);
         break;
       default:
@@ -56,7 +56,7 @@ class Dashboard extends PureComponent {
 
 
   render() {
-    const {location, match } = this.props;
+    const {location } = this.props;
 
     const operationTabList = [
       {
