@@ -64,9 +64,7 @@ class AppRoot extends React.Component {
               <div className="container">
                 <Switch>
                     <Route exact path="/" render={()=>(<Redirect to="/account/recharge" />)}/>
-                    <Route path="/account/:param" render={()=>(
-                        <IndexLayout />
-                    )} />
+                    <Route path="/account/:param" component={IndexLayout} />
                     <Route path="/product" render={()=>
                       <ProductLayout>
                         <Route path="/product/commodity" component={Commodity}/>

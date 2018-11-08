@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Alert } from 'antd';
+import {  Alert,  } from 'antd';
 import { Link } from 'react-router-dom';
 import Login from '../Login';
 import styles from './Login.module.less';
 
-const { Tab, Password, Mobile, Captcha, Submit } = Login;
+const { Tab,  Password, Mobile, Captcha, Submit } = Login;
 
 class LoginPage extends Component {
   state = {
@@ -33,20 +33,7 @@ class LoginPage extends Component {
       });
     });
 
-  handleSubmit = (err, values) => {
-    const { type } = this.state;
-    if (!err) {
-      const { dispatch } = this.props;
-      dispatch({
-        type: 'login/login',
-        payload: {
-          ...values,
-          type,
-        },
-      });
-    }
-  };
-  
+
 
   changeAutoLogin = e => {
     this.setState({
@@ -54,6 +41,15 @@ class LoginPage extends Component {
     });
   };
   */
+  handleSubmit = (err, values) => {
+    const { type } = this.state;
+    if (!err) {
+      const { dispatch } = this.props;
+      console.log(values);
+
+    }
+  };
+
 
   renderMessage = content => (
     <Alert style={{ marginBottom: 24 }} message={content} type="error" showIcon />
