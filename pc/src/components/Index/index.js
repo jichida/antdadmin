@@ -88,12 +88,13 @@ class Dashboard extends PureComponent {
         ),
       }
     ];
-
+    const aKey = location.pathname.replace(`${match.path}/`, '');
+    console.log(aKey)
     return (
       <GridContent className={styles.userCenter} style={{backgroundColor: "gray"}}>
         <Row gutter={24}>
           <Col lg={7} md={24}>
-             { this.state.isEdit ? 
+             { this.state.isEdit ?
                 <InfoEdit onEditOver={this.onEditOver} /> : <InfoView onEnterEdit={this.onEnterEdit} />}
           </Col>
           <Col lg={17} md={24}>
@@ -103,7 +104,7 @@ class Dashboard extends PureComponent {
               tabList={operationTabList}
               loading={false}
               onTabChange={this.onTabChange}
-              activeTabKey={location.pathname.replace(`${match.path}/`, '')}
+              activeTabKey={aKey}
             >
               {children}
             </Card>

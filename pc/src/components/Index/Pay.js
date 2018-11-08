@@ -58,13 +58,14 @@ class Pay extends PureComponent {
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                 <Col md={8} sm={24} >
                     <Button type="primary">立即缴纳</Button>
-                </Col>            
+                </Col>
             </Row>
         </React.Fragment>
     );
   }
 
   render() {
+    debugger;
     return (
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>

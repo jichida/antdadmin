@@ -84,7 +84,7 @@ class AppRoot extends React.Component {
                         <Route path="/product/service" component={Service}/>
                       </ProductLayout>
                     }/>
-                    <Route path="/product/add" component={Layout(Add)} />
+                    <Route path="/productadd" component={Layout(Add)} />
                     <Route path="/order" render={()=>
                       <OrderLayout>
                         <Route path="/order/pendingpay" component={PendingPay} />
