@@ -8,7 +8,7 @@ import styles from './CardList.module.less';
 class CommodityList extends PureComponent {
 
   onAddProduct = ()=>{
-    this.props.history.push("/product/add");
+    this.props.history.push("/productadd");
   }
 
   render() {
