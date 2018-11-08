@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button } from 'antd';
-import Result from '../../Result';
+import { withRouter } from 'react-router-dom';
+import Result from '../Result';
 import styles from './style.module.less';
 
 class Step3 extends React.PureComponent {
   render() {
+    const { history } = this.props;
     const onFinish = () => {
-      //router.push('/form/step-form/info');
+      history.push('/');
     };
 
     const actions = (
@@ -26,4 +28,4 @@ class Step3 extends React.PureComponent {
   }
 }
 
-export default Step3;
+export default withRouter(Step3);

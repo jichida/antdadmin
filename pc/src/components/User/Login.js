@@ -42,12 +42,6 @@ class LoginPage extends Component {
   };
   */
   handleSubmit = (err, values) => {
-    const { type } = this.state;
-    if (!err) {
-      const { dispatch } = this.props;
-      console.log(values);
-
-    }
   };
 
 
@@ -94,7 +88,7 @@ class LoginPage extends Component {
             登录
           </Submit>
           <div className={styles.other}>
-            <Link className={styles.register} to="/register/step1">
+            <Link className={styles.register} to="/register/info">
               立即注册
             </Link>
           </div>

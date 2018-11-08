@@ -13,7 +13,7 @@ class SideMenu extends PureComponent {
       <div style={{height: "calc(100vh)"}}>
         <div className={styles.logo} id="logo" style={{textAlign: "center"}}>
           <Link to="/">
-            <img src={logo} alt="logo" height="60" />
+            <img src={logo} alt="logo" height="50" />
             <h3 style={{color: "white", display: "inline-block", paddingLeft: 5, marginBottom: 0}}><b>爱上门</b></h3>
           </Link>
         </div>

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Form, Input, Button, Divider, Popover, Row, Col } from 'antd';
+import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
 
 const FormItem = Form.Item;
@@ -16,11 +17,20 @@ class Step1 extends React.PureComponent {
   };
 
   render() {
-    const { form } = this.props;
+    const { form, history } = this.props;
     const { count, help, visible } = this.state;
     const { getFieldDecorator } = form;
     const onValidateForm = () => {
-      
+      // validateFields((err, values) => {
+      //   if (!err) {
+      //     dispatch({
+      //       type: 'form/saveStepFormData',
+      //       payload: values,
+      //     });
+      //     router.push('/form/step-form/confirm');
+      //   }
+      // });
+      history.push('/register/verify');
     };
     return (
       <Fragment>
@@ -100,7 +110,7 @@ class Step1 extends React.PureComponent {
           </FormItem>
           <FormItem>
             <Row gutter={8}>
-              <Col span={15}>
+              <Col span={16}>
                 {getFieldDecorator('captcha', {
                   rules: [
                     {
@@ -150,4 +160,4 @@ class Step1 extends React.PureComponent {
   }
 }
 
-export default Form.create()(Step1);
+export default withRouter(Form.create()(Step1));

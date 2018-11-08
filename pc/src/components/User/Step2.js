@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Select, DatePicker, Upload, Icon } from 'antd';
+import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
 
 
@@ -26,11 +27,10 @@ const formItenBlackLabel = {
 
 class Step2 extends React.PureComponent {
   render() {
-    const { form,submitting } = this.props;
+    const { form, history } = this.props;
     const { getFieldDecorator } = form;
     const onValidateForm = e => {
-      e.preventDefault();
-      
+      history.push('/register/result');
     };
     return (
       <Form layout="horizontal" className={styles.stepForm}>
@@ -127,7 +127,7 @@ class Step2 extends React.PureComponent {
           }}
           label=""
         >
-          <Button type="primary" onClick={onValidateForm} loading={submitting} style={{ width: "100%"}}>
+          <Button type="primary" onClick={onValidateForm}  style={{ width: "100%"}}>{/* loading={submitting} */}
             提交
           </Button>
         </Form.Item>
@@ -136,4 +136,4 @@ class Step2 extends React.PureComponent {
   }
 }
 
-export default Form.create()(Step2);
+export default withRouter(Form.create()(Step2));

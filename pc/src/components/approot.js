@@ -26,9 +26,9 @@ import Product from './Product';
 import {requireAuthentication} from './requireauthentication';
 import Login from './User/Login';
 import Register from './User/Register';
-import RegisterStep1 from './User/StepForm/Step1';
-import RegisterStep2 from './User/StepForm/Step2';
-import RegisterStep3 from './User/StepForm/Step3';
+import RegisterInfo from './User/Step1';
+import RegisterVerify from './User/Step2';
+import RegisterResult from './User/Step3';
 
 const Layout = (Component)=>{
   const LayoutComponent = (props)=>{
@@ -87,9 +87,10 @@ class AppRoot extends React.Component {
                     <Route path="/login" component={LoginLayout(Login)} />
                     <Route path="/register" render={()=>
                       <RegisterLayout>
-                        <Route path="/register/step1" component={RegisterStep1}/>
-                        <Route path="/register/step2" component={RegisterStep2}/>
-                        <Route path="/register/step3" component={RegisterStep3}/>
+                        <Route exact path="/register" render={()=>(<Redirect to="/register/info" />)}/>
+                        <Route path="/register/info" component={RegisterInfo}/>
+                        <Route path="/register/verify" component={RegisterVerify}/>
+                        <Route path="/register/result" component={RegisterResult}/>
                       </RegisterLayout>
                     }/>
                 </Switch>
