@@ -23,7 +23,7 @@ import {
   TimePicker,
 } from 'antd';
 
-import styles from './BaseView.less';
+import styles from './BaseView.module.less';
 
 const Option = Select.Option;
 const FormItem = Form.Item;
@@ -50,18 +50,20 @@ const AvatarView = ({ avatar }) => (
 class InfoEdit extends PureComponent {
 
 
-  renderForm() {
+  render() {
     const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
-
+    const { onEditOver } = this.props;
+    
     return (
         <Card bordered={false} style={{ marginBottom: 24 }} loading={false}>
-            <div className={styles.avatarHolder} style={{textAlign: "center"}}>
+            <div className={styles.avatarHolder} style={{textAlign: "center", marginBottom: "10px"}}>
                 <img alt="" src="http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg" height="100" />
             </div>
 
             <Form layout="vertical" onSubmit={this.handleSubmit} hideRequiredMark>
                 <FormItem label="运营状态">
                     {getFieldDecorator('operation', {
+                        initialValue: "a",
                     })(
                         <Radio.Group defaultValue="a" buttonStyle="solid">
                             <Radio.Button value="a">运营中</Radio.Button>
@@ -79,7 +81,7 @@ class InfoEdit extends PureComponent {
                     },
                     ],
                 })(
-                    <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />
+                    <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="开始时间" />
                 )}-
                 {getFieldDecorator('operationend', {
                     rules: [
@@ -89,7 +91,7 @@ class InfoEdit extends PureComponent {
                     },
                     ],
                 })(
-                    <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />
+                    <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="结束时间" />
                 )}
                 </FormItem>
                 <FormItem label="店铺名称">
@@ -140,17 +142,13 @@ class InfoEdit extends PureComponent {
                     ],
                 })(<Input />)}
                 </FormItem>
-                <Button type="primary">保存</Button><Button>取消</Button>
+                <FormItem>
+                    <Button type="primary">保存</Button>
+                    <Button style={{marginLeft: 10}} onClick={onEditOver}>取消</Button>
+                </FormItem>
+                
             </Form>
         </Card>
-    );
-  }
-
-  render() {
-    return (
-          <div className={styles.tableList}>
-            <div className={styles.tableListForm}>{this.renderForm()}</div>
-          </div>
     );
   }
 }

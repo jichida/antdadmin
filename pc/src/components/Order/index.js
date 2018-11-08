@@ -14,7 +14,7 @@ class Index extends Component {
       case 'pendingsend':
         history.push(`/order/pendingsend`);
         break;
-      case 'sendout':
+      case 'delivered':
         history.push(`/order/delivered`);
         break;
       case 'completed':
@@ -44,7 +44,7 @@ class Index extends Component {
         tab: '待发货',
       },
       {
-        key: 'sendout',
+        key: 'delivered',
         tab: '已发货',
       },
       {
@@ -67,11 +67,6 @@ class Index extends Component {
         onTabChange={this.handleTabChange}
       >
         {children}
-        {/* <Switch>
-          {routes.map(item => (
-            <Route key={item.key} path={item.path} component={item.component} exact={item.exact} />
-          ))}
-        </Switch> */}
       </PageHeaderWrapper>
     );
   }

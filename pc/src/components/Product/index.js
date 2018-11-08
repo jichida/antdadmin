@@ -31,12 +31,10 @@ class Index extends Component {
       {
         key: 'commodity',
         tab: '商品管理',
-        co: <Commodity />
       },
       {
         key: 'service',
         tab: '服务管理',
-        co: <Service />
       },
     ];
 
@@ -44,12 +42,12 @@ class Index extends Component {
 
     return (
       <PageHeaderWrapper
-        title="产品管理"
         tabList={tabList}
         tabDefaultActiveKey="commodity"
         tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
-        //onTabChange={this.handleTabChange}
+        onTabChange={this.handleTabChange}
       >
+        {children}
       </PageHeaderWrapper>
     );
   }

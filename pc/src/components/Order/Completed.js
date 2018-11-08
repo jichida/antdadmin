@@ -24,7 +24,7 @@ import {
 } from 'antd';
 import StandardTable from '../StandardTable';
 
-import styles from './TableList.less';
+import styles from './TableList.module.less';
 
 const list = [{
   commodity:{
@@ -116,7 +116,7 @@ class Completed extends PureComponent {
       title: '商品',
       dataIndex: 'commodity',
       render: ({avatar, title, description}) => (
-        <Card style={{ width: 300, marginTop: 16 }} loading={false}>
+        <Card style={{ width: 300, marginTop: 16, backgroundColor: "transparent" }} bordered={false} loading={false}>
             <Card.Meta
                 avatar={<Avatar src={avatar} />}
                 title={title}

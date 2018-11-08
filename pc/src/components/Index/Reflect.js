@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import {
   Row,
@@ -22,7 +23,7 @@ import {
 } from 'antd';
 import StandardTable from '../StandardTable';
 
-import styles from './TableList.less';
+import styles from './TableList.module.less';
 const { RangePicker } = DatePicker;
 
 class Reflect extends PureComponent {
@@ -59,6 +60,11 @@ class Reflect extends PureComponent {
   ];
 
   componentDidMount() {
+  }
+
+  onApply = () => {
+    const { history } = this.props;
+    history.push("/account/reflectdetial");
   }
 
   /*
@@ -109,7 +115,7 @@ class Reflect extends PureComponent {
   renderForm() {
     return (
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-          <Col md={8} sm={24}></Col>
+          <Col md={8} sm={24}><h3 style={{color: "blue"}}>提现明细:</h3></Col>
           <Col md={8} sm={24} offset={8}>
             <RangePicker
               style={{ width: '100%' }}
@@ -127,7 +133,9 @@ class Reflect extends PureComponent {
 
     return (
           <div className={styles.tableList}>
-            <div className={styles.tableListForm} style={{marginBottom: "10px"}}><Button size="large">发起申请</Button></div>
+            <div className={styles.tableListForm} style={{marginBottom: "20px"}}>
+              <Button size="large" type="primary" onClick={this.onApply} >发起申请</Button>
+            </div>
             <div className={styles.tableListForm} style={{marginBottom: "10px"}}>{this.renderForm()}</div>
             <StandardTable
               loading={false}
@@ -140,4 +148,4 @@ class Reflect extends PureComponent {
   }
 }
 
-export default Reflect;
+export default withRouter(Reflect);

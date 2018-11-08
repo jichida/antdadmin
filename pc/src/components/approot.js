@@ -2,14 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route,Switch, Redirect } from 'react-router-dom';
 
-
 import Index from './Index';
 import Recharge from './Index/Recharge';
 import Pay from './Index/Pay';
-import Reflect from './Index/Reflect';
+import Reflects from './Index/Reflect';
 import ReflectDetail from './Index/ReflectDetail';
 import CostList from './Index/CostList';
-import InfoEdit from './Index/InfoEdit';
 
 import Completed from './Order/Completed';
 import Delivered from './Order/Delivered';
@@ -23,41 +21,40 @@ import Commodity from './Product/Commodity';
 import Service from './Product/Service';
 import Add from './Product/AddForm';
 
-import Login from './Login/index2.js';
+
 import BasicLayout from '../layouts/GLayout';
+import UserLayout from '../layouts/UserLayout';
 import Order from './Order';
 import Product from './Product';
 
 
 import {requireAuthentication} from './requireauthentication';
+import Login from './User/Login';
+import Register from './User/Register';
+import RegisterStep1 from './User/StepForm/Step1';
+import RegisterStep2 from './User/StepForm/Step2';
+import RegisterStep3 from './User/StepForm/Step3';
 
-const UseLayout = (Component)=>{
+const Layout = (Component)=>{
   const LayoutComponent = (props)=>{
     return (<BasicLayout><Component {...props}/></BasicLayout>);
   }
   return LayoutComponent;
 }
 
-const AccountSecLayout = (Component)=>{
+const IndexLayout = Layout(Index);
+const ProductLayout = Layout(Product);
+const OrderLayout = Layout(Order);
+
+const LoginLayout = (Component)=>{
   const LayoutComponent = (props)=>{
-    return (<Index><Component {...props}/></Index>);
+    return (<UserLayout><Component {...props}/></UserLayout>);
   }
   return LayoutComponent;
 }
 
-const OrderSecondLayout = (Component)=>{
-  const LayoutComponent = (props)=>{
-    return (<Order><Component {...props}/></Order>);
-  }
-  return LayoutComponent;
-}
+const RegisterLayout = LoginLayout(Register);
 
-const ProductSecondLayout = (Component)=>{
-  const LayoutComponent = (props)=>{
-    return (<Product><Component {...props}/></Product>);
-  }
-  return LayoutComponent;
-}
 
 class AppRoot extends React.Component {
     componentWillMount() {
@@ -66,28 +63,48 @@ class AppRoot extends React.Component {
 
     componentWillUnmount() {
 
-    }
+    }//
     render() {
       return (
               <div className="container">
                 <Switch>
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/" render={ ()=>(<Redirect to="/account/recharge" />)} />
-                  <Route exact path="/account/recharge" component={UseLayout(AccountSecLayout(Recharge))} />
-                  <Route exact path="/account/pay" component={UseLayout(AccountSecLayout(Pay))} />
-                  <Route exact path="/account/reflect" component={UseLayout(AccountSecLayout(Reflect))} />
-                  <Route exact path="/account/reflectdetial" component={UseLayout(ReflectDetail)} />
-                  <Route exact path="/account/costlist" component={UseLayout(AccountSecLayout(CostList))} />
-                  <Route exact path="/account/infoedit" component={UseLayout(InfoEdit)} />
-                  <Route exact path="/product" component={UseLayout(Product)} />
-                  <Route exact path="/product/add" component={UseLayout(Add)} />
-                  <Route exact path="/order/pendingpay" component={UseLayout(OrderSecondLayout(PendingPay))} />
-                  <Route exact path="/order/pendingsend" component={UseLayout(OrderSecondLayout(PendingSend))} />
-                  <Route exact path="/order/delivered" component={UseLayout(OrderSecondLayout(Delivered))} />
-                  <Route exact path="/order/completed" component={UseLayout(OrderSecondLayout(Completed))} />
-                  <Route exact path="/order/refund" component={UseLayout(OrderSecondLayout(Refund))} />
-                  <Route exact path="/order/sendout" component={UseLayout(SendOut)} />
-                  <Route exact path="/order/track" component={UseLayout(Track)} />
+                    <Route exact path="/" render={()=>(<Redirect to="/account/recharge" />)}/>
+                    <Route path="/account" render={()=>(
+                        <IndexLayout>
+                          <Route path="/account/recharge" component={Recharge}/>
+                          <Route path="/account/pay" Component={Pay}/>
+                          <Route path="/account/reflect" Component={Reflects}/>
+                          <Route path="/account/reflectdetail" Component={ReflectDetail}/>
+                          <Route path="/account/costlist" Component={CostList}/>
+                        </IndexLayout>
+                    )} />
+                    <Route path="/product" render={()=>
+                      <ProductLayout>
+                        <Route path="/product/commodity" component={Commodity}/>
+                        <Route path="/product/service" component={Service}/>
+                      </ProductLayout>
+                    }/>
+                    <Route path="/product/add" component={Layout(Add)} />
+                    <Route path="/order" render={()=>
+                      <OrderLayout>
+                        <Route path="/order/pendingpay" component={PendingPay} />
+                        <Route path="/order/pendingsend" component={PendingSend} />
+                        <Route path="/order/delivered" component={Delivered} />
+                        <Route path="/order/completed" component={Completed} />
+                        <Route path="/order/refund" component={Refund} />
+                      </OrderLayout>
+                    }/>
+                    <Route path="/order/sendout" component={Layout(SendOut)} />
+                    <Route path="/order/track" component={Layout(Track)} />
+                    {/* 登录、注册 */}
+                    <Route path="/login" component={LoginLayout(Login)} />
+                    <Route path="/register" render={()=>
+                      <RegisterLayout>
+                        <Route path="/register/step1" component={RegisterStep1}/>
+                        <Route path="/register/step2" component={RegisterStep2}/>
+                        <Route path="/register/step3" component={RegisterStep3}/>
+                      </RegisterLayout>
+                    }/>
                 </Switch>
               </div>
       );

@@ -12,9 +12,11 @@ import {
   Tooltip,
   Upload,
   Image,
+  Row,
+  Col,
 } from 'antd';
 import PageHeaderWrapper from '../../components/PageHeaderWrapper';
-import styles from './style.less';
+import styles from './style.module.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -94,52 +96,66 @@ class AddForms extends PureComponent {
 
     return (
       <PageHeaderWrapper title="增加新商品" >
-        <Card bordered={false}>
-          <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
-            <FormItem {...formItemLayout} label="商品名称">
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: "请输入商品名称",
-                  },
-                ],
-              })(<Input />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="商品价格">
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: "请输入商品价格",
-                  },
-                ],
-              })(<InputNumber />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="商品库存">
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: "请输入商品库存",
-                  },
-                ],
-              })(<InputNumber />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="商品类型">
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: "请输入商品类型",
-                  },
-                ],
-              })(
-                <Select style={{ maxWidth: 220 }}>
-                    <Option value="China">商品类型</Option>
-                </Select>
-              )}
-            </FormItem>
+        <Card bordered={false} >
+          <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8}}>
+                <FormItem {...formItemLayout} label="商品名称">
+                  {getFieldDecorator('name', {
+                    rules: [
+                      {
+                        required: true,
+                        message: "请输入商品名称",
+                      },
+                    ],
+                  })(<Input style={{width: 300}} />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label="商品价格">
+                  {getFieldDecorator('name', {
+                    rules: [
+                      {
+                        required: true,
+                        message: "请输入商品价格",
+                      },
+                    ],
+                  })(<InputNumber style={{width: 300}} />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label="商品库存">
+                  {getFieldDecorator('name', {
+                    rules: [
+                      {
+                        required: true,
+                        message: "请输入商品库存",
+                      },
+                    ],
+                  })(<InputNumber style={{width: 300}} />)}
+                </FormItem>
+                <FormItem {...formItemLayout} label="商品类型">
+                  {getFieldDecorator('name', {
+                    rules: [
+                      {
+                        required: true,
+                        message: "请输入商品类型",
+                      },
+                    ],
+                  })(
+                    <Select style={{width: 300}}>
+                        <Option value="China">商品类型</Option>
+                    </Select>
+                  )}
+                </FormItem>
+                <FormItem {...formItemLayout} label="商品标签">
+                  {getFieldDecorator('name', {
+                    rules: [
+                      {
+                        required: true,
+                        message: "请输入商品标签",
+                      },
+                    ],
+                  })(
+                    <Select style={{width: 300}}>
+                        <Option value="China">保健</Option>
+                    </Select>
+                  )}
+                </FormItem>
             <FormItem {...formItemLayout} label="商品介绍">
               {getFieldDecorator('goal', {
                 rules: [

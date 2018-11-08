@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import LoginItem from './LoginItem';
 import LoginTab from './LoginTab';
 import LoginSubmit from './LoginSubmit';
-import styles from './index.less';
+import styles from './index.module.less';
 import LoginContext from './loginContext';
 
 class Login extends Component {

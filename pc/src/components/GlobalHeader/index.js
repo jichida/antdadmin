@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Icon } from 'antd';
-import styles from './index.less';
+import styles from './index.module.less';
 import RightContent from './RightContent';
 
 export default class GlobalHeader extends PureComponent {
@@ -24,7 +24,7 @@ export default class GlobalHeader extends PureComponent {
     return (
       <div className={styles.header}>
         <Icon
-          //className={styles.trigger}
+          className={styles.trigger}
           style={{fontSize:"36", paddingLeft: "24px", cursor: "pointer"}}
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={this.toggle}

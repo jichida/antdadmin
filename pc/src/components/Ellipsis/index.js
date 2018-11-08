@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
-import styles from './index.less';
+import styles from './index.module.less';
 
 /* eslint react/no-did-mount-set-state: 0 */
 /* eslint no-param-reassign: 0 */

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import SiderMenu from '../components/Menu';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.gif';
 import GlobalHeader from '../components/GlobalHeader';
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -39,7 +39,7 @@ class GLayout extends React.PureComponent {
             <GlobalHeader collapsed={this.collapsed} onCollapse={this.toggle} />
           </Header>
           <Content style={{ margin: '24px 16px 0' }}>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+            <div style={{ padding: 0, background: '#f0f2f5', minHeight: 360 }}>
               {children}
             </div>
           </Content>

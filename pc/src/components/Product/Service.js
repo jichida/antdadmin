@@ -1,11 +1,15 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Icon, List } from 'antd';
-
+import { withRouter } from 'react-router-dom';
 import Ellipsis from '../../components/Ellipsis';
 
-import styles from './CardList.less';
+import styles from './CardList.module.less';
 
 class ServiceList extends PureComponent {
+
+  onAddProduct = ()=>{
+    this.props.history.push("/product/add");
+  }
 
   render() {
     const list = [{
@@ -63,7 +67,7 @@ class ServiceList extends PureComponent {
                           <Ellipsis className={styles.item} lines={3}>
                             {item.description}
                           </Ellipsis>
-                          <h2 style={{float: "right", color: "red"}}>￥：518</h2>
+                          <h2 style={{color: "red", position: "absolute", top: "50%", right: 10}}>￥：518</h2>
                         </React.Fragment>
                       }
                     />
@@ -71,8 +75,8 @@ class ServiceList extends PureComponent {
                 </List.Item>
               ) : (
                 <List.Item>
-                  <Button type="dashed" className={styles.newButton}>
-                    <Icon type="plus" /> 新增产品
+                  <Button type="dashed" className={styles.newButton} style={{height: 188}}  onClick={()=>{this.onAddProduct()}}>
+                    <Icon type="plus" /> 新增新产品
                   </Button>
                 </List.Item>
               )
@@ -83,4 +87,4 @@ class ServiceList extends PureComponent {
   }
 }
 
-export default ServiceList;
+export default withRouter(ServiceList);

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Tabs, Skeleton } from 'antd';
 import classNames from 'classnames';
-import styles from './index.less';
+import styles from './index.module.less';
 import BreadcrumbView from '../Breadcrumb';
 
 const { TabPane } = Tabs;

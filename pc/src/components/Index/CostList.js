@@ -22,7 +22,7 @@ import {
 } from 'antd';
 import StandardTable from '../StandardTable';
 
-import styles from './TableList.less';
+import styles from './TableList.module.less';
 const { RangePicker } = DatePicker;
 
 class CostList extends PureComponent {
@@ -109,14 +109,14 @@ class CostList extends PureComponent {
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-          <Col md={8} sm={24}>时间：
-             <RangePicker
-              style={{ width: '100%' }}
-              placeholder={[
-                "起始时间",
-                "截至时间",
-              ]}
-            />
+          <Col md={8} sm={24}>
+              <RangePicker
+                style={{ width: '100%' }}
+                placeholder={[
+                  "起始时间",
+                  "截至时间",
+                ]}
+              />             
           </Col>
         </Row>
       </Form>
@@ -127,7 +127,7 @@ class CostList extends PureComponent {
 
     return (
           <div className={styles.tableList}>
-            <div className={styles.tableListForm}>{this.renderForm()}</div>
+            <div className={styles.tableListForm} style={{marginBottom:10}}>{this.renderForm()}</div>
               <StandardTable
                 loading={false}
                 columns={this.columns}

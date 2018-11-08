@@ -14,7 +14,7 @@ import {
 } from 'antd';
 import FooterToolbar from '../FooterToolbar';
 import PageHeaderWrapper from '../PageHeaderWrapper';
-import styles from './style.less';
+import styles from './style.module.less';
 
 class SendOut extends PureComponent {
   state = {

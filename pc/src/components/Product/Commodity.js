@@ -1,11 +1,15 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Icon, List } from 'antd';
-
+import { withRouter } from 'react-router-dom';
 import Ellipsis from '../Ellipsis';
 
-import styles from './CardList.less';
+import styles from './CardList.module.less';
 
 class CommodityList extends PureComponent {
+
+  onAddProduct = ()=>{
+    this.props.history.push("/product/add");
+  }
 
   render() {
     const list = [{
@@ -13,6 +17,7 @@ class CommodityList extends PureComponent {
       avatar: "http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg",
       title: "爱上门血压仪",
       description: "升级加强版；银色；官方标配",
+      stock: 890
     },
     {
       id: 2,
@@ -62,9 +67,10 @@ class CommodityList extends PureComponent {
                       description={
                         <React.Fragment>
                           <Ellipsis className={styles.item} lines={3}>
-                            {item.description}
+                            {item.description}<br />
+                            库存：{item.stock}
                           </Ellipsis>
-                          <h2 style={{float: "right", color: "red"}}>￥：518</h2>
+                          <h2 style={{color: "red", position: "absolute", top: "50%", right: 10}}>￥：518</h2>
                         </React.Fragment>
                       }
                     />
@@ -72,8 +78,8 @@ class CommodityList extends PureComponent {
                 </List.Item>
               ) : (
                 <List.Item>
-                  <Button type="dashed" className={styles.newButton}>
-                    <Icon type="plus" /> 新增产品
+                  <Button type="dashed" className={styles.newButton} style={{height: 188}} onClick={()=>{this.onAddProduct()}}>
+                    <Icon type="plus" /> 新增新产品
                   </Button>
                 </List.Item>
               )
@@ -84,4 +90,4 @@ class CommodityList extends PureComponent {
   }
 }
 
-export default CommodityList;
+export default withRouter(CommodityList);

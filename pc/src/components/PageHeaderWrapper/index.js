@@ -1,7 +1,7 @@
 import React from 'react';
 import PageHeader from '../PageHeader';
 import GridContent from './GridContent';
-import styles from './index.less';
+import styles from './index.module.less';
 import MenuContext from '../../layouts/MenuContext';
 
 const PageHeaderWrapper = ({ children, contentWidth, wrapperClassName, top, ...restProps }) => (

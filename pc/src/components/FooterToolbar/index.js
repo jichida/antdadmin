@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './index.less';
+import styles from './index.module.less';
 
 export default class FooterToolbar extends Component {
   static contextTypes = {
