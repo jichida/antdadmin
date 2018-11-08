@@ -37,7 +37,7 @@ class Dashboard extends PureComponent {
     const { history } = this.props;
     switch (key) {
       case 'recharge':
-        history.replace(`/recharge`);
+        history.replace(`/account/recharge`);
         break;
       case 'pay':
         history.replace(`/account/pay`);
