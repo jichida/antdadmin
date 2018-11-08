@@ -1,6 +1,6 @@
 
 import React, { PureComponent } from 'react';
-import { Card, Row, Col, Icon, Avatar, Tag, Divider, Spin, Input, Button } from 'antd';
+import { Card, Row, Col } from 'antd';
 import GridContent from '../PageHeaderWrapper/GridContent';
 import styles from './Center.module.less';
 import { withRouter } from 'react-router-dom';
@@ -91,7 +91,7 @@ class Dashboard extends PureComponent {
 
     return (
       <GridContent className={styles.userCenter} style={{backgroundColor: "gray"}}>
-        <Row gutter={24}>
+        <Row gutter= {24}>
           <Col lg={7} md={24}>
              { this.state.isEdit ? 
                 <InfoEdit onEditOver={this.onEditOver} /> : <InfoView onEnterEdit={this.onEnterEdit} />}

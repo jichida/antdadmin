@@ -2,31 +2,23 @@ import React, { PureComponent } from 'react';
 import {
   Form,
   Input,
-  DatePicker,
   Select,
   Button,
   Card,
   InputNumber,
-  Radio,
-  Icon,
-  Tooltip,
   Upload,
-  Image,
-  Row,
-  Col,
 } from 'antd';
 import PageHeaderWrapper from '../../components/PageHeaderWrapper';
-import styles from './style.module.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
 const { TextArea } = Input;
 
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
+// function getBase64(img, callback) {
+//   const reader = new FileReader();
+//   reader.addEventListener('load', () => callback(reader.result));
+//   reader.readAsDataURL(img);
+// }
 
 
 function beforeUpload(file) {/*
@@ -65,7 +57,7 @@ class AddForms extends PureComponent {
   render() {
     const { submitting } = this.props;
     const {
-      form: { getFieldDecorator, getFieldValue },
+      form: { getFieldDecorator },
     } = this.props;
 
     const formItemLayout = {
@@ -86,13 +78,6 @@ class AddForms extends PureComponent {
         sm: { span: 10, offset: 7 },
       },
     };
-
-    const uploadButton = (
-      <div>
-        {/* <Icon type={this.state.loading ? 'loading' : 'plus'} /> */}
-        <div className="ant-upload-text">图片</div>
-      </div>
-    );
 
     return (
       <PageHeaderWrapper title="增加新商品" >

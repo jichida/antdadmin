@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Checkbox, Alert, Icon } from 'antd';
+import { Alert } from 'antd';
 import { Link } from 'react-router-dom';
 import Login from '../Login';
 import styles from './Login.module.less';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
+const { Tab, Password, Mobile, Captcha, Submit } = Login;
 
 class LoginPage extends Component {
   state = {
@@ -60,7 +60,7 @@ class LoginPage extends Component {
   );
 
   render() {
-    const { login, submitting } = this.props;
+    const { submitting } = this.props;
     const { type } = this.state;
     return (
       <div className={styles.main}>

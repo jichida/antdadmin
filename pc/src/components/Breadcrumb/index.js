@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
-import { HashRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
-import { Breadcrumb, Alert } from 'antd';
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { Breadcrumb } from 'antd';
 
 const breadcrumbNameMap = {
   '/account': '个人页',
@@ -19,7 +19,7 @@ const breadcrumbNameMap = {
   '/order/completed': '已完成',
   '/order/refund': '退款/退货退款',
   '/order/sendout': '订单发货',
-  '/order/sendout': '快递跟踪',
+  '/order/track': '快递跟踪',
 };
 const Breadcrumbs = withRouter((props) => {
   const { location } = props;

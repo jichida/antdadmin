@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 import { Layout, message } from 'antd';
 import Animate from 'rc-animate';
 import GlobalHeader from '../components/GlobalHeader';
-// import TopNavHeader from '../components/TopNavHeader';
 import styles from './Header.module.less';
-// import Authorized from '@/utils/Authorized';
 
 const { Header } = Layout;
 

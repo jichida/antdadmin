@@ -1,25 +1,12 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import moment from 'moment';
 import {
-  Row,
-  Col,
   Card,
   Form,
   Input,
   Select,
-  Icon,
   Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-  Badge,
-  Divider,
-  Steps,
   Radio,
-  Upload,
   TimePicker,
 } from 'antd';
 
@@ -28,30 +15,11 @@ import styles from './BaseView.module.less';
 const Option = Select.Option;
 const FormItem = Form.Item;
 
-// 头像组件 方便以后独立，增加裁剪之类的功能
-const AvatarView = ({ avatar }) => (
-    <Fragment>
-      <div className={styles.avatar_title}>
-        头像
-      </div>
-      <div className={styles.avatar}>
-        <img src={avatar} alt="avatar" />
-      </div>
-      <Upload fileList={[]}>
-        <div className={styles.button_view}>
-          <Button icon="upload">
-            上传
-          </Button>
-        </div>
-      </Upload>
-    </Fragment>
-  );
-
 class InfoEdit extends PureComponent {
 
 
   render() {
-    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     const { onEditOver } = this.props;
     
     return (

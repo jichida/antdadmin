@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
-import { Button, Row, Col } from 'antd';
+import React from 'react';
+import { Button } from 'antd';
 import Result from '../../Result';
 import styles from './style.module.less';
 
 class Step3 extends React.PureComponent {
   render() {
-    const { data } = this.props;
     const onFinish = () => {
       //router.push('/form/step-form/info');
     };

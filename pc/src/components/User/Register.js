@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Input, Button, Select, Row, Col, Popover, Progress, Steps } from 'antd';
+import { Form, Steps } from 'antd';
 import styles from './Register.module.less';
 import StepForm from './StepForm';
 

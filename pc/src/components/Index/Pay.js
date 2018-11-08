@@ -1,24 +1,9 @@
-import React, { PureComponent, Fragment } from 'react';
-import moment from 'moment';
+import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Row,
   Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
   Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-  Badge,
-  Divider,
-  Steps,
-  Radio,
   Checkbox,
 } from 'antd';
 
@@ -37,7 +22,7 @@ class Pay extends PureComponent {
                         <p style={{paddingTop:"20px", paddingLeft:"20px"}}><h4><b>开启全新展位和推广产品</b></h4></p>
                         <p style={{float: "right", paddingRight: "20px"}}><h3 style={{color: "red"}}><b>￥688</b></h3></p>
                     </div>
-                    <p style={{float: "right", marginRight:"-60px"}}><a href="#">缴纳保证金注意事项</a></p>
+                    <p style={{float: "right", marginRight:"-60px"}}><Link href="#">缴纳保证金注意事项</Link></p>
                 </Col>
             </Row>
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>

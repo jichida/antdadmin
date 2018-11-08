@@ -1,17 +1,8 @@
 import React, { Fragment } from 'react';
-import { Form, Input, Button, Select, Divider, Popover, Row, Col } from 'antd';
+import { Form, Input, Button, Divider, Popover, Row, Col } from 'antd';
 import styles from './style.module.less';
 
 const FormItem = Form.Item;
-
-const formItemLayout = {
-  labelCol: {
-    span: 5,
-  },
-  wrapperCol: {
-    span: 19,
-  },
-};
 
 class Step1 extends React.PureComponent {
 
@@ -26,8 +17,8 @@ class Step1 extends React.PureComponent {
 
   render() {
     const { form } = this.props;
-    const { count, prefix, help, visible } = this.state;
-    const { getFieldDecorator, validateFields } = form;
+    const { count, help, visible } = this.state;
+    const { getFieldDecorator } = form;
     const onValidateForm = () => {
       
     };

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Form, Input, Button, Alert, Divider, Select, DatePicker, Upload, Icon } from 'antd';
+import { Form, Input, Button, Select, DatePicker, Upload, Icon } from 'antd';
 import styles from './style.module.less';
-
-const FormItem = Form.Item;
 
 const { Option } = Select;
 
@@ -27,8 +25,8 @@ const formItenBlackLabel = {
 
 class Step2 extends React.PureComponent {
   render() {
-    const { form, data, submitting } = this.props;
-    const { getFieldDecorator, validateFields } = form;
+    const { form, submitting } = this.props;
+    const { getFieldDecorator } = form;
     const onValidateForm = e => {
       e.preventDefault();
       
@@ -63,10 +61,7 @@ class Step2 extends React.PureComponent {
                 message: '请输入注册日期',
               },
             ],
-            })
-            (
-              <DatePicker placeholder="注册日期" style={{width: "50%",marginRight: "10%"}} />
-          )}
+            })(<DatePicker placeholder="注册日期" style={{width: "50%",marginRight: "10%"}} />)}
           {getFieldDecorator('name', {
             rules: [
               {

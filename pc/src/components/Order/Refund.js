@@ -1,25 +1,9 @@
-import React, { PureComponent, Fragment } from 'react';
-import moment from 'moment';
+import React, { PureComponent } from 'react';
 import {
-  Row,
-  Col,
   Card,
   Avatar,
-  Form,
-  Input,
-  Select,
-  Icon,
-  Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-  Badge,
   Divider,
-  Steps,
-  Radio,
+  Button,
 } from 'antd';
 import StandardTable from '../StandardTable';
 
@@ -172,9 +156,9 @@ class Refund extends PureComponent {
         key: 'action',
         render: (text, record) => (
             <span>
-              <a href="javascript:;">联系买家</a>
+              <Button>联系买家</Button>
               <Divider type="vertical" />
-              <a href="javascript:;">同意退款</a>
+              <Button>同意退款</Button>
             </span>
           ),
       },

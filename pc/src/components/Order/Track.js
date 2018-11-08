@@ -1,16 +1,8 @@
 import React, { PureComponent } from 'react';
 import {
   Card,
-  Button,
-  Form,
-  Icon,
   Col,
   Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
   Timeline,
 } from 'antd';
 import PageHeaderWrapper from '../PageHeaderWrapper';
@@ -29,7 +21,7 @@ class Track extends PureComponent {
         <Card className={styles.card} bordered={false}>
             <Row gutter={16} style={{marginBottom:10}}>
                 <Col lg={1} md={3} >
-                    <img src="http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg" height="36"></img>
+                    <img alt="" src="http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg" height="36"></img>
                 </Col>
                 <Col lg={{ span: 8, offset:2 }} md={{ span: 12, offset:2 }} >
                    <h3><b>订单编号：1234567890</b></h3>           
