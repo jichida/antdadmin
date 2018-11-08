@@ -65,7 +65,7 @@ class Pay extends PureComponent {
   }
 
   render() {
-    debugger;
+    // debugger;
     return (
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>

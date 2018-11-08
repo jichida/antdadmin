@@ -6,7 +6,11 @@ import styles from './Center.module.less';
 import { withRouter } from 'react-router-dom';
 import InfoView from './InfoView';
 import InfoEdit from './InfoEdit';
-
+import Recharge from './Recharge';
+import Pay from './Pay';
+import Reflects from './Reflect';
+import ReflectDetail from './ReflectDetail';
+import CostList from './CostList';
 
 class Dashboard extends PureComponent {
 
@@ -33,16 +37,16 @@ class Dashboard extends PureComponent {
     const { history, match } = this.props;
     switch (key) {
       case 'recharge':
-        history.push(`${match.path}/recharge`);
+        history.replace(`/account/recharge`);
         break;
       case 'pay':
-        history.push(`${match.path}/pay`);
+        history.replace(`/account/pay`);
         break;
       case 'reflect':
-        history.push(`${match.path}/reflect`);
+        history.replace(`/account/reflect`);
         break;
         case 'costlist':
-        history.push(`${match.path}/costlist`);
+        history.replace(`/account/costlist`);
         break;
       default:
         break;
@@ -52,7 +56,7 @@ class Dashboard extends PureComponent {
 
 
   render() {
-    const { children, location, match } = this.props;
+    const {location, match } = this.props;
 
     const operationTabList = [
       {
@@ -88,8 +92,24 @@ class Dashboard extends PureComponent {
         ),
       }
     ];
-    const aKey = location.pathname.replace(`${match.path}/`, '');
-    console.log(aKey)
+    const aKey = location.pathname.replace(`/account/`, '');
+    console.log(aKey);
+    let Co;
+    if(aKey === 'recharge'){
+      Co = <Recharge />
+    }
+    if(aKey === 'pay'){
+      Co = <Pay />
+    }
+    if(aKey === 'reflect'){
+      Co = <Reflects />
+    }
+    if(aKey === 'reflectdetail'){
+      Co = <ReflectDetail />
+    }
+    if(aKey === 'costlist'){
+      Co = <CostList />
+    }
     return (
       <GridContent className={styles.userCenter} style={{backgroundColor: "gray"}}>
         <Row gutter={24}>
@@ -106,7 +126,7 @@ class Dashboard extends PureComponent {
               onTabChange={this.onTabChange}
               activeTabKey={aKey}
             >
-              {children}
+              {Co}
             </Card>
           </Col>
         </Row>

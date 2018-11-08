@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import { Route,Switch, Redirect } from 'react-router-dom';
 
 import Index from './Index';
-import Recharge from './Index/Recharge';
-import Pay from './Index/Pay';
-import Reflects from './Index/Reflect';
-import ReflectDetail from './Index/ReflectDetail';
-import CostList from './Index/CostList';
+
 
 import Completed from './Order/Completed';
 import Delivered from './Order/Delivered';
@@ -69,14 +65,8 @@ class AppRoot extends React.Component {
               <div className="container">
                 <Switch>
                     <Route exact path="/" render={()=>(<Redirect to="/account/recharge" />)}/>
-                    <Route path="/account" render={()=>(
-                        <IndexLayout>
-                          <Route path="/account/recharge" component={Recharge}/>
-                          <Route path="/account/pay" Component={Pay}/>
-                          <Route path="/account/reflect" Component={Reflects}/>
-                          <Route path="/account/reflectdetail" Component={ReflectDetail}/>
-                          <Route path="/account/costlist" Component={CostList}/>
-                        </IndexLayout>
+                    <Route path="/account/:param" render={()=>(
+                        <IndexLayout />
                     )} />
                     <Route path="/product" render={()=>
                       <ProductLayout>
