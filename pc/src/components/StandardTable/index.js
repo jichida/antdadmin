@@ -1,11 +1,8 @@
-import React, { PureComponent, Fragment } from 'react';
-import { Table, Alert } from 'antd';
+import React, { PureComponent } from 'react';
+import { Table } from 'antd';
 import styles from './index.module.less';
 
 class StandardTable extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
 
   handleTableChange = (pagination, filters, sorter) => {
     const { onChange } = this.props;

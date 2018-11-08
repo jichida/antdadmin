@@ -1,27 +1,9 @@
-import React, { PureComponent, Fragment } from 'react';
-import moment from 'moment';
+import React, { PureComponent } from 'react';
 import {
-  Row,
-  Col,
   Card,
-  Form,
-  Input,
-  Select,
   Avatar,
-  Rate,
-  Icon,
-  Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-  Badge,
-  Divider,
-  Steps,
-  Radio,
 } from 'antd';
+import { Link } from 'react-router-dom';
 import StandardTable from '../StandardTable';
 
 import styles from './TableList.module.less';
@@ -155,7 +137,7 @@ class Delivered extends PureComponent {
         key: 'action',
         render: (text, record) => (
             <span>
-              <a href="javascript:;">快递跟踪</a>
+              <Link to="/track">快递跟踪</Link>
             </span>
           ),
       },  ];

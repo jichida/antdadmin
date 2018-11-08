@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Card, Button, Icon, List } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import Ellipsis from '../Ellipsis';
 
 import styles from './CardList.module.less';
@@ -60,10 +60,10 @@ class CommodityList extends PureComponent {
             renderItem={item =>
               item ? (
                 <List.Item key={item.id}>
-                  <Card hoverable className={styles.card} actions={[ <a>编辑</a>, <a style={{color: "red"}}>删除</a>]}>
+                  <Card hoverable className={styles.card} actions={[ <Link to="">编辑</Link>, <Button style={{color: "red"}}>删除</Button>]}>
                     <Card.Meta
                       avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} height="36" />}
-                      title={<a>{item.title}</a>}
+                      title={<Link to="">{item.title}</Link>}
                       description={
                         <React.Fragment>
                           <Ellipsis className={styles.item} lines={3}>

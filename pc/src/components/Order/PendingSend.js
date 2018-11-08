@@ -1,26 +1,9 @@
-import React, { PureComponent, Fragment } from 'react';
-import moment from 'moment';
+import React, { PureComponent } from 'react';
 import {
-  Row,
-  Col,
   Card,
-  Form,
-  Input,
-  Select,
-  Icon,
-  Button,
   Avatar,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  Modal,
-  message,
-  Badge,
-  Divider,
-  Steps,
-  Radio,
 } from 'antd';
+import { Link } from 'react-router-dom';
 import StandardTable from '../StandardTable';
 
 import styles from './TableList.module.less';
@@ -155,8 +138,8 @@ class PendingSend extends PureComponent {
         key: 'action',
         render: (text, record) => (
           <span>
-            <Button type="primary">立即发货</Button>
-          </span>
+              <Link to="/sendout">立即发货</Link>
+            </span>
         ),
       },
   ];

@@ -1,6 +1,6 @@
 
 import React, { PureComponent } from 'react';
-import { Card, Row, Col, Icon, Avatar, Tag, Divider, Spin, Input, Button } from 'antd';
+import { Card, Row, Col } from 'antd';
 import GridContent from '../PageHeaderWrapper/GridContent';
 import styles from './Center.module.less';
 import { withRouter } from 'react-router-dom';
@@ -34,10 +34,10 @@ class Dashboard extends PureComponent {
   }
 
   onTabChange = key => {
-    const { history, match } = this.props;
+    const { history } = this.props;
     switch (key) {
       case 'recharge':
-        history.replace(`/account/recharge`);
+        history.replace(`/recharge`);
         break;
       case 'pay':
         history.replace(`/account/pay`);
@@ -45,7 +45,7 @@ class Dashboard extends PureComponent {
       case 'reflect':
         history.replace(`/account/reflect`);
         break;
-        case 'costlist':
+      case 'costlist':
         history.replace(`/account/costlist`);
         break;
       default:
@@ -56,7 +56,7 @@ class Dashboard extends PureComponent {
 
 
   render() {
-    const {location, match } = this.props;
+    const {location } = this.props;
 
     const operationTabList = [
       {
@@ -112,7 +112,7 @@ class Dashboard extends PureComponent {
     }
     return (
       <GridContent className={styles.userCenter} style={{backgroundColor: "gray"}}>
-        <Row gutter={24}>
+        <Row gutter= {24}>
           <Col lg={7} md={24}>
              { this.state.isEdit ?
                 <InfoEdit onEditOver={this.onEditOver} /> : <InfoView onEnterEdit={this.onEnterEdit} />}

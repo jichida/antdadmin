@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Input } from 'antd';
-import { Switch, Route, Redirect } from 'react-router-dom';
 import PageHeaderWrapper from '../PageHeaderWrapper';
 import { withRouter } from 'react-router-dom';
-import Commodity from './Commodity';
-import Service from './Service';
 
 class Index extends Component {
   handleTabChange = key => {

@@ -1,24 +1,10 @@
-import React, { PureComponent, Fragment } from 'react';
-import moment from 'moment';
+import React, { PureComponent } from 'react';
 import {
   Row,
   Col,
-  Card,
-  Form,
   Input,
-  Select,
-  Icon,
   Button,
-  Dropdown,
-  Menu,
   InputNumber,
-  DatePicker,
-  Modal,
-  message,
-  Badge,
-  Divider,
-  Steps,
-  Radio,
 } from 'antd';
 
 import styles from './TableList.module.less';

@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Spin, Tag, Menu, Icon, Dropdown, Avatar, Tooltip } from 'antd';
-import moment from 'moment';
+import { Menu, Icon, Dropdown, Avatar } from 'antd';
 import styles from './index.module.less';
 
 export default class GlobalHeaderRight extends PureComponent {
 
   render() {
     const {
-      currentUser,
       onMenuClick,
       theme,
     } = this.props;

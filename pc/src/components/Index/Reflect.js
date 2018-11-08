@@ -1,25 +1,10 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
-import moment from 'moment';
 import {
   Row,
   Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
   Button,
-  Dropdown,
-  Menu,
-  InputNumber,
   DatePicker,
-  Modal,
-  message,
-  Badge,
-  Divider,
-  Steps,
-  Radio,
 } from 'antd';
 import StandardTable from '../StandardTable';
 
@@ -64,7 +49,7 @@ class Reflect extends PureComponent {
 
   onApply = () => {
     const { history } = this.props;
-    history.push("/account/reflectdetial");
+    history.push("/account/reflectdetail");
   }
 
   /*

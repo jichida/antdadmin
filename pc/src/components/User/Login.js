@@ -56,7 +56,7 @@ class LoginPage extends Component {
   );
 
   render() {
-    const { login, submitting } = this.props;
+    const { submitting } = this.props;
     const { type } = this.state;
     return (
       <div className={styles.main}>

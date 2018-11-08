@@ -1,7 +1,6 @@
-import React, { PureComponent } from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import React from 'react';
+import { Layout } from 'antd';
 import SiderMenu from '../components/Menu';
-import logo from '../assets/logo.gif';
 import GlobalHeader from '../components/GlobalHeader';
 const { Header, Content, Footer, Sider } = Layout;
 

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Input } from 'antd';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PageHeaderWrapper from '../PageHeaderWrapper';
 import { withRouter } from 'react-router-dom';
 
 class Index extends Component {
   handleTabChange = key => {
-    const {  history } = this.props;
+    const { history } = this.props;
     switch (key) {
       case 'pendingpay':
         history.push(`/order/pendingpay`);

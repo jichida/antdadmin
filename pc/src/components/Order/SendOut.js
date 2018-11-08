@@ -3,14 +3,9 @@ import {
   Card,
   Button,
   Form,
-  Icon,
   Col,
   Row,
-  DatePicker,
-  TimePicker,
   Input,
-  Select,
-  Popover,
 } from 'antd';
 import FooterToolbar from '../FooterToolbar';
 import PageHeaderWrapper from '../PageHeaderWrapper';
@@ -48,7 +43,6 @@ class SendOut extends PureComponent {
       form: { getFieldDecorator },
       submitting,
     } = this.props;
-    const { width } = this.state;
 
     return (
       <PageHeaderWrapper

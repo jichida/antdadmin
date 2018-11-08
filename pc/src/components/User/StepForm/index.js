@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Card, Steps } from 'antd';
-import styles from './style.module.less';
 
 const { Step } = Steps;
 
@@ -23,7 +22,7 @@ class StepForm extends PureComponent {
   }//current={this.getCurrentStep()} 
 
   render() {
-    const { location, children } = this.props;
+    const { children } = this.props;
     return (
       <Fragment>
         <Steps style={{marginBottom: 30}} size="small">
