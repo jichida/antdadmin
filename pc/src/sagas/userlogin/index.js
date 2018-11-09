@@ -5,32 +5,49 @@ import {
   md_login_result,
   login_result,
 
+  register_result,
+  sendauth_result,
+  findpwd_result,
   set_weui,
 
 } from '../../actions';
-// import { goBack } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { goBack } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 import config from '../../env/config.js';
-// import  {
-//   getrandom
-// } from '../test/bmsdata.js';
 
 export function* userloginflow() {
 
 
   // 链接远程数据,暂时注释
-  // yield takeLatest(`${querydevice_result}`, function*(action) {
-  //   yield put(start_serverpush_devicegeo_sz({}));
-  // });
+  yield takeLatest(`${sendauth_result}`, function*(action) {
+    try{
+      let {payload:result} = action;
+      yield put(set_weui({
+        toast:{
+        text:result.errmsg,
+        show: true,
+        type:'warning'
+      }}));
+    }
+    catch(e){
+      console.log(e);
+    }
 
-  // yield takeLatest(`${changepwd_result}`, function*(action) {
-  //   yield put(set_weui({
-  //     toast:{
-  //       text:'修改密码成功',
-  //       show: true,
-  //       type:'success'
-  //   }}));
-  //   yield put(goBack());
-  // });
+  });
+
+  yield takeLatest(`${findpwd_result}`, function*(action) {
+      try{
+        yield put(set_weui({
+          toast:{
+            text:'修改密码成功',
+            show: true,
+            type:'success'
+        }}));
+        yield put(goBack());
+      }
+      catch(e){
+        console.log(e);
+      }
+  });
 
 
 
@@ -54,6 +71,7 @@ export function* userloginflow() {
 
 
   yield takeLatest(`${common_err}`, function*(action) {
+    try{
         let {payload:result} = action;
 
         yield put(set_weui({
@@ -62,6 +80,10 @@ export function* userloginflow() {
           show: true,
           type:'warning'
         }}));
+      }
+      catch(e){
+        console.log(e);
+      }
   });
 
 }
