@@ -1,7 +1,8 @@
-{
-  "name": "appc",
-  "version": "0.1.0",
+﻿{
+  "name": "pcb",
+  "version": "1.0.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "antd": "^3.10.0",
     "axios": "^0.18.0",
@@ -36,6 +37,7 @@
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
+    "buildcp": "npm run build && cp -r build/. ../deploy/dist/pcb && rm -R build",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test"
