@@ -38,9 +38,9 @@ class Step2 extends React.PureComponent {
 
   render() {
     const { form, history } = this.props;
-    const { getFieldDecorator, ValicateFields } = form;
+    const { getFieldDecorator, valicateFields } = form;
     const onValidateForm = e => {
-      ValicateFields((err, values)=>{
+      valicateFields((err, values)=>{
         console.log(values);
 
         // values:{

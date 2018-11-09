@@ -38,6 +38,31 @@ class SendOut extends PureComponent {
     });
   };
 
+  handleSubmit = e => {
+    const { form: { validateFields } } = this.props;
+    validateFields((err, values)=>{
+      console.log(values);
+
+      // 订单发货
+      //   values: {
+      //     sname: 发货人
+      //     sphone: 手机号
+      //     spostal: 邮政编码
+      //     saddress: 商家地址
+      //     rname: 收货人
+      //     rphone: 手机号
+      //     rpostal: 邮政编码
+      //     raddress: 买家地址
+      //     logisticsname: 物流公司
+      //     logisticsid: 物流单号
+      //   }
+
+      if(!err){
+        //
+      }
+    })
+  };
+
   render() {
     const {
       form: { getFieldDecorator },
@@ -55,21 +80,21 @@ class SendOut extends PureComponent {
             <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label="发货人">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('sname', {
                     rules: [{ required: true, message: '请输入发货人' }],
                   })(<Input placeholder="请输入发货人" />)}
                 </Form.Item>
               </Col>
               <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
                 <Form.Item label="手机号码">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('sphone', {
                     rules: [{ required: true, message: '请输入手机号码' }],
                   })(<Input placeholder="请输入手机号码" />)}
                 </Form.Item>              
             </Col>
               <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
                 <Form.Item label="邮政编码">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('spostal', {
                     rules: [{ required: true, message: '请输入邮政编码' }],
                   })(<Input placeholder="请输入邮政编码" />)}
                 </Form.Item>
@@ -78,7 +103,7 @@ class SendOut extends PureComponent {
             <Row gutter={16}>
               <Col lg={24} md={24} sm={24}>
                  <Form.Item label="商家地址">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('saddress', {
                     rules: [{ required: true, message: '请输入商家地址' }],
                   })(<Input />)}
                 </Form.Item>
@@ -89,21 +114,21 @@ class SendOut extends PureComponent {
              <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label="收货人">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('rname', {
                     rules: [{ required: true, message: '请输入发货人' }],
                   })(<Input placeholder="请输入发货人" />)}
                 </Form.Item>
               </Col>
               <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
                 <Form.Item label="手机号码">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('rphone', {
                     rules: [{ required: true, message: '请输入手机号码' }],
                   })(<Input placeholder="请输入手机号码" />)}
                 </Form.Item>              
             </Col>
               <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
                 <Form.Item label="邮政编码">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('rpostal', {
                     rules: [{ required: true, message: '请输入邮政编码' }],
                   })(<Input placeholder="请输入邮政编码" />)}
                 </Form.Item>
@@ -112,7 +137,7 @@ class SendOut extends PureComponent {
             <Row gutter={16}>
               <Col lg={24} md={24} sm={24}>
                  <Form.Item label="买家地址">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('raddress', {
                     rules: [{ required: true, message: '请输入买家地址' }],
                   })(<Input />)}
                 </Form.Item>
@@ -123,14 +148,14 @@ class SendOut extends PureComponent {
              <Row gutter={16}>
                 <Col lg={6} md={12} sm={24}>
                     <Form.Item label="物流公司">
-                        {getFieldDecorator('name', {
+                        {getFieldDecorator('logisticname', {
                         rules: [{ required: true, message: '请输入物流公司' }],
                         })(<Input placeholder="请输入物流公司" />)}
                     </Form.Item>
               </Col>
               <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
                     <Form.Item label="物流单号">
-                         {getFieldDecorator('name', {
+                         {getFieldDecorator('logisticid', {
                           rules: [{ required: true, message: '请输入物流单号' }],
                          })(<Input placeholder="请输入物流单号" />)}
                     </Form.Item>              
@@ -140,7 +165,7 @@ class SendOut extends PureComponent {
         </Card>
         
         <FooterToolbar style={{ marginTop: "10px", textAlign: "center" }}>
-          <Button type="primary" onClick={this.validate} loading={submitting}>
+          <Button type="primary" onClick={this.handleSubmit} loading={submitting}>
             提交
           </Button>
         </FooterToolbar>

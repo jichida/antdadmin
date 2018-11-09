@@ -36,29 +36,38 @@ function beforeUpload(file) {/*
 class AddForms extends PureComponent {
 
   handleSubmit = e => {
-    //const { dispatch, form } = this.props;
-    e.preventDefault();
+    const { form: { validateFields } } = this.props;
+    validateFields((err, values)=>{
+      console.log(values);
+
+      // values: { 商品
+      //   name: 名称
+      //   price: 价格
+      //   stock: 库存
+      //   type: 类型
+      //   tabs: 标签
+      //   introduce: 介绍
+      //   picture: 图片
+      // }
+
+      if(!err){
+        //
+      }
+    })
   };
-/*
-  handleUpload = (info) => {
-    if (info.file.status === 'uploading') {
-      this.setState({ loading: true });
-      return;
+
+  normFile = (e) => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+      return e;
     }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl => this.setState({
-        imageUrl,
-        loading: false,
-      }));
-    }
+    return e && e.fileList;
   }
-*/
+
+  
   render() {
     const { submitting } = this.props;
-    const {
-      form: { getFieldDecorator },
-    } = this.props;
+    const { form: { getFieldDecorator } } = this.props;
 
     const formItemLayout = {
       labelCol: {
@@ -94,7 +103,7 @@ class AddForms extends PureComponent {
                   })(<Input style={{width: 300}} />)}
                 </FormItem>
                 <FormItem {...formItemLayout} label="商品价格">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('price', {
                     rules: [
                       {
                         required: true,
@@ -114,7 +123,7 @@ class AddForms extends PureComponent {
                   })(<InputNumber style={{width: 300}} />)}
                 </FormItem>
                 <FormItem {...formItemLayout} label="商品类型">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('type', {
                     rules: [
                       {
                         required: true,
@@ -128,7 +137,7 @@ class AddForms extends PureComponent {
                   )}
                 </FormItem>
                 <FormItem {...formItemLayout} label="商品标签">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('tabs', {
                     rules: [
                       {
                         required: true,
@@ -142,7 +151,7 @@ class AddForms extends PureComponent {
                   )}
                 </FormItem>
             <FormItem {...formItemLayout} label="商品介绍">
-              {getFieldDecorator('goal', {
+              {getFieldDecorator('introduce', {
                 rules: [
                   {
                     required: true,
@@ -158,25 +167,14 @@ class AddForms extends PureComponent {
               )}
             </FormItem>
             <FormItem {...formItemLayout} label="商品图片">
-              {getFieldDecorator('goal', {
-                rules: [
-                  {
-                    required: true,
-                    message: "请上传商品图片",
-                  },
-                ],
+              {getFieldDecorator('picture', {
+                valuePropName: 'fileList',
+                getValueFromEvent: this.normFile,
               })(
-                <Upload
-                  name="avatar"
-                  listType="picture-card"
-                  className="avatar-uploader"
-                  showUploadList={false}
-                  action="//jsonplaceholder.typicode.com/posts/"
-                  beforeUpload={beforeUpload}
-                  onChange={this.handleChange}
-                >
-                  uploadButton
-                  {/* {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton} */}
+                <Upload name="logo" action="/upload.do" listType="picture">
+                  <Button style={{ width: 100, height: 100}}>
+                    <Icon type="plus" theme="outlined" /> 图片
+                  </Button>
                 </Upload>
               )}
             </FormItem>
