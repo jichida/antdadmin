@@ -26,11 +26,38 @@ const formItenBlackLabel = {
 
 
 class Step2 extends React.PureComponent {
+
+  
+  normFile = (e) => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  }
+
   render() {
     const { form, history } = this.props;
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, ValicateFields } = form;
     const onValidateForm = e => {
-      history.push('/register/result');
+      ValicateFields((err, values)=>{
+        console.log(values);
+
+        // values:{
+        //   name: 姓名
+        //   id: 身份证号码
+        //   registerdate: 注册日期
+        //   work: 工种
+        //   company: 公司
+        //   industry: 行业
+        //   license: 营业执照
+        // }
+
+        //if(!err){
+          history.push('/register/result');
+        //}
+      })
+      
     };
     return (
       <Form layout="horizontal" className={styles.stepForm}>
@@ -55,7 +82,7 @@ class Step2 extends React.PureComponent {
           })(<Input placeholder="请输入身份证号" />)}
         </Form.Item>
         <Form.Item {...formItenBlackLabel} className={styles.stepFormText} label="">
-          {getFieldDecorator('name', {
+          {getFieldDecorator('registerdate', {
             rules: [
               {
                 required: true,
@@ -63,7 +90,7 @@ class Step2 extends React.PureComponent {
               },
             ],
             })(<DatePicker placeholder="注册日期" style={{width: "50%",marginRight: "10%"}} />)}
-          {getFieldDecorator('name', {
+          {getFieldDecorator('work', {
             rules: [
               {
                 required: true,
@@ -102,12 +129,8 @@ class Step2 extends React.PureComponent {
         </Form.Item>
         <Form.Item {...formItemLayout} className={styles.stepFormText} label="营业执照">
         {getFieldDecorator('license', {
-            rules: [
-              {
-                required: true,
-                message: '请上传营业执照',
-              },
-            ],
+              valuePropName: 'fileList',
+              getValueFromEvent: this.normFile,
             })(
               <Upload name="logo" action="/upload.do" listType="picture">
                 <Button style={{ width: 100, height: 100}}>
