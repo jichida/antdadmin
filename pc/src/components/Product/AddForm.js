@@ -7,6 +7,7 @@ import {
   Card,
   InputNumber,
   Upload,
+  Icon,
 } from 'antd';
 import PageHeaderWrapper from '../../components/PageHeaderWrapper';
 

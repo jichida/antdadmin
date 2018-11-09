@@ -17,6 +17,27 @@ const FormItem = Form.Item;
 
 class InfoEdit extends PureComponent {
 
+handleSubmit = e => {
+    const { form: { validateFields } } = this.props;
+    validateFields((err, values)=>{
+        console.log(values);
+
+        // 店铺维护：
+        // values: {
+        // operation：运营状态
+        // operationtstart：运营开始时间
+        // operationend：运营结束时间
+        // name：名称
+        // industry: 行业
+        // kind: 工种
+        // address: 店铺地址
+        //   }
+
+        if(!err){
+        //
+        }
+    })
+    };  
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -63,7 +84,7 @@ class InfoEdit extends PureComponent {
                 )}
                 </FormItem>
                 <FormItem label="店铺名称">
-                {getFieldDecorator('profile', {
+                {getFieldDecorator('name', {
                     rules: [
                     {
                         required: true,
@@ -73,7 +94,7 @@ class InfoEdit extends PureComponent {
                 })(<Input />)}
                 </FormItem>
                 <FormItem label="店铺行业">
-                {getFieldDecorator('country', {
+                {getFieldDecorator('industry', {
                     rules: [
                     {
                         required: true,
@@ -87,7 +108,7 @@ class InfoEdit extends PureComponent {
                 )}
                 </FormItem>
                 <FormItem label="工种">
-                {getFieldDecorator('geographic', {
+                {getFieldDecorator('kind', {
                     rules: [
                     {
                         required: true,
@@ -111,7 +132,7 @@ class InfoEdit extends PureComponent {
                 })(<Input />)}
                 </FormItem>
                 <FormItem>
-                    <Button type="primary">保存</Button>
+                    <Button type="primary" htmlType="submit">保存</Button>
                     <Button style={{marginLeft: 10}} onClick={onEditOver}>取消</Button>
                 </FormItem>
                 
