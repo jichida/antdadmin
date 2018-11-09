@@ -19,8 +19,8 @@ class Pay extends PureComponent {
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
                 <Col md={8} sm={24} style={{minWidth:"500px"}}>
                     <div style={{border:"1px solid #e2e4e6", backgroundColor: "#f8fcff", height: "100px", minWidth: "500px"}}>
-                        <p style={{paddingTop:"20px", paddingLeft:"20px"}}><h4><b>开启全新展位和推广产品</b></h4></p>
-                        <p style={{float: "right", paddingRight: "20px"}}><h3 style={{color: "red"}}><b>￥688</b></h3></p>
+                        <p style={{paddingTop:"20px", paddingLeft:"20px", fontSize:"16"}}><b>开启全新展位和推广产品</b></p>
+                        <p style={{float: "right", paddingRight: "20px", color: "red", fontSize:"18"}}><b>￥688</b></p>
                     </div>
                     <p style={{float: "right", marginRight:"-60px"}}><Link to="#">缴纳保证金注意事项</Link></p>
                 </Col>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Select, DatePicker, Upload, Icon } from 'antd';
+import { Form, Input, Button, Select, DatePicker, Upload, Icon, Col } from 'antd';
 import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
 
@@ -82,15 +82,19 @@ class Step2 extends React.PureComponent {
           })(<Input placeholder="请输入身份证号" />)}
         </Form.Item>
         <Form.Item {...formItenBlackLabel} className={styles.stepFormText} label="">
-          {getFieldDecorator('registerdate', {
+          <Input.Group>
+            <Col span={12}>
+            {getFieldDecorator('registerdate', {
             rules: [
               {
                 required: true,
                 message: '请输入注册日期',
               },
             ],
-            })(<DatePicker placeholder="注册日期" style={{width: "50%",marginRight: "10%"}} />)}
-          {getFieldDecorator('kind', {
+            })(<DatePicker placeholder="注册日期" style={{width: "100%"}} />)}
+            </Col>
+            <Col span={12}>
+            {getFieldDecorator('kind', {
             rules: [
               {
                 required: true,
@@ -98,10 +102,12 @@ class Step2 extends React.PureComponent {
               },
             ],
             })(
-              <Select placeholder="工种"  style={{width: "40%"}}>
+              <Select placeholder="工种"  style={{width: "100%"}}>
                 <Option value="a" >工种</Option>
               </Select>
           )}
+            </Col>
+          </Input.Group>
         </Form.Item>
         <Form.Item {...formItemLayout} className={styles.stepFormText} label="企业信息">
           {getFieldDecorator('company', {

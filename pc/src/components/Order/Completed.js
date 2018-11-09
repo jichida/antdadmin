@@ -25,7 +25,7 @@ const list = [{
 },
 {
   commodity:{
-    id: '1',
+    id: '2',
     avatar: "http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg",
     title: "爱上门血压仪",
     description: "升级加强版；银色；官方标配",
@@ -41,7 +41,7 @@ const list = [{
 },
 {
   commodity:{
-    id: '1',
+    id: '3',
     avatar: "http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg",
     title: "爱上门血压仪",
     description: "升级加强版；银色；官方标配",
@@ -57,7 +57,7 @@ const list = [{
 },
 {
   commodity:{
-    id: '1',
+    id: '4',
     avatar: "http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg",
     title: "爱上门血压仪",
     description: "升级加强版；银色；官方标配",
@@ -73,7 +73,7 @@ const list = [{
 },
 {
   commodity:{
-    id: '1',
+    id: '5',
     avatar: "http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg",
     title: "爱上门血压仪",
     description: "升级加强版；银色；官方标配",

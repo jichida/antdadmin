@@ -8,6 +8,8 @@ import {
   Button,
   Radio,
   TimePicker,
+  Row,
+  Col,
 } from 'antd';
 
 import styles from './BaseView.module.less';
@@ -54,35 +56,46 @@ handleSubmit = e => {
                     {getFieldDecorator('operation', {
                         initialValue: "a",
                     })(
-                        <Radio.Group defaultValue="a" buttonStyle="solid">
+                        <Radio.Group buttonStyle="solid">
                             <Radio.Button value="a">运营中</Radio.Button>
                             <Radio.Button value="b">关闭</Radio.Button>
                         </Radio.Group>
 
                     )}
                 </FormItem>
-                <FormItem label="运营时间">
+                
+                <Row gutter={16}>
+                    <Col span={11}>
+                <FormItem label="开始运营时间">
+                
                 {getFieldDecorator('operationstart', {
                     rules: [
                     {
                         required: true,
-                        message: "开始时间",
+                        message: "开始运营时间",
                     },
                     ],
                 })(
                     <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="开始时间" />
-                )}-
-                {getFieldDecorator('operationend', {
-                    rules: [
-                    {
-                        required: true,
-                        message: "结束时间",
-                    },
-                    ],
-                })(
-                    <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="结束时间" />
                 )}
                 </FormItem>
+                    </Col>
+                    <Col span={11} offset={1}>
+                        <FormItem label="结束运营时间">
+                        {getFieldDecorator('operationend', {
+                            rules: [
+                            {
+                                required: true,
+                                message: "结束时间",
+                            },
+                            ],
+                        })(
+                            <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="结束时间" />
+                        )}
+                        </FormItem>
+                    </Col>
+                </Row>
+                
                 <FormItem label="店铺名称">
                 {getFieldDecorator('name', {
                     rules: [
