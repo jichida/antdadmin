@@ -42,6 +42,7 @@ class LoginPage extends Component {
   };
   */
   handleSubmit = (err, values) => {
+    console.log(values);
   };
 
 

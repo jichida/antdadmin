@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Form, Input, Button, Divider, Popover, Row, Col } from 'antd';
 import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
+import {sendauth_request,common_err} from '../../actions';
 
 const FormItem = Form.Item;
+
+
 
 class Step1 extends React.PureComponent {
 
@@ -16,11 +20,23 @@ class Step1 extends React.PureComponent {
     current: 0,
   };
 
+  onGetCaptcha = () =>{
+    const { form,dispatch } = this.props;
+    const mobile = form.getFieldValue('mobile');
+    //验证手机号码是否合法
+    if(mobile === ''){//不合法
+      dispatch(common_err({type:'sendauth',errmsg:`请输入正确的手机号码`}));
+      return;
+    }
+    dispatch(sendauth_request({username: mobile,reason:'register'}));
+  };
+
   render() {
     const { form, history } = this.props;
     const { count, help, visible } = this.state;
     const { getFieldDecorator } = form;
-    const onValidateForm = () => {
+    const onValidateForm = (err, values) => {
+      console.log(values);
       // validateFields((err, values) => {
       //   if (!err) {
       //     dispatch({
@@ -160,4 +176,5 @@ class Step1 extends React.PureComponent {
   }
 }
 
+Step1 = connect()(Step1);
 export default withRouter(Form.create()(Step1));
