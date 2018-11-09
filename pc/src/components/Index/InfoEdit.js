@@ -102,7 +102,7 @@ handleSubmit = e => {
                     },
                     ],
                 })(
-                    <Select style={{ maxWidth: 220 }}>
+                    <Select placeholder="店铺行业" style={{ maxWidth: 220 }}>
                         <Option value="China">店铺行业</Option>
                     </Select>
                 )}
@@ -116,7 +116,7 @@ handleSubmit = e => {
                     },
                     ],
                 })(
-                    <Select style={{ maxWidth: 220 }}>
+                    <Select placeholder="工种" style={{ maxWidth: 220 }}>
                     <Option value="China">工种是啥</Option>
                     </Select>
                 )}

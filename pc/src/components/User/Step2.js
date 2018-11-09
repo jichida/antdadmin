@@ -38,16 +38,16 @@ class Step2 extends React.PureComponent {
 
   render() {
     const { form, history } = this.props;
-    const { getFieldDecorator, valicateFields } = form;
+    const { getFieldDecorator, validateFields } = form;
     const onValidateForm = e => {
-      valicateFields((err, values)=>{
+      validateFields((err, values)=>{
         console.log(values);
 
         // values:{
         //   name: 姓名
         //   id: 身份证号码
         //   registerdate: 注册日期
-        //   work: 工种
+        //   kind: 工种
         //   company: 公司
         //   industry: 行业
         //   license: 营业执照
@@ -90,7 +90,7 @@ class Step2 extends React.PureComponent {
               },
             ],
             })(<DatePicker placeholder="注册日期" style={{width: "50%",marginRight: "10%"}} />)}
-          {getFieldDecorator('work', {
+          {getFieldDecorator('kind', {
             rules: [
               {
                 required: true,
@@ -98,7 +98,7 @@ class Step2 extends React.PureComponent {
               },
             ],
             })(
-              <Select defaultValue="a" placeholder="工种"  style={{width: "40%"}}>
+              <Select placeholder="工种"  style={{width: "40%"}}>
                 <Option value="a" >工种</Option>
               </Select>
           )}
@@ -122,7 +122,7 @@ class Step2 extends React.PureComponent {
               },
             ],
             })(
-              <Select defaultValue="a" placeholder="行业">
+              <Select placeholder="行业">
                 <Option value="a" >保健</Option>
               </Select>
           )}

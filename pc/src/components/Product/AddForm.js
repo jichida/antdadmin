@@ -132,8 +132,8 @@ class AddForms extends PureComponent {
                       },
                     ],
                   })(
-                    <Select style={{width: 300}}>
-                        <Option value="China">商品类型</Option>
+                    <Select placeholder="商品类型" style={{width: 300}}>
+                        <Option value="China">保健</Option>
                     </Select>
                   )}
                 </FormItem>
@@ -146,8 +146,8 @@ class AddForms extends PureComponent {
                       },
                     ],
                   })(
-                    <Select style={{width: 300}}>
-                        <Option value="China">保健</Option>
+                    <Select placeholder="标签" style={{width: 300}}>
+                        <Option value="China">健康</Option>
                     </Select>
                   )}
                 </FormItem>
