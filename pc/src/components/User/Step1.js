@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Input, Button, Divider, Popover, Row, Col, Progress } from 'antd';
 import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
-import {sendauth_request,common_err} from '../../actions';
+import {sendauth_request,common_err,register_request} from '../../actions';
 
 const FormItem = Form.Item;
 
@@ -146,16 +146,20 @@ class Step1 extends React.PureComponent {
 
 
   render() {
-    const { form, history } = this.props;
+    const { form,dispatch } = this.props;
     const { count, help, visible } = this.state;
     const { getFieldDecorator, validateFields } = form;
     const onValidateForm = () => {
       validateFields((err, values) => {
 
         console.log(values);
-
+        dispatch(register_request({
+          username:values.mobile,
+          password:values.password,
+          authcode:values.captcha
+        }));
         //if(!err){
-          history.push('/register/verify');
+          // history.push('/register/verify');
         //}
 
         // values：表单json数据格式

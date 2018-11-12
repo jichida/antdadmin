@@ -11,11 +11,13 @@ import {
   set_weui,
 
 } from '../../actions';
-import { goBack } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { goBack,push } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 import config from '../../env/config.js';
 
 export function* userloginflow() {
-
+  yield takeLatest(`${register_result}`, function*(action) {
+    yield put(push(`/register/verify`));
+  });
 
   // 链接远程数据,暂时注释
   yield takeLatest(`${sendauth_result}`, function*(action) {
@@ -23,9 +25,9 @@ export function* userloginflow() {
       let {payload:result} = action;
       yield put(set_weui({
         toast:{
-        text:result.errmsg,
+        text:result.msg,
         show: true,
-        type:'warning'
+        type:'success'
       }}));
     }
     catch(e){
