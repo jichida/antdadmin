@@ -2,6 +2,8 @@ import { createAction } from 'redux-act';
 
 export const register_request = createAction('register_request');
 export const register_result = createAction('register_result');
+export const registerfill_request = createAction('registerfill_request');
+export const registerfill_result = createAction('registerfill_result');
 
 export const loginwithtoken_request = createAction('loginwithtoken');
 export const login_request = createAction('login_request');

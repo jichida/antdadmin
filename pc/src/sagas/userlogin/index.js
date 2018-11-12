@@ -8,15 +8,20 @@ import {
   register_result,
   sendauth_result,
   findpwd_result,
+  registerfill_result,
   set_weui,
 
 } from '../../actions';
-import { goBack,push } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { goBack,push } from 'connected-react-router';//https://github.com/reactjs/connected-react-router
 import config from '../../env/config.js';
 
 export function* userloginflow() {
   yield takeLatest(`${register_result}`, function*(action) {
     yield put(push(`/register/verify`));
+  });
+
+  yield takeLatest(`${registerfill_result}`, function*(action) {
+    yield put(push(`/register/result`));
   });
 
   // 链接远程数据,暂时注释

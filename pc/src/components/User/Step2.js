@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Select, DatePicker, Upload, Icon, Col } from 'antd';
 import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
+import {registerfill_request} from '../../actions';
 
 
 const { Option } = Select;
@@ -27,7 +28,7 @@ const formItenBlackLabel = {
 
 class Step2 extends React.PureComponent {
 
-  
+
   normFile = (e) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
@@ -37,7 +38,7 @@ class Step2 extends React.PureComponent {
   }
 
   render() {
-    const { form, history } = this.props;
+    const { form, dispatch } = this.props;
     const { getFieldDecorator, validateFields } = form;
     const onValidateForm = e => {
       validateFields((err, values)=>{
@@ -52,12 +53,15 @@ class Step2 extends React.PureComponent {
         //   industry: 行业
         //   license: 营业执照
         // }
+        const shopinfo = {
 
+        }
+        dispatch(registerfill_request({shopinfo}));
         //if(!err){
-          history.push('/register/result');
+          // history.push('/register/result');
         //}
       })
-      
+
     };
     return (
       <Form layout="horizontal" className={styles.stepForm}>

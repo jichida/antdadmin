@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import DevTools from './devtools';
 import store from './store';
 import { Route } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import {history} from './store';
 
 import AppRoot from '../components/approot.js';

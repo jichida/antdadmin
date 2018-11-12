@@ -7,6 +7,8 @@ import {
 
     register_request,
     register_result,
+    registerfill_request,
+    registerfill_result,
 
     sendauth_request,
     sendauth_result,
@@ -28,6 +30,7 @@ import {
 //接收的对应关系
 const recvmessagetoresultpair = {
   'common_err':common_err,
+  'registerfill_result':registerfill_result,
   'register_result':register_result,
   'sendauth_result':sendauth_result,
   'login_result':md_login_result,
@@ -51,6 +54,7 @@ const sendmessagefnsz = {
 
 //验证发送接口
 const sendmessageauthfnsz = {
+  'registerfill':`${registerfill_request}`,
   'page_getproduct':`${page_getproduct_request}`,
   'getproductinfo':`${getproductinfo_request}`
 };
