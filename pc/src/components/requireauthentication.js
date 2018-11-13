@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
 export function requireAuthentication(Component) {
 
     let AuthenticatedComponent = (props)=>{
@@ -21,6 +21,6 @@ export function requireAuthentication(Component) {
       return userlogin;
     };
 
-    return connect(mapStateToProps)(AuthenticatedComponent);
+    return connect(mapStateToProps)(withRouter(AuthenticatedComponent));
 
 }

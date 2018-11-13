@@ -1,9 +1,14 @@
 import React, { PureComponent } from 'react';
 import { Menu, Icon, Dropdown, Avatar } from 'antd';
 import styles from './index.module.less';
+import { connect } from 'react-redux';
+import {logout_request} from '../../actions';
 
-export default class GlobalHeaderRight extends PureComponent {
-
+class GlobalHeaderRight extends PureComponent {
+  onClickLogout =()=>{
+    const {dispatch}= this.props;
+    dispatch(logout_request({}));
+  }
   render() {
     const {
       onMenuClick,
@@ -13,7 +18,7 @@ export default class GlobalHeaderRight extends PureComponent {
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key="logout">
           <Icon type="logout" />
-          <span>退出登录</span>
+          <span onClick={()=>{this.onClickLogout();}}>退出登录</span>
           {/* <FormattedMessage id="menu.account.logout" defaultMessage="退出登录" /> */}
         </Menu.Item>
       </Menu>
@@ -46,3 +51,5 @@ export default class GlobalHeaderRight extends PureComponent {
     );
   }
 }
+GlobalHeaderRight = connect()(GlobalHeaderRight);
+export default GlobalHeaderRight;

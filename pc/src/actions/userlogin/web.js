@@ -5,6 +5,7 @@ export const register_result = createAction('register_result');
 export const registerfill_request = createAction('registerfill_request');
 export const registerfill_result = createAction('registerfill_result');
 
+export const loginwithauth_request = createAction('loginwithauth_request');
 export const loginwithtoken_request = createAction('loginwithtoken');
 export const login_request = createAction('login_request');
 export const login_result = createAction('login_result');

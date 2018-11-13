@@ -13,8 +13,8 @@ import {
   loginwithtoken_request,
   ui_authticker,
 } from '../../actions';
-import { goBack,push } from 'connected-react-router';//https://github.com/reactjs/connected-react-router
-import config from '../../env/config.js';
+import { goBack,push,replace} from 'connected-react-router';//https://github.com/reactjs/connected-react-router
+// import config from '../../env/config.js';
 
 export function* userloginflow() {
   yield takeLatest(`${register_result}`, function*(action) {
@@ -104,9 +104,25 @@ export function* userloginflow() {
       let {payload:result} = action;
         console.log(`md_login_result==>${JSON.stringify(result)}`);
         if(!!result){
+            const {loginsuccess,search} = yield select((state)=>{
+              const loginsuccess = state.userlogin.success;
+              const search = state.router.location.search;
+              return {loginsuccess,search};
+            });
             yield put(login_result(result));
-            if(result.loginsuccess){
-              localStorage.setItem(`asmb2c_${config.softmode}_token`,result.token);
+            console.log(search);
+            debugger;
+            if(!loginsuccess && result.loginsuccess){
+              //switch
+                const fdStart = search.indexOf("?next=");
+                if(fdStart === 0){
+                    const redirectRoute = search.substring(6);
+                    yield put(replace(redirectRoute));
+                }
+                else{
+                    yield put(replace('/'));
+                }
+
             }
         }
 

@@ -2,6 +2,7 @@ import {
     common_err,
 
     loginwithtoken_request,
+    loginwithauth_request,
     login_request,
     md_login_result,
 
@@ -44,6 +45,7 @@ const recvmessagetoresultpair = {
 const sendmessagefnsz = {
   'register':`${register_request}`,
   'logout':`${logout_request}`,
+  'loginwithauth':`${loginwithauth_request}`,
   'loginwithtoken':`${loginwithtoken_request}`,
   'login':`${login_request}`,
   'sendauth':`${sendauth_request}`,

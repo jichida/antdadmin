@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {  Alert,  } from 'antd';
 import { Link } from 'react-router-dom';
 import Login from '../Login';
 import styles from './Login.module.less';
+import {sendauth_request,common_err,login_request,loginwithauth_request} from '../../actions';
 
 const { Tab,  Password, Mobile, Captcha, Submit } = Login;
 
@@ -11,26 +13,39 @@ class LoginPage extends Component {
     type: 'mobile',
   };
 
+  // componentWillReceiveProps (nextProps) {
+  //     console.log(nextProps);
+  //     if(nextProps.loginsuccess && !this.props.loginsuccess){
+  //         console.log("------->" + JSON.stringify(this.props.location));
+  //         //search:?next=/devicelist
+  //         var fdStart = this.props.location.search.indexOf("?next=");
+  //         if(fdStart === 0){
+  //             const redirectRoute = this.props.location.search.substring(6);
+  //             this.props.history.replace(redirectRoute);
+  //         }
+  //         else{
+  //             this.props.history.replace('/');
+  //         }
+  //         return;
+  //     }
+  // }
+
   onTabChange = type => {
     this.setState({ type });
   };
 
-  onGetCaptcha = () =>
-    new Promise((resolve, reject) => {
-      this.loginForm.validateFields(['mobile'], {}, (err, values) => {
-        // if (err) {
-        //   reject(err);
-        // } else {
-        //   const { dispatch } = this.props;
-        //   dispatch({
-        //     type: 'login/getCaptcha',
-        //     payload: values.mobile,
-        //   })
-        //     .then(resolve)
-        //     .catch(reject);
-        // }
-      });
-    });
+  onGetCaptcha = () =>{
+    console.log(this.props);
+    const { form,dispatch } = this.props;
+    const mobile = form.getFieldValue('mobile');
+    //验证手机号码是否合法
+    if(mobile === ''){//不合法
+      dispatch(common_err({type:'sendauth',errmsg:`请输入正确的手机号码`}));
+      return;
+    }
+    dispatch(sendauth_request({username: mobile,reason:'login'}));
+
+  }
 
 
 
@@ -42,8 +57,27 @@ class LoginPage extends Component {
 
   handleSubmit = (err, values) => {
     const { type } = this.state;
-    console.log(values);
+    const {dispatch} = this.props;
 
+    if(!!err){
+      console.log(err);
+      // dispatch(common_err({type:'sendauth',errmsg:`错误了`}));
+      return;
+    }
+    if(type === 'mobile'){
+      const payload = {
+        username:values.mobile,
+        password:values.password
+      };
+      dispatch(login_request(payload));
+    }
+    else if(type === 'verification'){
+      const payload = {
+        username:values.mobile,
+        authcode:values.Captcha
+      };
+      dispatch(loginwithauth_request(payload));
+    }
     // mobile
     // values:{
     //   mobile:手机号码,
@@ -55,17 +89,6 @@ class LoginPage extends Component {
     //     Captcha: 验证码
     // }
 
-
-    if (!err) {
-      // const { dispatch } = this.props;
-      // dispatch({
-      //   type: 'login/login',
-      //   payload: {
-      //     ...values,
-      //     type,
-      //   },
-      // });
-    }
   };
 
 
@@ -74,14 +97,14 @@ class LoginPage extends Component {
   );
 
   // 说明：login,submitting为store中的登录状态
-  // login { statue 登录成功或失败 ， type 密码登录或验证码登录 } 
+  // login { statue 登录成功或失败 ， type 密码登录或验证码登录 }
   // connect(({ login, loading }) => ({
   //   login,
   //   submitting: loading.effects['login/login'],
   // }))
 
   render() {
-    const { login, submitting } = this.props; 
+    const { submitting } = this.props;
     const { type } = this.state;
     return (
       <div className={styles.main}>
@@ -128,5 +151,5 @@ class LoginPage extends Component {
     );
   }
 }
-
+LoginPage = connect()(LoginPage);
 export default LoginPage;
