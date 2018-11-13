@@ -34,7 +34,7 @@ const Layout = (Component)=>{
   const LayoutComponent = (props)=>{
     return (<BasicLayout><Component {...props}/></BasicLayout>);
   }
-  return LayoutComponent;
+  return requireAuthentication(LayoutComponent);
 }
 
 const IndexLayout = Layout(Index);
