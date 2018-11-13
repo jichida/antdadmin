@@ -1,5 +1,5 @@
-import { put,takeLatest,} from 'redux-saga/effects';
-// import {delay} from 'redux-saga';
+import { put,takeLatest,race,call,take,select,fork} from 'redux-saga/effects';
+import {delay} from 'redux-saga';
 import {
   common_err,
   md_login_result,
@@ -10,14 +10,39 @@ import {
   findpwd_result,
   registerfill_result,
   set_weui,
-
+  loginwithtoken_request,
+  ui_authticker,
 } from '../../actions';
 import { goBack,push } from 'connected-react-router';//https://github.com/reactjs/connected-react-router
 import config from '../../env/config.js';
 
 export function* userloginflow() {
   yield takeLatest(`${register_result}`, function*(action) {
-    yield put(push(`/register/verify`));
+    try{
+      const {payload:{token}} = action;
+      console.log(token);
+      yield put(loginwithtoken_request({token}));
+    }
+    catch(e){
+      console.log(e);
+    }
+    const { response, timeout } = yield race({
+       response: take(`${login_result}`),
+       timeout: call(delay, 5000)
+    });
+    // yield put(loginwithtoken_request({token}));
+    if(!!response){
+      yield put(push(`/register/verify`));
+    }
+    else if(!!timeout){
+      yield put(set_weui({
+        toast:{
+        text:`服务器超时`,
+        show: true,
+        type:'warning'
+      }}));
+    }
+
   });
 
   yield takeLatest(`${registerfill_result}`, function*(action) {
@@ -27,13 +52,29 @@ export function* userloginflow() {
   // 链接远程数据,暂时注释
   yield takeLatest(`${sendauth_result}`, function*(action) {
     try{
-      let {payload:result} = action;
+      const {payload:result} = action;
       yield put(set_weui({
         toast:{
         text:result.msg,
         show: true,
         type:'success'
       }}));
+
+      yield fork(function*(){
+        let authticker = 59;
+        yield put(ui_authticker({authticker}));
+        while(authticker > 0){
+          authticker = authticker - 1;
+          yield put(ui_authticker({authticker}));
+          authticker = yield select((state)=>{
+            return state.app.authticker;
+          });
+          yield call(delay, 1000);
+          console.log(authticker);
+        }
+      });
+
+
     }
     catch(e){
       console.log(e);

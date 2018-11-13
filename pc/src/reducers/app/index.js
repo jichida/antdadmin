@@ -1,11 +1,13 @@
 import { createReducer } from 'redux-act';
 import {
     getsystemconfig_result,
+    ui_authticker,
 } from '../../actions/index.js';
 import moment from 'moment';
 
 const initial = {
     app: {
+        authticker:0,
         curtabindex: 0,
         type: 'error',
         title: '',
@@ -47,7 +49,10 @@ const initial = {
 };
 
 const app = createReducer({
-
+    [ui_authticker]:(state,payload)=>{
+      const {authticker} = payload;
+      return { ...state, authticker };
+    },
     [getsystemconfig_result]: (state, payload) => {
         return { ...state, ...payload };
     },

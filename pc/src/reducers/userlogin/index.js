@@ -34,10 +34,10 @@ const userlogin = createReducer({
         return { ...initial.userlogin,defaultaddress:{}};
     },
     [fillprofile_result]: (state, {profile}) => {
-        return { ...state, profile,editusername:profile.nickname};
+        return { ...state, profile};
     },
     [login_result]: (state, payload) => {
-        return { ...state, ...payload,loginsuccess:true ,editusername:payload.profile.nickname};
+        return { ...state, ...payload,loginsuccess:true};
     },
 }, initial.userlogin);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Input, Button, Select, DatePicker, Upload, Icon, Col } from 'antd';
 import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
@@ -168,5 +169,5 @@ class Step2 extends React.PureComponent {
     );
   }
 }
-
+Step2 = connect()(Step2);
 export default withRouter(Form.create()(Step2));

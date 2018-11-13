@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Input, Button, Divider, Popover, Row, Col, Progress } from 'antd';
 import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
-import {sendauth_request,common_err,register_request} from '../../actions';
+import {ui_authticker,sendauth_request,common_err,register_request} from '../../actions';
 
 const FormItem = Form.Item;
 
@@ -34,7 +34,6 @@ const passwordProgressMap = {
 class Step1 extends React.PureComponent {
 
   state = {
-    count: 0,
     confirmDirty: false,
     visible: false,
     help: '',
@@ -48,7 +47,11 @@ class Step1 extends React.PureComponent {
     this.setState({ confirmDirty: confirmDirty || !!value });
   };
 
+  componentWillUnmount(){
+    const {dispatch} = this.props;
+    dispatch(ui_authticker({authticker:0}));
 
+  }
   checkConfirm = (rule, value, callback) => {
     const { form } = this.props;
     if (value && value !== form.getFieldValue('password')) {
@@ -97,16 +100,6 @@ class Step1 extends React.PureComponent {
       return;
     }
     dispatch(sendauth_request({username: mobile,reason:'register'}));
-
-    let count = 59;
-    this.setState({ count });
-    this.interval = setInterval(() => {
-      count -= 1;
-      this.setState({ count });
-      if (count === 0) {
-        clearInterval(this.interval);
-      }
-    }, 1000);
   };
 
   getPasswordStatus = () => {
@@ -146,8 +139,8 @@ class Step1 extends React.PureComponent {
 
 
   render() {
-    const { form,dispatch } = this.props;
-    const { count, help, visible } = this.state;
+    const { form,dispatch,authticker } = this.props;
+    const { help, visible } = this.state;
     const { getFieldDecorator, validateFields } = form;
     const onValidateForm = () => {
       validateFields((err, values) => {
@@ -275,12 +268,12 @@ class Step1 extends React.PureComponent {
               <Col span={8}>
                 <Button
                   size="large"
-                  disabled={count}
+                  disabled={authticker}
                   className={styles.getCaptcha}
                   onClick={this.onGetCaptcha}
                 >
-                  {count
-                    ? `${count} s`
+                  {authticker>0
+                    ? `${authticker} s`
                     : '获取验证码'}
                 </Button>
               </Col>
@@ -306,5 +299,8 @@ class Step1 extends React.PureComponent {
     );
   }
 }
-Step1 = connect()(Step1);
+const mapStateToProps =  ({app:{authticker}}) =>{
+  return {authticker};
+};
+Step1 = connect(mapStateToProps)(Step1);
 export default withRouter(Form.create()(Step1));
