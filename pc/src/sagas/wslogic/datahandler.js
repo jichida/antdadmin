@@ -21,7 +21,14 @@ import {
     getsystemconfig_result,
 
     getproductinfo_request,
-    getproductinfo_result
+    getproductinfo_result,
+
+    productadd_request,
+    productadd_result,
+    productedit_request,
+    productedit_result,
+    productdel_request,
+    productdel_result
   } from '../../actions';
 
 import {
@@ -31,6 +38,9 @@ import {
 //接收的对应关系
 const recvmessagetoresultpair = {
   'common_err':common_err,
+  'productadd_result':productadd_result,
+  'productedit_result':productedit_result,
+  'productdel_result':productdel_result,
   'registerfill_result':registerfill_result,
   'register_result':register_result,
   'sendauth_result':sendauth_result,
@@ -49,7 +59,6 @@ const sendmessagefnsz = {
   'loginwithtoken':`${loginwithtoken_request}`,
   'login':`${login_request}`,
   'sendauth':`${sendauth_request}`,
-
   'getsystemconfig':`${getsystemconfig_request}`,
 
 };
@@ -57,6 +66,9 @@ const sendmessagefnsz = {
 //验证发送接口
 const sendmessageauthfnsz = {
   'registerfill':`${registerfill_request}`,
+  'productadd':`${productadd_request}`,
+  'productedit':`${productedit_request}`,
+  'productdel':`${productdel_request}`,
   'page_getproduct':`${page_getproduct_request}`,
   'getproductinfo':`${getproductinfo_request}`
 };

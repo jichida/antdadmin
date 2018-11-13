@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import {
   Form,
   Input,
@@ -9,8 +10,9 @@ import {
   Upload,
   Icon,
 } from 'antd';
+import {  withRouter } from 'react-router-dom';
 import PageHeaderWrapper from '../../components/PageHeaderWrapper';
-
+import {productadd_request} from '../../actions';
 const FormItem = Form.Item;
 const { Option } = Select;
 const { TextArea } = Input;
@@ -25,8 +27,11 @@ const { TextArea } = Input;
 
 class AddForms extends PureComponent {
 
+  onClickCancel =()=>{
+    this.props.history.goBack();
+  }
   handleSubmit = e => {
-    const { form: { validateFields } } = this.props;
+    const { form: { validateFields },dispatch } = this.props;
     validateFields((err, values)=>{
       console.log(values);
 
@@ -39,9 +44,14 @@ class AddForms extends PureComponent {
       //   introduce: 介绍
       //   picture: 图片
       // }
-
+      const data = {
+        name:values.name,
+        price:values.price,
+        inventory:values.stock,
+        brief:values.introduce
+      };
       if(!err){
-        //
+        dispatch(productadd_request({data}));
       }
     })
   };
@@ -54,7 +64,7 @@ class AddForms extends PureComponent {
     return e && e.fileList;
   }
 
-  
+
   render() {
     const { submitting } = this.props;
     const { form: { getFieldDecorator } } = this.props;
@@ -103,7 +113,7 @@ class AddForms extends PureComponent {
                   })(<InputNumber style={{width: 300}} />)}
                 </FormItem>
                 <FormItem {...formItemLayout} label="商品库存">
-                  {getFieldDecorator('name', {
+                  {getFieldDecorator('stock', {
                     rules: [
                       {
                         required: true,
@@ -172,7 +182,9 @@ class AddForms extends PureComponent {
               <Button type="primary" htmlType="submit" loading={submitting}>
                 确认发布
               </Button>
-              <Button style={{ marginLeft: 8 }}>
+              <Button style={{ marginLeft: 8 }} onClick={()=>{
+                this.onClickCancel();
+              }}>
                 取消
               </Button>
             </FormItem>
@@ -183,4 +195,6 @@ class AddForms extends PureComponent {
   }
 }
 
+AddForms = connect()(AddForms);
+AddForms = withRouter(AddForms);
 export default Form.create()(AddForms);
