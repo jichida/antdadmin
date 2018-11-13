@@ -12,7 +12,9 @@ import {
 } from 'antd';
 import {  withRouter } from 'react-router-dom';
 import PageHeaderWrapper from '../../components/PageHeaderWrapper';
-import {productadd_request} from '../../actions';
+import {productadd_request,productedit_request} from '../../actions';
+import lodashget from 'lodash.get';
+
 const FormItem = Form.Item;
 const { Option } = Select;
 const { TextArea } = Input;
@@ -31,7 +33,7 @@ class AddForms extends PureComponent {
     this.props.history.goBack();
   }
   handleSubmit = e => {
-    const { form: { validateFields },dispatch } = this.props;
+    const { form: { validateFields },dispatch,curproduct } = this.props;
     validateFields((err, values)=>{
       console.log(values);
 
@@ -51,7 +53,13 @@ class AddForms extends PureComponent {
         brief:values.introduce
       };
       if(!err){
-        dispatch(productadd_request({data}));
+        if(!!curproduct){
+          dispatch(productedit_request({_id:curproduct._id,data}));
+        }
+        else{
+          dispatch(productadd_request({data}));
+        }
+
       }
     })
   };
@@ -66,7 +74,7 @@ class AddForms extends PureComponent {
 
 
   render() {
-    const { submitting } = this.props;
+    const { submitting,curproduct } = this.props;
     const { form: { getFieldDecorator } } = this.props;
 
     const formItemLayout = {
@@ -195,6 +203,14 @@ class AddForms extends PureComponent {
   }
 }
 
-AddForms = connect()(AddForms);
-AddForms = withRouter(AddForms);
+const mapStateToProps = ({db},props) => {
+  const id = lodashget(props,'match.params.id');
+  const curproduct = lodashget(db,`products.${id}`);
+  // debugger;
+  return {curproduct};
+};
+
+// AddForms = withRouter(AddForms);
+AddForms = connect(mapStateToProps)(withRouter(AddForms));
+
 export default Form.create()(AddForms);

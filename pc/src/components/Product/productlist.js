@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Pagination } from 'antd';
-import { Card, Button, Icon, List } from 'antd';
+import { Card, Button, Icon, List,Popconfirm } from 'antd';
 import lodashmap from 'lodash.map';
 import lodashget from 'lodash.get';
 import { Link,withRouter } from 'react-router-dom';
 import Ellipsis from '../Ellipsis';
 import {set_weui} from '../../actions';
 import styles from './CardList.module.less';
-
+import {productdel_request,productdel_result} from '../../actions';
+import {callthen} from '../../sagas/pagination';
 const listtypeiddata = {
 
 };
@@ -127,9 +128,29 @@ class ProductList extends PureComponent {
    }
 
   onAddProduct = ()=>{
-    console.log(this.props);
-    debugger;
-    this.props.history.push("/productadd");
+    this.props.history.push("/productedit/0");
+  }
+  onDelProduct = (id)=>{
+    //提示你确定需要删除
+    const {dispatch} = this.props;
+    // dispatch(productdel_request({_id:id}));
+
+    dispatch(callthen(productdel_request,productdel_result,{_id:id})).then(()=> {
+      dispatch(set_weui({
+        toast:{
+        text:`删除成功`,
+        show: true,
+        type:'success'
+      }}));
+      this.onRefresh();
+    }).catch((e)=>{
+      dispatch(set_weui({
+        toast:{
+        text:`删除失败`,
+        show: true,
+        type:'warning'
+      }}));
+    });
   }
 
   render() {
@@ -181,7 +202,10 @@ class ProductList extends PureComponent {
             renderItem={item =>
               item ? (
                 <List.Item key={item._id}>
-                  <Card hoverable className={styles.card} actions={[ <Link to="">编辑</Link>, <Button style={{color: "red"}}>删除</Button>]}>
+                  <Card hoverable className={styles.card} actions={[ <Link to={`/productedit/${item._id}`}>编辑</Link>,
+                    <Popconfirm placement="topLeft" title={`是否需要删除该产品`} onConfirm={()=>{this.onDelProduct(item._id)}} okText="是" cancelText="否">
+                      <Button style={{color: "red"}}>删除</Button>
+                    </Popconfirm>]}>
                     <Card.Meta
                       avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} height="36" />}
                       title={<Link to="">{item.name}</Link>}
@@ -191,7 +215,7 @@ class ProductList extends PureComponent {
                             {item.description}<br />
                             库存：{item.stock}
                           </Ellipsis>
-                          <h2 style={{color: "red", position: "absolute", top: "50%", right: 10}}>￥：518</h2>
+                          <h2 style={{color: "red", position: "absolute", top: "50%", right: 10}}>￥：{`${item.price}`}</h2>
                         </React.Fragment>
                       }
                     />

@@ -1,4 +1,4 @@
-let islocalhost = true;
+let islocalhost = false;
 const serverurl = islocalhost?'http://localhost:4001':'http://asm.i2u.top:4001';
 const serverurlrestful = islocalhost?`${serverurl}/api`:`${serverurl}/api`;
 const wspath = islocalhost?'/socket.io':'/socket.io';

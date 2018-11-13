@@ -110,8 +110,6 @@ export function* userloginflow() {
               return {loginsuccess,search};
             });
             yield put(login_result(result));
-            console.log(search);
-            debugger;
             if(!loginsuccess && result.loginsuccess){
               //switch
                 const fdStart = search.indexOf("?next=");
