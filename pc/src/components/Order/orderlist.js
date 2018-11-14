@@ -18,56 +18,52 @@ class OrderList extends PureComponent {
       this.state = {
         query:props.query || {}
       };
+      this.  columns = [
+          {
+            title: '商品',
+            dataIndex: 'commodity',
+            render: ({avatar, title, description}) => (
+              <Card style={{ width: 300, marginTop: 16, backgroundColor: "transparent" }} bordered={false} loading={false}>
+                  <Card.Meta
+                      avatar={<Avatar src={avatar} />}
+                      title={title}
+                      description={description}
+                  />
+              </Card>
+            ),
+          },
+          {
+            title: '订单号',
+            dataIndex: 'orderno',
+          },
+          {
+            title: '买家',
+            dataIndex: 'buyer',
+            render: ({name, phone}) => (
+                <div>
+                    <span>{name}</span><br /><span>{phone}</span>
+                </div>
+            )
+          },
+          {
+            title: '数量',
+            dataIndex: 'ordernum',
+          },
+          {
+            title: '创建时间',
+            dataIndex: 'createtime',
+          },
+          {
+              title: '实付金额',
+              dataIndex: 'money',
+          },
+        ];
+        if(!!props.opcol) {
+          this.columns.push(props.opcol);
+        }
     }
 
-  columns = [
-    {
-      title: '商品',
-      dataIndex: 'commodity',
-      render: ({avatar, title, description}) => (
-        <Card style={{ width: 300, marginTop: 16, backgroundColor: "transparent" }} bordered={false} loading={false}>
-            <Card.Meta
-                avatar={<Avatar src={avatar} />}
-                title={title}
-                description={description}
-            />
-        </Card>
-      ),
-    },
-    {
-      title: '订单号',
-      dataIndex: 'orderno',
-    },
-    {
-      title: '买家',
-      dataIndex: 'buyer',
-      render: ({name, phone}) => (
-          <div>
-              <span>{name}</span><br /><span>{phone}</span>
-          </div>
-      )
-    },
-    {
-      title: '数量',
-      dataIndex: 'ordernum',
-    },
-    {
-      title: '创建时间',
-      dataIndex: 'createtime',
-    },
-    {
-        title: '实付金额',
-        dataIndex: 'money',
-    },
-    {
-        title: '操作',
-        key: 'action',
-        render: (text, record) => (
-            <span>
-              <Link to="/track">快递跟踪</Link>
-            </span>
-          ),
-      },  ];
+
 
   componentDidMount() {
   }

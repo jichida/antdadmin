@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import OrderList from './orderlist';
+import { Link } from 'react-router-dom';
 
 class Delivered extends PureComponent {
   state = {
@@ -8,9 +9,17 @@ class Delivered extends PureComponent {
 
 
   render() {
-
+    const opcol = {
+        title: '操作',
+        key: 'action',
+        render: (text, record) => (
+            <span>
+               <Link to="/track">快递跟踪</Link>
+            </span>
+          ),
+      };
     return (
-        <OrderList query={this.state.query} />
+        <OrderList query={this.state.query} opcol={opcol}/>
     );
   }
 }
