@@ -10,6 +10,8 @@ import {
     register_result,
     registerfill_request,
     registerfill_result,
+    fillprofile_request,
+    fillprofile_result,
 
     sendauth_request,
     sendauth_result,
@@ -48,6 +50,7 @@ import {
 } from '../pagination';
 //接收的对应关系
 const recvmessagetoresultpair = {
+  'fillprofile_result':fillprofile_result,
   'getconstinfo_result':getconstinfo_result,
   'trackorder_result':trackorder_result,
   'orderedit_result':orderedit_result,
@@ -81,6 +84,7 @@ const sendmessagefnsz = {
 
 //验证发送接口
 const sendmessageauthfnsz = {
+  'fillprofile':`${fillprofile_request}`,
   'trackorder':`${trackorder_request}`,
   'orderedit':`${orderedit_request}`,
   'registerfill':`${registerfill_request}`,

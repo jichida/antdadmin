@@ -20,6 +20,7 @@ class Track extends PureComponent {
     componentDidMount(){
       const {dispatch,curorder} = this.props;
       dispatch(callthen(trackorder_request,trackorder_result,{orderid:lodashget(curorder,'_id','')})).then((result)=> {
+        console.log(result);
         this.setState({data:lodashget(result,'data',[])});
       }).catch((e)=>{
         dispatch(set_weui({

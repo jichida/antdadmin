@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import {
   Card,
@@ -11,6 +13,9 @@ import {
   Row,
   Col,
 } from 'antd';
+import lodashget from 'lodash.get';
+import {callthen} from '../../sagas/pagination';
+import {fillprofile_request,fillprofile_result,set_weui} from '../../actions';
 
 import styles from './BaseView.module.less';
 
@@ -23,7 +28,7 @@ handleSubmit = e => {
     const { form: { validateFields } } = this.props;
     validateFields((err, values)=>{
         console.log(values);
-
+        const {dispatch,onEditOver} = this.props;
         // 店铺维护：
         // values: {
         // operation：运营状态
@@ -34,17 +39,30 @@ handleSubmit = e => {
         // kind: 工种
         // address: 店铺地址
         //   }
-
+        const shopinfo = {
+          name:values.name,
+        };
         if(!err){
-        //
+            dispatch(callthen(fillprofile_request,fillprofile_result,
+              {shopinfo})).then((result)=> {
+              console.log(result);
+              onEditOver();
+            }).catch((e)=>{
+              dispatch(set_weui({
+                toast:{
+                text:`编辑商铺信息失败`,
+                show: true,
+                type:'warning'
+              }}));
+            });
         }
-    })
-    };  
+      })
+    };
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const { onEditOver } = this.props;
-    
+
     return (
         <Card bordered={false} style={{ marginBottom: 24 }} loading={false}>
             <div className={styles.avatarHolder} style={{textAlign: "center", marginBottom: "10px"}}>
@@ -63,11 +81,11 @@ handleSubmit = e => {
 
                     )}
                 </FormItem>
-                
+
                 <Row gutter={16}>
                     <Col span={11}>
                 <FormItem label="开始运营时间">
-                
+
                 {getFieldDecorator('operationstart', {
                     rules: [
                     {
@@ -95,7 +113,7 @@ handleSubmit = e => {
                         </FormItem>
                     </Col>
                 </Row>
-                
+
                 <FormItem label="店铺名称">
                 {getFieldDecorator('name', {
                     rules: [
@@ -148,11 +166,15 @@ handleSubmit = e => {
                     <Button type="primary" htmlType="submit">保存</Button>
                     <Button style={{marginLeft: 10}} onClick={onEditOver}>取消</Button>
                 </FormItem>
-                
+
             </Form>
         </Card>
     );
   }
 }
+const mapStateToProps =  ({userlogin}) =>{
+  return {userlogin};
+};
+InfoEdit = connect(mapStateToProps)(InfoEdit);
 
 export default Form.create()(InfoEdit);

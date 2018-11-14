@@ -34,12 +34,12 @@ export function* createsagacallbackflow(){
         reject('请求超时!');
       }
       else{
-        let {payload:{err,result}} = response;
-        if (!!err) {
-          reject(err);
+        let {payload} = response;
+        if (!!payload.err) {
+          reject(payload);
         }
         else{
-          resolve({result});
+          resolve(payload);
         }
       }
     }
