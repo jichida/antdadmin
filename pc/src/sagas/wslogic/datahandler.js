@@ -28,15 +28,22 @@ import {
     productedit_request,
     productedit_result,
     productdel_request,
-    productdel_result
+    productdel_result,
+
+    orderedit_request,
+    orderedit_result,
   } from '../../actions';
 
 import {
   page_getproduct_request,
-  page_getproduct_result
+  page_getproduct_result,
+  page_getorder_request,
+  page_getorder_result
 } from '../pagination';
 //接收的对应关系
 const recvmessagetoresultpair = {
+  'orderedit_result':orderedit_result,
+  'page_getorder_result':page_getorder_result,
   'common_err':common_err,
   'productadd_result':productadd_result,
   'productedit_result':productedit_result,
@@ -65,11 +72,13 @@ const sendmessagefnsz = {
 
 //验证发送接口
 const sendmessageauthfnsz = {
+  'orderedit':`${orderedit_request}`,
   'registerfill':`${registerfill_request}`,
   'productadd':`${productadd_request}`,
   'productedit':`${productedit_request}`,
   'productdel':`${productdel_request}`,
   'page_getproduct':`${page_getproduct_request}`,
+  'page_getorder':`${page_getorder_request}`,
   'getproductinfo':`${getproductinfo_request}`
 };
 

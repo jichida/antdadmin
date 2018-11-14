@@ -8,8 +8,6 @@ import {
 import PageHeaderWrapper from '../PageHeaderWrapper';
 import styles from './style.module.less';
 
-
-
 class Track extends PureComponent {
 
   render() {
@@ -24,17 +22,17 @@ class Track extends PureComponent {
                     <img alt="" src="http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg" height="36"></img>
                 </Col>
                 <Col lg={{ span: 8, offset:2 }} md={{ span: 12, offset:2 }} >
-                   <h3><b>订单编号：1234567890</b></h3>           
+                   <h3><b>订单编号：1234567890</b></h3>
                 </Col>
             </Row>
             <Row gutter={16} style={{marginBottom:10}}>
                 <Col lg={{ span: 8, offset:3 }} md={{ span: 12, offset:3 }} >
-                    商品名称：1234567890          
+                    商品名称：1234567890
                 </Col>
             </Row>
             <Row gutter={16} style={{marginBottom:10}}>
                 <Col lg={{ span: 8, offset:3 }} md={{ span: 12, offset:3 }} >
-                    创建时间：20181101         
+                    创建时间：20181101
                 </Col>
                 <Col lg={{ span: 8, offset:1 }} md={{ span: 12, offset:1 }} >
                     订单状态：<span style={{color: "#0272c6"}}>运输中</span>
@@ -42,7 +40,7 @@ class Track extends PureComponent {
             </Row>
             <Row gutter={16} style={{marginBottom:10}}>
                 <Col lg={{ span: 8, offset:3 }} md={{ span: 12, offset:3 }} >
-                     支付时间：20181101         
+                     支付时间：20181101
                 </Col>
                 <Col lg={{ span: 8, offset:1 }} md={{ span: 12, offset:1 }} >
                     发货时间： 20181101

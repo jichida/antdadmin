@@ -10,3 +10,6 @@ export const productedit_result = createAction('productedit_result');
 
 export const productdel_request =  createAction('productdel_request');
 export const productdel_result = createAction('productdel_result');
+
+export const orderedit_request =  createAction('orderedit_request');
+export const orderedit_result = createAction('orderedit_result');

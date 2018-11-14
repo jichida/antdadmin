@@ -9,6 +9,8 @@ import {delay} from 'redux-saga';
 const synccallreq = createAction('synccallreq');
 export const page_getproduct_request = createAction('page_getproduct_request');
 export const page_getproduct_result = createAction('page_getproduct_result');
+export const page_getorder_request = createAction('page_getorder_request');
+export const page_getorder_result = createAction('page_getorder_result');
 
 //以下导出放在视图
 export function callthen(actionreq,actionres,payload){
