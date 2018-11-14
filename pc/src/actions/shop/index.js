@@ -13,3 +13,6 @@ export const productdel_result = createAction('productdel_result');
 
 export const orderedit_request =  createAction('orderedit_request');
 export const orderedit_result = createAction('orderedit_result');
+
+export const trackorder_request =  createAction('trackorder_request');
+export const trackorder_result = createAction('trackorder_result');

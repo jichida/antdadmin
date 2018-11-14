@@ -82,7 +82,7 @@ class AppRoot extends React.Component {
                       </OrderLayout>
                     }/>
                     <Route path="/sendout" component={Layout(SendOut)} />
-                    <Route path="/track" component={Layout(Track)} />
+                    <Route path="/track/:id" component={Layout(Track)} />
                     {/* 登录、注册 */}
                     <Route path="/login" component={LoginLayout(Login)} />
                     <Route path="/register" render={()=>

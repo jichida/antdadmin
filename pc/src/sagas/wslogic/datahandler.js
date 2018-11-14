@@ -32,6 +32,9 @@ import {
 
     orderedit_request,
     orderedit_result,
+
+    trackorder_request,
+    trackorder_result
   } from '../../actions';
 
 import {
@@ -42,6 +45,7 @@ import {
 } from '../pagination';
 //接收的对应关系
 const recvmessagetoresultpair = {
+  'trackorder_result':trackorder_result,
   'orderedit_result':orderedit_result,
   'page_getorder_result':page_getorder_result,
   'common_err':common_err,
@@ -72,6 +76,7 @@ const sendmessagefnsz = {
 
 //验证发送接口
 const sendmessageauthfnsz = {
+  'trackorder':`${trackorder_request}`,
   'orderedit':`${orderedit_request}`,
   'registerfill':`${registerfill_request}`,
   'productadd':`${productadd_request}`,

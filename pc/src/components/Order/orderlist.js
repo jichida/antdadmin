@@ -3,7 +3,7 @@ import {
   Card,
   Avatar,
 } from 'antd';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import StandardTable from '../StandardTable/antdtable';
 
 import styles from './TableList.module.less';
@@ -18,7 +18,7 @@ class OrderList extends PureComponent {
       this.state = {
         query:props.query || {}
       };
-      this.  columns = [
+      this.columns = [
           {
             title: '商品',
             dataIndex: 'commodity',
