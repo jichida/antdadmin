@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import {  withRouter } from 'react-router-dom';
 import {
   Card,
   Button,
@@ -7,6 +9,10 @@ import {
   Row,
   Input,
 } from 'antd';
+import lodashget from 'lodash.get';
+import {callthen} from '../../sagas/pagination';
+import {getconstinfo_request,getconstinfo_result,set_weui} from '../../actions';
+
 import FooterToolbar from '../FooterToolbar';
 import PageHeaderWrapper from '../PageHeaderWrapper';
 import styles from './style.module.less';
@@ -14,10 +20,25 @@ import styles from './style.module.less';
 class SendOut extends PureComponent {
   state = {
     width: '100%',
+    expresslist:[]
   };
 
   componentDidMount() {
     window.addEventListener('resize', this.resizeFooterToolbar, { passive: true });
+    const {dispatch} = this.props;
+    dispatch(callthen(getconstinfo_request,getconstinfo_result,
+      {resourcename:'express',query:{isvisiable:true}})).then((result)=> {
+      console.log(result);
+      this.setState({expresslist:lodashget(result,'result',[])});
+    }).catch((e)=>{
+      dispatch(set_weui({
+        toast:{
+        text:`查询物流公司失败`,
+        show: true,
+        type:'warning'
+      }}));
+    });
+
   }
 
   componentWillUnmount() {
@@ -68,7 +89,36 @@ class SendOut extends PureComponent {
       form: { getFieldDecorator },
       submitting,
     } = this.props;
-
+    console.log(JSON.stringify(this.state.expresslist))
+//     [{
+// 	"_id": "58f86ba1c3f6903b59e0454f",
+// 	"expressname": "汇通快运",
+// 	"expresscode": "huitongkuaidi",
+// 	"memo": "汇通快运",
+// 	"isvisiable": true,
+// 	"__v": 0
+// }, {
+// 	"_id": "58f86ba1c3f6903b59e04561",
+// 	"expressname": "E邮宝",
+// 	"expresscode": "ems",
+// 	"memo": "E邮宝",
+// 	"isvisiable": true,
+// 	"__v": 0
+// }, {
+// 	"_id": "58f86ba1c3f6903b59e045b7",
+// 	"expressname": "韵达快运",
+// 	"expresscode": "yunda",
+// 	"memo": "韵达快运",
+// 	"isvisiable": true,
+// 	"__v": 0
+// }, {
+// 	"_id": "58f86ba1c3f6903b59e045c5",
+// 	"expressname": "中通速递",
+// 	"expresscode": "zhongtong",
+// 	"memo": "中通速递",
+// 	"isvisiable": true,
+// 	"__v": 0
+// }]
     return (
       <PageHeaderWrapper
         title="订单发货"
@@ -76,7 +126,7 @@ class SendOut extends PureComponent {
       >
       <Form layout="vertical" hideRequiredMark>
         <Card title="商家信息" className={styles.card} bordered={false} headStyle={{backgroundColor: "#dcdddd"}}>
-          
+
             <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
                 <Form.Item label="发货人">
@@ -90,7 +140,7 @@ class SendOut extends PureComponent {
                   {getFieldDecorator('sphone', {
                     rules: [{ required: true, message: '请输入手机号码' }],
                   })(<Input placeholder="请输入手机号码" />)}
-                </Form.Item>              
+                </Form.Item>
             </Col>
               <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
                 <Form.Item label="邮政编码">
@@ -124,7 +174,7 @@ class SendOut extends PureComponent {
                   {getFieldDecorator('rphone', {
                     rules: [{ required: true, message: '请输入手机号码' }],
                   })(<Input placeholder="请输入手机号码" />)}
-                </Form.Item>              
+                </Form.Item>
             </Col>
               <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
                 <Form.Item label="邮政编码">
@@ -158,12 +208,12 @@ class SendOut extends PureComponent {
                          {getFieldDecorator('logisticid', {
                           rules: [{ required: true, message: '请输入物流单号' }],
                          })(<Input placeholder="请输入物流单号" />)}
-                    </Form.Item>              
+                    </Form.Item>
              </Col>
             </Row>
-          
+
         </Card>
-        
+
         <FooterToolbar style={{ marginTop: "10px", textAlign: "center" }}>
           <Button type="primary" onClick={this.handleSubmit} loading={submitting}>
             提交
@@ -174,5 +224,12 @@ class SendOut extends PureComponent {
     );
   }
 }
+const mapStateToProps = ({db},props) => {
+  const id = lodashget(props,'match.params.id');
+  const curorder = lodashget(db,`orders.${id}`);
+  // debugger;
+  return {curorder};
+};
 
+SendOut = connect(mapStateToProps)(withRouter(SendOut));
 export default Form.create()(SendOut);

@@ -30,7 +30,7 @@ class Track extends PureComponent {
         }}));
       });
 
-      dispatch(trackorder_request({orderid:''}));
+      // dispatch(trackorder_request({orderid:''}));
       // {
       // 	"message": "ok",
       // 	"nu": "75108966715339",

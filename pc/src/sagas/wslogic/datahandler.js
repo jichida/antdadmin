@@ -34,7 +34,10 @@ import {
     orderedit_result,
 
     trackorder_request,
-    trackorder_result
+    trackorder_result,
+
+    getconstinfo_request,
+    getconstinfo_result
   } from '../../actions';
 
 import {
@@ -45,6 +48,7 @@ import {
 } from '../pagination';
 //接收的对应关系
 const recvmessagetoresultpair = {
+  'getconstinfo_result':getconstinfo_result,
   'trackorder_result':trackorder_result,
   'orderedit_result':orderedit_result,
   'page_getorder_result':page_getorder_result,
@@ -64,6 +68,7 @@ const recvmessagetoresultpair = {
 
 //非验证发送接口
 const sendmessagefnsz = {
+  'getconstinfo':`${getconstinfo_request}`,
   'register':`${register_request}`,
   'logout':`${logout_request}`,
   'loginwithauth':`${loginwithauth_request}`,
