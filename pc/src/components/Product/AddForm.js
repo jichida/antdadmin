@@ -25,39 +25,39 @@ const { TextArea } = Input;
 //   reader.readAsDataURL(img);
 // }
 
-const init = {
-  name: '门锁',
-  price: 200,
-  stock: 368,
-  type: '上门',
-  tabs: ['安装','开锁'],
-  introduce: '上门开锁、安装',
-  picture: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542253931555&di=bc974fafa66bc7bdd752c93db9e401d8&imgtype=0&src=http%3A%2F%2Ft2.58cdn.com.cn%2Fbidding%2Fbig%2Fn_v1bj3gzseh7javs636qesq.jpg',
-}
+// const init = {
+//   name: '门锁',
+//   price: 200,
+//   stock: 368,
+//   type: '上门',
+//   tabs: ['安装','开锁'],
+//   introduce: '上门开锁、安装',
+//   picture: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542253931555&di=bc974fafa66bc7bdd752c93db9e401d8&imgtype=0&src=http%3A%2F%2Ft2.58cdn.com.cn%2Fbidding%2Fbig%2Fn_v1bj3gzseh7javs636qesq.jpg',
+// }
 
 const RenderForm = Form.create({
   mapPropsToFields(props) {
       return {
           name: Form.createFormField({
-              value: props.name,
+              value:lodashget(props,'curproduct.name',''),
           }),
           price: Form.createFormField({
-              value: props.price,
+              value: lodashget(props,'curproduct.price',''),
           }),
           stock: Form.createFormField({
-              value: props.stock,
+              value: lodashget(props,'curproduct.stock',''),
           }),
           type: Form.createFormField({
-              value: props.type,
+              value: lodashget(props,'curproduct.type',''),
           }),
           tabs: Form.createFormField({
-              value: props.tabs,
+              value: lodashget(props,'curproduct.tabs',''),
           }),
           introduce: Form.createFormField({
-              value: props.introduce,
+              value: lodashget(props,'curproduct.introduce',''),
           }),
           picture: Form.createFormField({
-              value: props.picture,
+              value: lodashget(props,'curproduct.picture',''),
           }),
   };
 }
@@ -246,7 +246,7 @@ class AddForms extends PureComponent {
     return (
       <PageHeaderWrapper title="增加新商品" >
         <Card bordered={false} >
-          <RenderForm {...init}
+          <RenderForm 
             onClickSubmit={this.onClickSubmit}
             onClickCancel={this.onClickCancel}
             submitting={submitting}
