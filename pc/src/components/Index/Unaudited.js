@@ -24,7 +24,6 @@ const Option = Select.Option;
 const FormItem = Form.Item;
 
 const init = {
-    operation: 'on',//运营状态 on | off
     start: moment("8:00","HH:mm"),  // 运营开始时间
     end: moment("24:00","HH:mm"), // 运营结束时间
     name: '南京玄武家政', // 店铺名称
@@ -62,8 +61,7 @@ const RenderForm = Form.create({
 })((props)=>{
     const { getFieldDecorator } = props.form;
     const { form: { validateFields } } = props;
-    const {dispatch,onEditOver} = props;
-
+    const {dispatch} = props;
     const handleSubmit = e => {
         validateFields((err, values)=>{
             console.log(values);
@@ -85,7 +83,6 @@ const RenderForm = Form.create({
                 dispatch(callthen(fillprofile_request,fillprofile_result,
                   {shopinfo})).then((result)=> {
                   console.log(result);
-                  onEditOver();
                 }).catch((e)=>{
                   dispatch(set_weui({
                     toast:{
@@ -95,37 +92,26 @@ const RenderForm = Form.create({
                   }}));
                 });
             }
-        })
-    };
+          })
+        };
 
     return (
         <Form layout="vertical" onSubmit={handleSubmit} hideRequiredMark>
-            <FormItem label="运营状态">
-                {getFieldDecorator('operation', {
-                })(
-                    <Radio.Group buttonStyle="solid">
-                        <Radio.Button value="on">运营中</Radio.Button>
-                        <Radio.Button value="off">关闭</Radio.Button>
-                    </Radio.Group>
-
-                )}
-            </FormItem>
-
             <Row gutter={16}>
                 <Col span={11}>
-            <FormItem label="开始运营时间">
+                    <FormItem label="开始运营时间">
 
-            {getFieldDecorator('start', {
-                rules: [
-                {
-                    required: true,
-                    message: "开始运营时间",
-                },
-                ],
-            })(
-                <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="开始时间" />
-            )}
-            </FormItem>
+                    {getFieldDecorator('start', {
+                        rules: [
+                        {
+                            required: true,
+                            message: "开始运营时间",
+                        },
+                        ],
+                    })(
+                        <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="开始时间" style={{width: "100%"}} />
+                    )}
+                    </FormItem>
                 </Col>
                 <Col span={11} offset={1}>
                     <FormItem label="结束运营时间">
@@ -137,7 +123,7 @@ const RenderForm = Form.create({
                         },
                         ],
                     })(
-                        <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="结束时间" />
+                        <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} placeholder="结束时间" style={{width: "100%"}} />
                     )}
                     </FormItem>
                 </Col>
@@ -153,36 +139,42 @@ const RenderForm = Form.create({
                 ],
             })(<Input />)}
             </FormItem>
-            <FormItem label="店铺行业">
-            {getFieldDecorator('industry', {
-                rules: [
-                {
-                    required: true,
-                    message: '请选择店铺行业',
-                },
-                ],
-            })(
-                <Select placeholder="店铺行业" style={{ maxWidth: 220 }}>
-                    <Option value="家政">家政</Option>
-                    <Option value="维修">维修</Option>
-                </Select>
-            )}
-            </FormItem>
-            <FormItem label="工种">
-            {getFieldDecorator('kind', {
-                rules: [
-                {
-                    required: true,
-                    message: '请选择工种',
-                },
-                ],
-            })(
-                <Select placeholder="工种" style={{ maxWidth: 220 }}>
-                    <Option value="经理">经理</Option>
-                    <Option value="业务员">业务员</Option>
-                </Select>
-            )}
-            </FormItem>
+            <Row gutter={16}>
+                <Col span={11}>
+                    <FormItem label="店铺行业">
+                    {getFieldDecorator('industry', {
+                        rules: [
+                        {
+                            required: true,
+                            message: '请选择店铺行业',
+                        },
+                        ],
+                    })(
+                        <Select placeholder="店铺行业" style={{ maxWidth: 220 }} style={{width: "100%"}}>
+                            <Option value="家政">家政</Option>
+                            <Option value="维修">维修</Option>
+                        </Select>
+                    )}
+                    </FormItem>
+                </Col>
+                <Col span={11} offset={1}>
+                    <FormItem label="工种">
+                    {getFieldDecorator('kind', {
+                        rules: [
+                        {
+                            required: true,
+                            message: '请选择工种',
+                        },
+                        ],
+                    })(
+                        <Select placeholder="工种" style={{width: "100%"}}>
+                            <Option value="经理">经理</Option>
+                            <Option value="业务员">业务员</Option>
+                        </Select>
+                    )}
+                    </FormItem>
+                </Col>
+            </Row>
             <FormItem label="店铺地址">
             {getFieldDecorator('address', {
                 rules: [
@@ -193,9 +185,8 @@ const RenderForm = Form.create({
                 ],
             })(<MapInput />)}
             </FormItem>
-            <FormItem>
-                <Button type="primary" htmlType="submit">保存</Button>
-                <Button style={{marginLeft: 10}} onClick={props.onEditOver}>取消</Button>
+            <FormItem style={{textAlign: "center"}}>
+                <Button type="primary" htmlType="submit" style={{width: "50%"}}>保存</Button>
             </FormItem>
 
         </Form>
@@ -205,16 +196,17 @@ const RenderForm = Form.create({
 
 class InfoEdit extends PureComponent {
 
+
+
   render() {
-    const { onEditOver } = this.props;
 
     return (
         <Card bordered={false} style={{ marginBottom: 24 }} loading={false}>
-            <div className={styles.avatarHolder} style={{textAlign: "center", marginBottom: "10px"}}>
+            <div className={styles.avatarHolder} style={{textAlign: "center", marginBottom: "50px"}}>
                 <img alt="" src="http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg" height="100" />
             </div>
 
-            <RenderForm {...init} onSubmit={this.handleSubmit} onEditOver={onEditOver} />
+            <RenderForm {...init} />
         </Card>
     );
   }

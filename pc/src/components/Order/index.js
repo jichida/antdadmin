@@ -6,6 +6,9 @@ class Index extends Component {
   handleTabChange = key => {
     const { history } = this.props;
     switch (key) {
+      case 'all':
+        history.push(`/order/all`);
+        break;
       case 'pendingpay':
         history.push(`/order/pendingpay`);
         break;
@@ -33,6 +36,10 @@ class Index extends Component {
 
   render() {
     const tabList = [
+      {
+        key: 'all',
+        tab: '全部'
+      },
       {
         key: 'pendingpay',
         tab: '待付款',

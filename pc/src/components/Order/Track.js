@@ -63,10 +63,10 @@ class Track extends PureComponent {
   render() {
     const {curorder} = this.props;
     return (
-      <PageHeaderWrapper
-        title="订单跟踪"
-        wrapperClassName={styles.dvancedForm}
-      >
+    //   <PageHeaderWrapper
+    //     title="订单跟踪"
+    //     wrapperClassName={styles.dvancedForm}
+    //   >
         <Card className={styles.card} bordered={false}>
             <Row gutter={16} style={{marginBottom:10}}>
                 <Col lg={1} md={3} >
@@ -109,7 +109,7 @@ class Track extends PureComponent {
                 </Col>
             </Row>
         </Card>
-      </PageHeaderWrapper>
+    //   </PageHeaderWrapper>
     );
   }
 }

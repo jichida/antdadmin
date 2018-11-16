@@ -11,7 +11,7 @@ const breadcrumbNameMap = {
   '/product': '产品管理',
   '/product/commodity': '商品',
   '/product/service': '服务',
-  '/productadd': '添加新商品',
+  '/productedit': '添加新商品',
   '/order': '订单管理',
   '/order/pendingpay': '待付款',
   '/order/pendingsend': '待发货',

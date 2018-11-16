@@ -1,11 +1,20 @@
 import React, { PureComponent } from 'react';
+import { Card } from 'antd';
 import OrderList from './orderlist';
 import { Link } from 'react-router-dom';
+import FilterForm from './FilterForm';
+
 
 class PendingSend extends PureComponent {
   state = {
     query:{}
   };
+
+  handleSearch = (values)=> {
+    this.setState({
+      query: values,
+    })
+  }
 
 
   render() {
@@ -19,7 +28,10 @@ class PendingSend extends PureComponent {
           ),
       };
     return (
+      <React.Fragment>
+        <Card style={{marginBottom: 10, marginTop: -16}}><FilterForm onSearch={this.handleSearch} /></Card>
         <OrderList query={this.state.query} opcol={opcol}/>
+      </React.Fragment>
     );
   }
 }

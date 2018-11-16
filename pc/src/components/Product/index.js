@@ -6,6 +6,9 @@ class Index extends Component {
   handleTabChange = key => {
     const { history, match } = this.props;
     switch (key) {
+      case 'all':
+          history.push(`${match.path}/`);
+        break;
       case 'commodity':
           history.push(`${match.url}/commodity`);
         break;
@@ -24,6 +27,10 @@ class Index extends Component {
 
   render() {
     const tabList = [
+      {
+        key: 'all',
+        tab: '全部',
+      },
       {
         key: 'commodity',
         tab: '商品管理',

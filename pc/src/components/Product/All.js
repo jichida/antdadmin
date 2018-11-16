@@ -7,7 +7,7 @@ import AsyncTable from './productlist.js';
 import FilterForm from './FilterForm';
 let g_querysaved;
 
-class ServiceList extends PureComponent {
+class All extends PureComponent {
 
   state = {
     query: {},
@@ -47,4 +47,4 @@ class ServiceList extends PureComponent {
   }
 }
 
-export default ServiceList;
+export default All;

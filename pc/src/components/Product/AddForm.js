@@ -63,6 +63,41 @@ const RenderForm = Form.create({
 }
 })((props)=>{
   const { getFieldDecorator } = props.form;
+  const { form: { validateFields },dispatch,curproduct } = props;
+  const handleSubmit = e => {
+    validateFields((err, values)=>{
+      console.log(values);
+
+      // values: { 商品
+      //   name: 名称
+      //   price: 价格
+      //   stock: 库存
+      //   type: 类型
+      //   tabs: 标签
+      //   introduce: 介绍
+      //   picture: 图片
+      // }
+      const data = {
+        name: values.name,
+        price: values.price,
+        stock: values.stock,
+        type: values.type,
+        tabs: values.tabs,
+        introduce: values.introduce,
+        picture: values.picture,
+      };
+      if(!err){
+        if(!!curproduct){
+          dispatch(productedit_request({_id:curproduct._id,data}));
+        }
+        else{
+          dispatch(productadd_request({data}));
+        }
+
+      }
+    })
+  };
+
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -91,7 +126,7 @@ const RenderForm = Form.create({
   }
 
   return (
-    <Form onSubmit={props.onSubmit} hideRequiredMark style={{ marginTop: 8}}>
+    <Form onSubmit={handleSubmit} hideRequiredMark style={{ marginTop: 8}}>
       <FormItem {...formItemLayout} label="商品名称">
         {getFieldDecorator('name', {
           rules: [
@@ -202,40 +237,7 @@ class AddForms extends PureComponent {
   onClickCancel =()=>{
     this.props.history.goBack();
   }
-  handleSubmit = e => {
-    const { form: { validateFields },dispatch,curproduct } = this.props;
-    validateFields((err, values)=>{
-      console.log(values);
-
-      // values: { 商品
-      //   name: 名称
-      //   price: 价格
-      //   stock: 库存
-      //   type: 类型
-      //   tabs: 标签
-      //   introduce: 介绍
-      //   picture: 图片
-      // }
-      const data = {
-        name: values.name,
-        price: values.price,
-        stock: values.stock,
-        type: values.type,
-        tabs: values.tabs,
-        introduce: values.introduce,
-        picture: values.picture,
-      };
-      if(!err){
-        if(!!curproduct){
-          dispatch(productedit_request({_id:curproduct._id,data}));
-        }
-        else{
-          dispatch(productadd_request({data}));
-        }
-
-      }
-    })
-  };
+  
 
   render() {
     const { submitting,curproduct } = this.props;
@@ -244,7 +246,6 @@ class AddForms extends PureComponent {
       <PageHeaderWrapper title="增加新商品" >
         <Card bordered={false} >
           <RenderForm {...init} 
-            onSubmit={this.handleSubmit} 
             onClickCancel={this.onClickCancel} 
             submitting={submitting} 
             curproduct={curproduct}

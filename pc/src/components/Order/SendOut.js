@@ -8,6 +8,7 @@ import {
   Col,
   Row,
   Input,
+  Select
 } from 'antd';
 import lodashget from 'lodash.get';
 import {callthen} from '../../sagas/pagination';
@@ -16,6 +17,191 @@ import {getconstinfo_request,getconstinfo_result,set_weui} from '../../actions';
 import FooterToolbar from '../FooterToolbar';
 import PageHeaderWrapper from '../PageHeaderWrapper';
 import styles from './style.module.less';
+
+const Option = Select.Option;
+
+const init = {
+  sname: '玄武家政',
+  sphone: '1234567890',
+  spostal: '343456',
+  saddress: '南京宣武区珠江路1#',
+  rname: '欧阳锋',
+  rphone: '0987654321',
+  rpostal: '787890',
+  raddress: '南京浦口区',
+  logisticname: '顺丰快递',
+  logisticid: '78564328',
+}
+
+const RenderForm = Form.create({
+  mapPropsToFields(props) {
+      return {
+          sname: Form.createFormField({
+              value: props.sname,
+          }),
+          sphone: Form.createFormField({
+              value: props.sphone,
+          }),
+          spostal: Form.createFormField({
+              value: props.spostal,
+          }),
+          saddress: Form.createFormField({
+              value: props.saddress,
+          }),
+          rname: Form.createFormField({
+            value: props.rname,
+          }),
+          rphone: Form.createFormField({
+              value: props.rphone,
+          }),
+          rpostal: Form.createFormField({
+              value: props.rpostal,
+          }),
+          raddress: Form.createFormField({
+              value: props.raddress,
+          }),
+          logisticname: Form.createFormField({
+              value: props.logisticname,
+          }),
+          logisticid: Form.createFormField({
+              value: props.logisticid,
+          }),
+      };
+  }
+  })((props)=>{
+    const { getFieldDecorator } = props.form;
+    const { form: { validateFields } } = props;
+
+    const handleSubmit = e => {
+      validateFields((err, values)=>{
+        console.log(values);
+  
+        // 订单发货
+        //   values: {
+        //     sname: 发货人
+        //     sphone: 手机号
+        //     spostal: 邮政编码
+        //     saddress: 商家地址
+        //     rname: 收货人
+        //     rphone: 手机号
+        //     rpostal: 邮政编码
+        //     raddress: 买家地址
+        //     logisticsname: 物流公司
+        //     logisticsid: 物流单号
+        //   }
+  
+        if(!err){
+          //
+        }
+      })
+    };
+    
+    return (
+      <Form layout="vertical" hideRequiredMark>
+      <Card title="商家信息" className={styles.card} bordered={false} headStyle={{backgroundColor: "#dcdddd"}}>
+
+          <Row gutter={16}>
+            <Col lg={6} md={12} sm={24}>
+              <Form.Item label="发货人">
+                {getFieldDecorator('sname', {
+                  rules: [{ required: true, message: '请输入发货人' }],
+                })(<Input placeholder="请输入发货人" />)}
+              </Form.Item>
+            </Col>
+            <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
+              <Form.Item label="手机号码">
+                {getFieldDecorator('sphone', {
+                  rules: [{ required: true, message: '请输入手机号码' }],
+                })(<Input placeholder="请输入手机号码" />)}
+              </Form.Item>
+          </Col>
+            <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
+              <Form.Item label="邮政编码">
+                {getFieldDecorator('spostal', {
+                  rules: [{ required: true, message: '请输入邮政编码' }],
+                })(<Input placeholder="请输入邮政编码" />)}
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col lg={24} md={24} sm={24}>
+              <Form.Item label="商家地址">
+                {getFieldDecorator('saddress', {
+                  rules: [{ required: true, message: '请输入商家地址' }],
+                })(<Input />)}
+              </Form.Item>
+            </Col>
+          </Row>
+      </Card>
+      <Card title="买家信息" className={styles.card} bordered={false} headStyle={{backgroundColor: "#dcdddd"}}>
+          <Row gutter={16}>
+            <Col lg={6} md={12} sm={24}>
+              <Form.Item label="收货人">
+                {getFieldDecorator('rname', {
+                  rules: [{ required: true, message: '请输入发货人' }],
+                })(<Input placeholder="请输入发货人" />)}
+              </Form.Item>
+            </Col>
+            <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
+              <Form.Item label="手机号码">
+                {getFieldDecorator('rphone', {
+                  rules: [{ required: true, message: '请输入手机号码' }],
+                })(<Input placeholder="请输入手机号码" />)}
+              </Form.Item>
+          </Col>
+            <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
+              <Form.Item label="邮政编码">
+                {getFieldDecorator('rpostal', {
+                  rules: [{ required: true, message: '请输入邮政编码' }],
+                })(<Input placeholder="请输入邮政编码" />)}
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col lg={24} md={24} sm={24}>
+              <Form.Item label="买家地址">
+                {getFieldDecorator('raddress', {
+                  rules: [{ required: true, message: '请输入买家地址' }],
+                })(<Input />)}
+              </Form.Item>
+            </Col>
+          </Row>
+      </Card>
+      <Card title="物流信息" className={styles.card} bordered={false}  headStyle={{backgroundColor: "#dcdddd"}}>
+          <Row gutter={16}>
+              <Col lg={6} md={12} sm={24}>
+                  <Form.Item label="物流公司">
+                      {getFieldDecorator('logisticname', {
+                      rules: [{ required: true, message: '请选择物流公司' }],
+                      })(
+                        <Select placeholder="物流公司" style={{width: "100%"}}>
+                            <Option value="顺丰快递">顺丰快递</Option>
+                            <Option value="圆通快递">圆通快递</Option>
+                            <Option value="申通快递">申通快递</Option>
+                            <Option value="天天快递">天天快递</Option>
+                        </Select>
+                      )}
+                  </Form.Item>
+            </Col>
+            <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
+                  <Form.Item label="物流单号">
+                      {getFieldDecorator('logisticid', {
+                        rules: [{ required: true, message: '请输入物流单号' }],
+                      })(<Input placeholder="请输入物流单号" />)}
+                  </Form.Item>
+          </Col>
+          </Row>
+
+      </Card>
+
+      <FooterToolbar style={{ marginTop: "10px", textAlign: "center" }}>
+        <Button type="primary" onClick={handleSubmit} loading={props.submitting}>
+          提交
+        </Button>
+      </FooterToolbar>
+      </Form>
+  );
+})
 
 class SendOut extends PureComponent {
   state = {
@@ -59,34 +245,10 @@ class SendOut extends PureComponent {
     });
   };
 
-  handleSubmit = e => {
-    const { form: { validateFields } } = this.props;
-    validateFields((err, values)=>{
-      console.log(values);
-
-      // 订单发货
-      //   values: {
-      //     sname: 发货人
-      //     sphone: 手机号
-      //     spostal: 邮政编码
-      //     saddress: 商家地址
-      //     rname: 收货人
-      //     rphone: 手机号
-      //     rpostal: 邮政编码
-      //     raddress: 买家地址
-      //     logisticsname: 物流公司
-      //     logisticsid: 物流单号
-      //   }
-
-      if(!err){
-        //
-      }
-    })
-  };
+  
 
   render() {
     const {
-      form: { getFieldDecorator },
       submitting,
     } = this.props;
     console.log(JSON.stringify(this.state.expresslist))
@@ -124,102 +286,7 @@ class SendOut extends PureComponent {
         title="订单发货"
         wrapperClassName={styles.dvancedForm}
       >
-      <Form layout="vertical" hideRequiredMark>
-        <Card title="商家信息" className={styles.card} bordered={false} headStyle={{backgroundColor: "#dcdddd"}}>
-
-            <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label="发货人">
-                  {getFieldDecorator('sname', {
-                    rules: [{ required: true, message: '请输入发货人' }],
-                  })(<Input placeholder="请输入发货人" />)}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label="手机号码">
-                  {getFieldDecorator('sphone', {
-                    rules: [{ required: true, message: '请输入手机号码' }],
-                  })(<Input placeholder="请输入手机号码" />)}
-                </Form.Item>
-            </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label="邮政编码">
-                  {getFieldDecorator('spostal', {
-                    rules: [{ required: true, message: '请输入邮政编码' }],
-                  })(<Input placeholder="请输入邮政编码" />)}
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col lg={24} md={24} sm={24}>
-                 <Form.Item label="商家地址">
-                  {getFieldDecorator('saddress', {
-                    rules: [{ required: true, message: '请输入商家地址' }],
-                  })(<Input />)}
-                </Form.Item>
-              </Col>
-            </Row>
-        </Card>
-        <Card title="买家信息" className={styles.card} bordered={false} headStyle={{backgroundColor: "#dcdddd"}}>
-             <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label="收货人">
-                  {getFieldDecorator('rname', {
-                    rules: [{ required: true, message: '请输入发货人' }],
-                  })(<Input placeholder="请输入发货人" />)}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label="手机号码">
-                  {getFieldDecorator('rphone', {
-                    rules: [{ required: true, message: '请输入手机号码' }],
-                  })(<Input placeholder="请输入手机号码" />)}
-                </Form.Item>
-            </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label="邮政编码">
-                  {getFieldDecorator('rpostal', {
-                    rules: [{ required: true, message: '请输入邮政编码' }],
-                  })(<Input placeholder="请输入邮政编码" />)}
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col lg={24} md={24} sm={24}>
-                 <Form.Item label="买家地址">
-                  {getFieldDecorator('raddress', {
-                    rules: [{ required: true, message: '请输入买家地址' }],
-                  })(<Input />)}
-                </Form.Item>
-              </Col>
-            </Row>
-        </Card>
-        <Card title="物流信息" className={styles.card} bordered={false}  headStyle={{backgroundColor: "#dcdddd"}}>
-             <Row gutter={16}>
-                <Col lg={6} md={12} sm={24}>
-                    <Form.Item label="物流公司">
-                        {getFieldDecorator('logisticname', {
-                        rules: [{ required: true, message: '请输入物流公司' }],
-                        })(<Input placeholder="请输入物流公司" />)}
-                    </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                    <Form.Item label="物流单号">
-                         {getFieldDecorator('logisticid', {
-                          rules: [{ required: true, message: '请输入物流单号' }],
-                         })(<Input placeholder="请输入物流单号" />)}
-                    </Form.Item>
-             </Col>
-            </Row>
-
-        </Card>
-
-        <FooterToolbar style={{ marginTop: "10px", textAlign: "center" }}>
-          <Button type="primary" onClick={this.handleSubmit} loading={submitting}>
-            提交
-          </Button>
-        </FooterToolbar>
-        </Form>
+        <RenderForm {...init} handleSubmit={this.handleSubmit} submitting={submitting} />
       </PageHeaderWrapper>
     );
   }

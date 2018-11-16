@@ -37,7 +37,7 @@ class GLayout extends React.PureComponent {
           <Header style={{ background: '#fff', padding: 0 }}>
             <GlobalHeader collapsed={this.collapsed} onCollapse={this.toggle} />
           </Header>
-          <Content style={{ margin: '24px 16px 0' }}>
+          <Content style={{ margin: '24px 16px 50px' }}>
             <div style={{ padding: 0, background: '#f0f2f5', minHeight: 360 }}>
               {children}
             </div>

@@ -34,18 +34,31 @@ class LoginPage extends Component {
     this.setState({ type });
   };
 
-  onGetCaptcha = () =>{
-    console.log(this.props);
-    const { form,dispatch } = this.props;
-    const mobile = form.getFieldValue('mobile');
-    //验证手机号码是否合法
-    if(mobile === ''){//不合法
-      dispatch(common_err({type:'sendauth',errmsg:`请输入正确的手机号码`}));
-      return;
-    }
-    dispatch(sendauth_request({username: mobile,reason:'login'}));
+  // onGetCaptcha = () =>{
+  //   console.log(this.props);
+  //   const { form,dispatch } = this.props;
+  //   const mobile = form.getFieldValue('mobile');
+  //   //验证手机号码是否合法
+  //   if(mobile === ''){//不合法
+  //     dispatch(common_err({type:'sendauth',errmsg:`请输入正确的手机号码`}));
+  //     return;
+  //   }
+  //   dispatch(sendauth_request({username: mobile,reason:'login'}));
 
-  }
+  // }
+
+  onGetCaptcha = () =>
+    new Promise((resolve, reject) => {
+      this.loginForm.validateFields(['mobile'], {}, (err, values) => {
+        if (err) {
+          reject(err);
+        } else {
+          const { dispatch } = this.props;
+          dispatch(sendauth_request({username: values.mobile,reason:'login'}))
+          resolve();
+        }
+      });
+    });
 
 
 

@@ -39,6 +39,7 @@ class SideMenu extends PureComponent {
             <Menu.Item key="account"><Link to='/'>我的信息</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="product" title={<span><Icon type="appstore" /><span>产品管理</span></span>}>
+            <Menu.Item key="add"><Link to='/productedit/0'>增加新产品</Link></Menu.Item>
             <Menu.Item key="commodity"><Link to='/product/commodity'>商品管理</Link></Menu.Item>
             <Menu.Item key="service"><Link to='/product/service'>服务管理</Link></Menu.Item>
           </SubMenu>
