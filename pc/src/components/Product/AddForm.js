@@ -25,78 +25,44 @@ const { TextArea } = Input;
 //   reader.readAsDataURL(img);
 // }
 
-const init = {
-  name: '门锁',
-  price: 200,
-  stock: 368,
-  type: '上门',
-  tabs: ['安装','开锁'],
-  introduce: '上门开锁、安装',
-  picture: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542253931555&di=bc974fafa66bc7bdd752c93db9e401d8&imgtype=0&src=http%3A%2F%2Ft2.58cdn.com.cn%2Fbidding%2Fbig%2Fn_v1bj3gzseh7javs636qesq.jpg',
-}
+// const init = {
+//   name: '门锁',
+//   price: 200,
+//   stock: 368,
+//   type: '上门',
+//   tabs: ['安装','开锁'],
+//   introduce: '上门开锁、安装',
+//   picture: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542253931555&di=bc974fafa66bc7bdd752c93db9e401d8&imgtype=0&src=http%3A%2F%2Ft2.58cdn.com.cn%2Fbidding%2Fbig%2Fn_v1bj3gzseh7javs636qesq.jpg',
+// }
 
 const RenderForm = Form.create({
   mapPropsToFields(props) {
       return {
           name: Form.createFormField({
-              value: props.name,
+              value:lodashget(props,'curproduct.name',''),
           }),
           price: Form.createFormField({
-              value: props.price,
+              value: lodashget(props,'curproduct.price',''),
           }),
           stock: Form.createFormField({
-              value: props.stock,
+              value: lodashget(props,'curproduct.stock',''),
           }),
           type: Form.createFormField({
-              value: props.type,
+              value: lodashget(props,'curproduct.type',''),
           }),
           tabs: Form.createFormField({
-              value: props.tabs,
+              value: lodashget(props,'curproduct.tabs',''),
           }),
           introduce: Form.createFormField({
-              value: props.introduce,
+              value: lodashget(props,'curproduct.introduce',''),
           }),
           picture: Form.createFormField({
-              value: props.picture,
+              value: lodashget(props,'curproduct.picture',''),
           }),
   };
 }
 })((props)=>{
   const { getFieldDecorator } = props.form;
-  const { form: { validateFields },dispatch,curproduct } = props;
-  const handleSubmit = e => {
-    validateFields((err, values)=>{
-      console.log(values);
-
-      // values: { 商品
-      //   name: 名称
-      //   price: 价格
-      //   stock: 库存
-      //   type: 类型
-      //   tabs: 标签
-      //   introduce: 介绍
-      //   picture: 图片
-      // }
-      const data = {
-        name: values.name,
-        price: values.price,
-        stock: values.stock,
-        type: values.type,
-        tabs: values.tabs,
-        introduce: values.introduce,
-        picture: values.picture,
-      };
-      if(!err){
-        if(!!curproduct){
-          dispatch(productedit_request({_id:curproduct._id,data}));
-        }
-        else{
-          dispatch(productadd_request({data}));
-        }
-
-      }
-    })
-  };
 
   const formItemLayout = {
     labelCol: {
@@ -124,6 +90,11 @@ const RenderForm = Form.create({
     }
     return e && e.fileList;
   }
+
+  const handleSubmit = e => {
+    const { form: { validateFields },onClickSubmit } = props;
+    validateFields(onClickSubmit);
+  };
 
   return (
     <Form onSubmit={handleSubmit} hideRequiredMark style={{ marginTop: 8}}>
@@ -237,7 +208,38 @@ class AddForms extends PureComponent {
   onClickCancel =()=>{
     this.props.history.goBack();
   }
-  
+  onClickSubmit = (err, values)=>{
+    const {dispatch,curproduct} = this.props;
+    console.log(values);
+
+    // values: { 商品
+    //   name: 名称
+    //   price: 价格
+    //   stock: 库存
+    //   type: 类型
+    //   tabs: 标签
+    //   introduce: 介绍
+    //   picture: 图片
+    // }
+    const data = {
+      name: values.name,
+      price: values.price,
+      stock: values.stock,
+      type: values.type,
+      tabs: values.tabs,
+      introduce: values.introduce,
+      picture: values.picture,
+    };
+    if(!err){
+      if(!!curproduct){
+        dispatch(productedit_request({_id:curproduct._id,data}));
+      }
+      else{
+        dispatch(productadd_request({data}));
+      }
+    }
+  };
+
 
   render() {
     const { submitting,curproduct } = this.props;
@@ -245,9 +247,10 @@ class AddForms extends PureComponent {
     return (
       <PageHeaderWrapper title="增加新商品" >
         <Card bordered={false} >
-          <RenderForm {...init} 
-            onClickCancel={this.onClickCancel} 
-            submitting={submitting} 
+          <RenderForm 
+            onClickSubmit={this.onClickSubmit}
+            onClickCancel={this.onClickCancel}
+            submitting={submitting}
             curproduct={curproduct}
           />
         </Card>

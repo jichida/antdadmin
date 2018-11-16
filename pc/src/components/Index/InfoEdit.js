@@ -61,43 +61,10 @@ const RenderForm = Form.create({
   }
 })((props)=>{
     const { getFieldDecorator } = props.form;
-    const { form: { validateFields } } = props;
-    const {dispatch,onEditOver} = props;
-
     const handleSubmit = e => {
-        validateFields((err, values)=>{
-            console.log(values);
-            
-            // 店铺维护：
-            // values: {
-            // operation：运营状态
-            // operationtstart：运营开始时间
-            // operationend：运营结束时间
-            // name：名称
-            // industry: 行业
-            // kind: 工种
-            // address: 店铺地址
-            //   }
-            const shopinfo = {
-              name:values.name,
-            };
-            if(!err){
-                dispatch(callthen(fillprofile_request,fillprofile_result,
-                  {shopinfo})).then((result)=> {
-                  console.log(result);
-                  onEditOver();
-                }).catch((e)=>{
-                  dispatch(set_weui({
-                    toast:{
-                    text:`编辑商铺信息失败`,
-                    show: true,
-                    type:'warning'
-                  }}));
-                });
-            }
-        })
+        const { form: { validateFields },onClickSubmit } = props;
+        validateFields(onClickSubmit);
     };
-
     return (
         <Form layout="vertical" onSubmit={handleSubmit} hideRequiredMark>
             <FormItem label="运营状态">
@@ -205,6 +172,38 @@ const RenderForm = Form.create({
 
 class InfoEdit extends PureComponent {
 
+onClickSubmit = (err, values)=>{
+    console.log(values);
+    const {dispatch,onEditOver} = this.props;
+    // 店铺维护：
+    // values: {
+    // operation：运营状态
+    // operationtstart：运营开始时间
+    // operationend：运营结束时间
+    // name：名称
+    // industry: 行业
+    // kind: 工种
+    // address: 店铺地址
+    //   }
+    const shopinfo = {
+      name:values.name,
+    };
+    if(!err){
+        dispatch(callthen(fillprofile_request,fillprofile_result,
+          {shopinfo})).then((result)=> {
+          console.log(result);
+          onEditOver();
+        }).catch((e)=>{
+          dispatch(set_weui({
+            toast:{
+            text:`编辑商铺信息失败`,
+            show: true,
+            type:'warning'
+          }}));
+        });
+    }
+}
+
   render() {
     const { onEditOver } = this.props;
 
@@ -214,7 +213,7 @@ class InfoEdit extends PureComponent {
                 <img alt="" src="http://image.nbd.com.cn/uploads/avatars/532975/avatar.jpg" height="100" />
             </div>
 
-            <RenderForm {...init} onSubmit={this.handleSubmit} onEditOver={onEditOver} />
+            <RenderForm {...init} onClickSubmit={this.onClickSubmit} onEditOver={onEditOver} />
         </Card>
     );
   }
