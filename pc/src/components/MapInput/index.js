@@ -6,7 +6,7 @@ import {
     Row,
     Col,
   } from 'antd';
-import { styles } from 'ansi-colors';
+import MapDragSelC from './mapdragselloc.js';
 
 class MapInput extends React.PureComponent {
 
@@ -52,20 +52,26 @@ class MapInput extends React.PureComponent {
     }
 
     render(){
+        const input = {
+          value:[121,30],
+          onChange:(loc)=>{
+            console.log(loc);
+          }
+        };
         return(
             <React.Fragment>
                 <Row>
                     <Col span={19}><Input readOnly placeholder = "请定位你的地址" value = {this.state.value} onChange={this.handleInputChange}/> </Col>
                     <Col span={4} style={{paddingLeft:5}}><Button type= "primary" onClick = {this.showModel}>定位</Button></Col>   
                 </Row>
-                
-                <Modal 
+
+                <Modal
                     title = "定位你的店铺地址"
                     visible={ this.state.visible }
                     onOk = {this.handleOK}
                     onCancel = {this.handleCancel}
                 >
-                    <p>地图定位组件</p>
+                    <p><MapDragSelC input={input} /></p>
                 </Modal>
             </React.Fragment>
         )
