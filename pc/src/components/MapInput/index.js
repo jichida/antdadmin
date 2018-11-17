@@ -6,6 +6,7 @@ import {
     Row,
     Col,
   } from 'antd';
+import { styles } from 'ansi-colors';
 
 class MapInput extends React.PureComponent {
 
@@ -21,11 +22,12 @@ class MapInput extends React.PureComponent {
     }
 
     handleOK = (e) => {
-        console.log(e);
-
-        console.log(this.props.onChange);
-        this.props.onChange('新地址');
-
+    
+        let cur = '新位置' ;
+        this.setState({ value: cur });
+        
+        this.triggerChange(cur);
+    
         this.setState({
             visible: false,
         });
@@ -36,10 +38,17 @@ class MapInput extends React.PureComponent {
     }
 
     handleCancel = (e) => {
-        console.log(e);
         this.setState({
             visible: false,
         });
+    }
+
+    triggerChange = (changedValue) => {
+        // Should provide an event to pass value to Form.
+        const onChange = this.props.onChange;
+        if (onChange) {
+          onChange(changedValue);
+        }
     }
 
     render(){
@@ -47,7 +56,7 @@ class MapInput extends React.PureComponent {
             <React.Fragment>
                 <Row>
                     <Col span={19}><Input readOnly placeholder = "请定位你的地址" value = {this.state.value} onChange={this.handleInputChange}/> </Col>
-                    <Col span={4}><Button type= "primary" onClick = {this.showModel}>定位</Button></Col>   
+                    <Col span={4} style={{paddingLeft:5}}><Button type= "primary" onClick = {this.showModel}>定位</Button></Col>   
                 </Row>
                 
                 <Modal 

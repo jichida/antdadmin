@@ -6,7 +6,6 @@ import {
   InputNumber,
 } from 'antd';
 import PayPicker from '../PayPicker';
-import RecommendPicker from '../RecommendPicker';
 
 import styles from './TableList.module.less';
 
@@ -24,11 +23,6 @@ class Recharge extends PureComponent {
             <Row gutter={{ md: 8, lg: 24, xl: 48 }} style={{ marginBottom:"20px"}}>
                 <Col md={8} sm={24}>
                     <h3>选择支付方式：</h3><PayPicker />
-                </Col>
-            </Row>
-            <Row gutter={{ md: 8, lg: 24, xl: 48 }} style={{ marginBottom:"20px"}}>
-                <Col md={8} sm={24}>
-                    <h3>选择推荐方式：</h3><RecommendPicker />
                 </Col>
             </Row>
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>

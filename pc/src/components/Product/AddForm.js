@@ -151,7 +151,7 @@ const RenderForm = Form.create({
             },
           ],
         })(
-          <Select mode="multiple" placeholder="标签" style={{width: 300}}>
+          <Select placeholder="标签" style={{width: 300}}>
               <Option value="健康">健康</Option>
               <Option value="安装">安装</Option>
               <Option value="开锁">开锁</Option>

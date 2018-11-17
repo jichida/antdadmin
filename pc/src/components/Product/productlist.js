@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Pagination } from 'antd';
-import { Card, Button, Icon, List,Popconfirm } from 'antd';
+import { Card, Button, Icon, List,Popconfirm, Modal } from 'antd';
+import RecommendPicker from '../RecommendPicker';
 import lodashmap from 'lodash.map';
 import lodashget from 'lodash.get';
 import { Link,withRouter } from 'react-router-dom';
@@ -25,8 +26,36 @@ class ProductList extends PureComponent {
           total:1
         },
         refreshing: false,
-        pos:0
+        pos:0,
+        visible: false, // 对话框是否显示
+        recommend: -1, // 推荐策略
       }
+  }
+
+  handleSelectRecommend = (value)=>{
+    console.log(value);
+    this.setState({
+      recommend: value,
+    });
+  }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  handleOk = (e) => {
+    this.setState({
+      visible: false,
+    });
+  }
+
+  handleCancel = (e) => {
+    this.setState({
+      recommend: -1,
+      visible: false,
+    });
   }
 
   onChangePagination =(page, pageSize)=>{
@@ -194,6 +223,20 @@ class ProductList extends PureComponent {
 
     return (
         <div className={styles.cardList}>
+          <Modal 
+            title="选择推荐策略"
+            okText="确认推荐商品"
+            okType="primary"
+            cancelText="返回"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+            width={660}
+            bodyStyle={{textAlign: "center"}}
+          >
+            <RecommendPicker selectIndex={this.state.recommend} onSelectRecommend={this.handleSelectRecommend} />
+          </Modal>
+          <Card style={{ marginTop: "10px", marginBottom: "10px"}}><Link to="/productedit/0"><Button type="primary">添加新产品</Button></Link></Card>
           <List
             rowKey="id"
             loading={false}

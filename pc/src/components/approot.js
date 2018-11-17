@@ -4,6 +4,8 @@ import { Route,Switch, Redirect } from 'react-router-dom';
 
 import Index from './Index';
 import Unaudited from './Index/Unaudited';
+import Auditing from './Index/Auditing';
+import AuditError from './Index/AuditError';
 
 import OrderAll from './Order/All';
 import Completed from './Order/Completed';
@@ -23,6 +25,7 @@ import Add from './Product/AddForm';
 
 import BasicLayout from '../layouts/GLayout';
 import UserLayout from '../layouts/UserLayout';
+import ULayout from '../layouts/ULayout';
 import Order from './Order';
 import Product from './Product';
 
@@ -37,6 +40,13 @@ import RegisterResult from './User/Step3';
 const Layout = (Component)=>{
   const LayoutComponent = (props)=>{
     return (<BasicLayout><Component {...props}/></BasicLayout>);
+  }
+  return requireAuthentication(LayoutComponent);
+}
+
+const UnauditedLayout = (Component)=>{
+  const LayoutComponent = (props)=>{
+    return (<ULayout><Component {...props}/></ULayout>);
   }
   return requireAuthentication(LayoutComponent);
 }
@@ -69,7 +79,9 @@ class AppRoot extends React.Component {
                 <Switch>
                     <Route exact path="/" render={()=>(<Redirect to="/account/recharge" />)}/>
                     <Route path="/account/:param" component={IndexLayout} />
-                    <Route path="/unaudited/:param" component={Layout(Unaudited)} />
+                    <Route path="/unaudited/:param" component={UnauditedLayout(Unaudited)} />
+                    <Route path="/auditing" component={UnauditedLayout(Auditing)} />
+                    <Route path="/auditerror" component={UnauditedLayout(AuditError)} />
                     <Route path="/product" render={()=>
                       <ProductLayout>
                         <Route exact path="/product" render={()=>(<Redirect to="/product/all" />)}/>

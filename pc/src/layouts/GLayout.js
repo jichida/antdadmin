@@ -43,7 +43,7 @@ class GLayout extends React.PureComponent {
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-             ©2018 
+             ©2018 爱上门
           </Footer>
         </Layout>
       </Layout>
